@@ -17,7 +17,7 @@ const Header = () => {
                         Личный кабинет
                     </a>
                     <a href="#" className="header__nav-lr">
-                        Выйти
+                        Войти
                     </a>
                 </nav>
             </div>
