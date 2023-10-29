@@ -1,6 +1,8 @@
 import "./style.css"
 import logo from "../../img/logo.svg"
 import React from "react";
+import Auto from "../../pages/Auto";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return ( 
@@ -10,19 +12,19 @@ const Header = () => {
                     <img src={logo} className="header__img-logo" alt="логотип"></img>    
                 </div>
                 <nav className="header__nav">
-                    <a href="#" className="header__nav-lr">
+                    <Link to="/"className="header__nav-lr">
                         Лабараторная работа
-                    </a>
-                    <a href="#" className="header__nav-lr">
+                    </Link>
+                    <Link to="/profile" className="header__nav-lr">
                         Личный кабинет
-                    </a>
-                    <a href="#" className="header__nav-lr">
+                    </Link>
+                    <Link to ="/login" className="header__nav-lr">
                         Войти
-                    </a>
+                    </Link>
                 </nav>
             </div>
             
-
+            
         </header>
      );
 }

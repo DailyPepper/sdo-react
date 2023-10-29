@@ -1,7 +1,6 @@
-import React from "react";
-
-
-const auto = () => {
+import React, { useState } from 'react';
+import "../styles/style.css"
+const Auto = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -32,23 +31,31 @@ const auto = () => {
           // Failed authentication
           setError('Invalid username or password');
         }
-};
+    };
+    
     return ( 
-        <div>
-            <h1 className="login__heading"> 
-                Войдите в личный кабинет или создайте профиль
+        <div className='section__login'>
+            <h1 className="section__login-heading"> 
+                Войдите в личный кабинет
             </h1>
-            <form onSubmit={handleLogin}>
-                <input type="text" placeholder="Ваш e-mail* или номер телефона" />
+            <form onSubmit={handleLogin} className='section__login-form' method='post'>
+                <input 
+                    type="text" 
+                    placeholder=" Ваш e-mail* или номер телефона" 
+                    onChange={handleUsernameChange}
+                    className='section__login-formInput'
+                />
                 <input 
                     type="password"
-                    placeholder="Password"
+                    placeholder=" Password"
                     value={password}
                     onChange={handlePasswordChange}
+                    className='section__login-formInput'
                 />
+                <button type="submit" className='section__login-button'>Войти</button>
             </form>
         </div>
      );
 }
  
-export default auto;
+export default Auto;
