@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Laboratory from "../../pages/Laboratory";
 
 const Header = () => {
-    const [isAuthenticaced, setIsAuthenticated] = useState(false)
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
 
     const handleLogout = () => {
         setIsAuthenticated(false)
@@ -33,6 +33,7 @@ const Header = () => {
                         Войти
                         </Link>
                     )}
+
                 </nav>
             </div>
             

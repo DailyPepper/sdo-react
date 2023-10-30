@@ -33,16 +33,23 @@ const Auto = () => {
             <h1 className="section__login-heading"> 
                 Войдите в личный кабинет
             </h1>
-            <form onSubmit={handleLogin} className='section__login-form' method='post'>
+            <form 
+              onSubmit={handleLogin} 
+              className='section__login-form' 
+              method='post'
+              action='#'
+            >
                 <input 
                     type="text" 
                     placeholder=" Ваш e-mail* или номер телефона" 
                     onChange={handleUsernameChange}
+                    name='username'
                     className='section__login-formInput'
                 />
                 <input 
                     type="password"
                     placeholder=" Password"
+                    name='password'
                     value={password}
                     onChange={handlePasswordChange}
                     className='section__login-formInput'
