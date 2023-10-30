@@ -16,19 +16,14 @@ const Auto = () => {
   
     const handleLogin = (e) => {
       e.preventDefault();
-
-    
-        // Perform authentication logic here
-        // You can make API calls or validate credentials locally
     
         if (username === 'admin' && password === 'password') {
-          // Successful authentication
+          
           setError('');
           setUsername('');
           setPassword('');
-          // Redirect to the main app or dashboard
+
         } else {
-          // Failed authentication
           setError('Invalid username or password');
         }
     };

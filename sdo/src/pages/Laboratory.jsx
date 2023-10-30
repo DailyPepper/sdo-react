@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
+import React from "react";
 
 const Laboratory = () => {
 
-    const btnDelete = document.addEventListener('buttonDelete');
-    const btnAdd = document.addEventListener('buttonAdd');
+    const clickDelete = (event) => {
+        const listItem = event.target.parentNode;
+        listItem.remove();
+    }
 
-    
-
-    return ( 
+    return (
         <div>
             <div>
-                <input 
-                type="text" 
-                placeholder=""
-                
+                <input
+                    type="text"
+                    placeholder=""
                 />
                 <button id="buttonAdd">
                     Добавить новую Лабараторную работу
@@ -22,18 +22,18 @@ const Laboratory = () => {
             <ul>
                 <li>
                     <p>
-                        
+
                     </p>
-                    <Link>
+                    <Link to="/edit">
                         Редактировать
                     </Link>
-                    <button id='buttonDelete'>
+                    <button id='buttonDelete' onClick={clickDelete}>
                         Удалить
                     </button>
                 </li>
             </ul>
         </div>
-     );
+    );
 }
- 
+
 export default Laboratory;
