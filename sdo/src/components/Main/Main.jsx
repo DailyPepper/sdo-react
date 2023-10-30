@@ -1,5 +1,7 @@
 import React from "react";
 import "../Main/style.css";
+import { Link } from "react-router-dom";
+import Auto from "../../pages/Auto";
 
 const Main = () => {
     return ( 
@@ -8,12 +10,12 @@ const Main = () => {
                 Войдите в учетную запись или зарегистрируйтесть:
             </h1>
             <div className="section__block">
-                <a className="section__block-btn" href="#">
+                <Link className="section__block-btn" to="/login">
                     Студент
-                </a>
-                <a className="section__block-btn" href="#"> 
+                </Link>
+                <Link className="section__block-btn" to="/login"> 
                     Преподователь
-                </a>
+                </Link>
             </div>
         </section>
      );
