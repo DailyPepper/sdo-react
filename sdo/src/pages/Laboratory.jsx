@@ -34,7 +34,7 @@ const Laboratory = () => {
             </div>
             <ul className="section__lab-list">
                 <li className="section__lab-page">
-                    <p>
+                    <p className="section__lab-name">
                         Лабараторная работа 1
                     </p>
                         <span className="section__lab-spn">
@@ -48,7 +48,7 @@ const Laboratory = () => {
                         
                 </li>
                 <li className="section__lab-page">
-                    <p>
+                    <p className="section__lab-name">
                         Лабараторная работа 2
                     </p>
                         <span className="section__lab-spn">

@@ -57,7 +57,7 @@
 }
 .section__lab-page{
     width: 1246px;
-    height: 104px;
+    height: 120px;
     background-color: antiquewhite;
     border-radius: 10px;
     list-style: none;
@@ -113,4 +113,10 @@
     font-family: "Montserrat";
     font-size: 16px;
     border: 0.7px solid #000;
+}
+.section__lab-name{
+    color: #000;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-size: 19px;
 }
