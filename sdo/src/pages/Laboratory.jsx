@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import Footer from "../components/Footer/Footer";
 
 const Laboratory = () => {
 
@@ -9,10 +10,23 @@ const Laboratory = () => {
       };
 
     const [searchValue, setSearchValue] = useState("")
+    
 
     const handleSearchChange = (event) => {
         setSearchValue(event.target.value)
     }
+
+    const labItems = [
+        {title: "Лабораторная работа 1"},
+        {title: "Лабораторная работа 2"},
+        {title: "Лабораторная работа 3"},
+        {title: "Лабораторная работа 4"},
+        {title: "Лабораторная работа 5"},
+    ]
+
+    const getColors = (index) => {
+        return index % 2 === 0 ? "section__lab-page" : "section__lab-page alternate-color"
+    }; 
     return (
         <div className="section__lab">
             <div className="section__lab-block">
@@ -33,33 +47,23 @@ const Laboratory = () => {
                 </div>
             </div>
             <ul className="section__lab-list">
-                <li className="section__lab-page">
-                    <p className="section__lab-name">
-                        Лабараторная работа 1
-                    </p>
-                        <span className="section__lab-spn">
-                            <Link to="/edit" className="section__lab-edit">
-                                Редактировать
-                            </Link>  
-                            <button id='buttonDelete' onClick={handleDeleteClick} className="section__lab-btnDelete">
-                                Удалить
-                            </button>     
-                        </span>
-                        
-                </li>
-                <li className="section__lab-page">
-                    <p className="section__lab-name">
-                        Лабараторная работа 2
-                    </p>
-                        <span className="section__lab-spn">
-                            <Link to="/edit" className="section__lab-edit">
-                                Редактировать
-                            </Link>  
-                            <button id='buttonDelete' onClick={handleDeleteClick} className="section__lab-btnDelete">
-                                Удалить
-                            </button>     
-                        </span>
-                </li>
+                {labItems.map((item, index) => (
+                    <li className={getColors(index)}  key={index}>
+                        <p className="section__lab-name">
+                            {item.title}
+                        </p>
+                            <span className="section__lab-spn">
+                                <Link to="/edit" className="section__lab-edit">
+                                    Редактировать
+                                </Link>  
+                                <button id='buttonDelete' onClick={handleDeleteClick} className="section__lab-btnDelete">
+                                    Удалить
+                                </button>     
+                            </span>
+                    </li>
+                    
+                ))}
+                
             </ul>
         </div>
     );

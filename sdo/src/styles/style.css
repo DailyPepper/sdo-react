@@ -58,7 +58,7 @@
 .section__lab-page{
     width: 1246px;
     height: 120px;
-    background-color: antiquewhite;
+    background: rgba(226, 237, 208, 0.55);
     border-radius: 10px;
     list-style: none;
 }
@@ -119,4 +119,7 @@
     text-align: center;
     font-family: 'Montserrat';
     font-size: 19px;
+}
+.alternate-color{
+    background: rgba(216, 216, 216, 0.38);
 }
