@@ -3,10 +3,10 @@ import React, { useState } from "react";
 
 const Laboratory = () => {
 
-    const clickDelete = (event) => {
-        const listItem = event.target.parentNode;
+    const handleDeleteClick = (event) => {
+        const listItem = event.target.closest(".section__lab-page");
         listItem.remove();
-    }
+      };
 
     const [searchValue, setSearchValue] = useState("")
 
@@ -37,23 +37,28 @@ const Laboratory = () => {
                     <p>
                         Лабараторная работа 1
                     </p>
-                    <Link to="/edit">
-                        Редактировать
-                    </Link>
-                    <button id='buttonDelete' onClick={clickDelete}>
-                        Удалить
-                    </button>
+                        <span className="section__lab-spn">
+                            <Link to="/edit" className="section__lab-edit">
+                                Редактировать
+                            </Link>  
+                            <button id='buttonDelete' onClick={handleDeleteClick} className="section__lab-btnDelete">
+                                Удалить
+                            </button>     
+                        </span>
+                        
                 </li>
                 <li className="section__lab-page">
                     <p>
                         Лабараторная работа 2
                     </p>
-                    <Link to="/edit">
-                        Редактировать
-                    </Link>
-                    <button id='buttonDelete' onClick={clickDelete}>
-                        Удалить
-                    </button>
+                        <span className="section__lab-spn">
+                            <Link to="/edit" className="section__lab-edit">
+                                Редактировать
+                            </Link>  
+                            <button id='buttonDelete' onClick={handleDeleteClick} className="section__lab-btnDelete">
+                                Удалить
+                            </button>     
+                        </span>
                 </li>
             </ul>
         </div>
