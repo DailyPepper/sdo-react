@@ -1,7 +1,6 @@
 import React from "react";
 import "../Main/style.css";
 import { Link } from "react-router-dom";
-import Auto from "../../pages/Auto";
 
 const Main = () => {
     return ( 

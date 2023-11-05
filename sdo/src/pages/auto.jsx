@@ -4,7 +4,7 @@ const Auto = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [setError] = useState('');
   
     const handleUsernameChange = (e) => {
       setUsername(e.target.value);

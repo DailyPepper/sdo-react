@@ -1,9 +1,9 @@
 import "./style.css"
 import logo from "../../img/logo.svg"
 import React, { useState } from "react";
-import Auto from "../../pages/Auto";
+
 import { Link } from "react-router-dom";
-import Laboratory from "../../pages/Laboratory";
+
 
 const Header = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
