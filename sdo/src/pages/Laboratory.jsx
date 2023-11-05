@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
-
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 
 const Laboratory = () => {
 
@@ -28,6 +29,8 @@ const Laboratory = () => {
         return index % 2 === 0 ? "section__lab-page" : "section__lab-page alternate-color"
     }; 
     return (
+        <>
+        <Header/>
         <div className="section__lab">
             <div className="section__lab-block">
                 <div className="section__lab-blockSearch">
@@ -66,6 +69,8 @@ const Laboratory = () => {
                 
             </ul>
         </div>
+        <Footer/>
+        </>
     );
 }
 

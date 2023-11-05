@@ -3,13 +3,10 @@ import React from "react";
 
 const Footer = () => {
     return ( 
-        <Footer className="footer">
+        <section className="footer">
 
-        </Footer>
+        </section>
      );
 }
  
 export default Footer;
-<footer>
-
-</footer>
