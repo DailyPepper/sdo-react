@@ -36,3 +36,6 @@ html,body{
     font-family: 'Montserrat';
     line-height: 27px;
 }
+.header__nav-lr:hover{
+    color: #FFF;
+}
