@@ -12,10 +12,10 @@ const Main = () => {
                         Войдите в учетную запись или зарегистрируйтесть:
                     </h1>
                     <div className="section__block">
-                        <Link className="section__block-btn" to="/login">
+                        <Link className="section__block-btn" to="/login" >
                             Студент
                         </Link>
-                        <Link className="section__block-btn" to="/login"> 
+                        <Link className="section__block-btn" to="/login" > 
                             Преподователь
                         </Link>
                     </div>

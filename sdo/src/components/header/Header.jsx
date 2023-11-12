@@ -1,6 +1,7 @@
 import "./style.css"
 import logo from "../../img/logo.svg"
 import React, { useState } from "react";
+import Main from "../Main/Main";
 
 import { Link } from "react-router-dom";
 
@@ -11,6 +12,7 @@ const Header = () => {
     const handleLogout = () => {
         setIsAuthenticated(false)
     }
+    
     return ( 
         <header className="header">
             <div className="header__wrapper">
