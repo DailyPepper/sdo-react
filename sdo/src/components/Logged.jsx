@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const Logged = ({setIsLogged}) => {
     const[isLoggedIn, setIsLoggedIn] = useState(false);
-    
+
     return ( 
         <>
             <Header 

@@ -19,7 +19,7 @@ const Header = ({ setIsLoggedIn, isLoggedIn, isButtonClicked }) => {
                 <div>
                     <img src={logo} className="header__img-logo" alt="логотип"></img>    
                 </div>
-                {isButtonClicked && (
+                {/* {isButtonClicked && ( */}
                     <nav className="header__nav">
                         <Link to="/laboratory"className="header__nav-lr">
                             Лабараторная работа
@@ -37,8 +37,7 @@ const Header = ({ setIsLoggedIn, isLoggedIn, isButtonClicked }) => {
                             </Link>
                         )}
                     </nav>
-                )}
-                
+                {/* )} */}
             </div>
         </header>
      );
