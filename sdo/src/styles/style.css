@@ -182,12 +182,15 @@
     border-radius: 7px;
     display: flex;
     align-items: center;
+    list-style-type: none;
 }
 .editing__container{
     width: 608px;
     height: 260px;
     background: #E2EDD0;
     border-radius: 7px;
+    list-style-type: none;
+
 }
 .editing__block-heading{
     color: #000;

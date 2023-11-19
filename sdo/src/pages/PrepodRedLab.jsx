@@ -7,16 +7,16 @@ const PrepodRedLab = () => {
         <>
         <Header></Header>
         <section className="section__editing">
-            <div className="editing__blocks">
-                <div className="editing__block">
+            <ul className="editing__blocks">
+                <li className="editing__block">
                     <h3 className="editing__block-heading">
                         Вы находитесть в режиме редактирования: 
                         Объектно-ориентированное программирование 
                         Лабораторная работа №1 
                         “Создание программы с использованием классов”
                     </h3>
-                </div>
-                <div className="editing__block">
+                </li>
+                <li className="editing__block">
                     <div className="editing__block-Two">
                         <h3 className="editing__block-title">
                             Формат ввода данных:
@@ -26,8 +26,8 @@ const PrepodRedLab = () => {
                             </p>
                             <input className="editing__block-input" type="text" />   
                     </div>
-                </div> 
-                <div className="editing__container">
+                </li> 
+                <li className="editing__container">
                     <div className="editing__block-Two">
                         <h3 className="editing__block-title"> 
                             Проверка длины:
@@ -54,9 +54,8 @@ const PrepodRedLab = () => {
                             </button>
                         </div>   
                     </div>
-                    
-                </div>   
-                <div className="editing__container">
+                </li>   
+                <li className="editing__container">
                     <h3 className="editing__block-title"> 
                         Проверка длины:
                     </h3>
@@ -74,8 +73,8 @@ const PrepodRedLab = () => {
                             Удалить
                         </button>
                     </div>
-                </div> 
-            </div>
+                </li> 
+            </ul>
             
         </section>
         
