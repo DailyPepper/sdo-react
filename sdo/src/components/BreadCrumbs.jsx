@@ -12,7 +12,7 @@ const Bread = () => {
                 <li>
                     <Link to='/'>Home</Link>
                 </li>
-                
+            
             </ul>
         </nav>
      );
