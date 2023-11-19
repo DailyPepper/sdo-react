@@ -147,6 +147,17 @@
 }
 
 /* BreadCrumbs */
-.block_breadCumbs{
-    color: #FF7070;
+.breadcrumbs{
+    display: flex;
+    gap: 15px;
+    flex-direction: row;
+}
+.list__bread{
+    list-style-type: none;
+}
+.link__bread{
+    text-decoration: none;
+    color: #000;
+    font-family: "Montserrat";
+    font-size: 16px;
 }
