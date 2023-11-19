@@ -4,6 +4,7 @@ import Main from "./components/Main/Main";
 import Auto from "./pages/Auto";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Laboratory from "./pages/Laboratory";
+import PrepodRedLab from "./pages/PrepodRedLab";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
             <Route path="" element = {<Main/>}></Route>
             <Route path="/login" element= {<Auto/>}></Route>
             <Route path="/Laboratory" element = {<Laboratory/>}></Route>
+            <Route path="/editingLaboratoryPrep" element = {<PrepodRedLab/>}></Route>
   {/* Прописать все остальные route по тому же принципу */}
             </Routes>
       </Router>

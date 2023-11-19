@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
+// import Footer from "../components/Footer/Footer";
 import "../styles/style.css";
 
 const Laboratory = () => {
@@ -58,7 +58,7 @@ const Laboratory = () => {
                                     {item.title}
                                 </p>
                                     <span className="section__lab-spn">
-                                        <Link to="/edit" className="section__lab-edit">
+                                        <Link to="/editingLaboratoryPrep" className="section__lab-edit">
                                             Редактировать
                                         </Link>  
                                         <button onClick={handleDeleteClick} className="section__lab-btnDelete">

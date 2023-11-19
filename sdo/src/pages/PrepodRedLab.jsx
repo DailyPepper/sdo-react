@@ -25,4 +25,4 @@ const PrepodRedLab = () => {
      );
 }
  
-export default PrepodRedL
+export default PrepodRedLab
