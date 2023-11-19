@@ -164,12 +164,98 @@
 
 
 /* PrepodRedLab */
-.editing__block{
-
+.section__editing{
+    /* display: flex;
+    justify-content: center;
+    flex-wrap: nowrap; */
 }
-.editing__block-name{
-
+.editing__blocks{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+.editing__block{
+    width: 608px;
+    height: 260px;
+    background-color: #D5DEF6;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+}
+.editing__container{
+    width: 608px;
+    height: 260px;
+    background: #E2EDD0;
+    border-radius: 7px;
+}
+.editing__block-heading{
+    color: #000;
+    text-align: center;
+    font-family: "Montserrat";
+    font-size: 20px;
+    line-height: 40px;
+    font-weight: 500;
+}
+.editing__block-Two{
+    padding: 0px 35px 20px 18px;
 }
 .editing__block-title{
-    
+    color: #000;
+    font-family: "Montserrat";
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 27px;
+}
+.editing__block-inp{
+    display: flex;
+    align-items: center;
+}
+.some-input {
+    border: none;
+    border-bottom: 1px solid #000;
+    background-color: transparent;
+    color: inherit;
+    outline: none;
+    margin-left: 5px;
+}
+.editing__block-text{
+    color: #000;
+    font-family: "Montserrat";
+    font-size: 16px;
+}
+.editing__block-input{
+    width: 515px;
+    height: 60px;
+    border-radius: 7px;
+    border-style: none;
+    color: #000;
+    font-family: "Montserrat";
+    font-size: 16px;
+    line-height: 27px; 
+    outline: none;
+}
+.editing__block-bth{
+    display: flex;
+    gap: 10px;
+}
+.editing__block-bthAdd{
+    font-family: "Montserrat";
+    width: 274px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    border: 0.7px solid #000;
+    background: #FFF;
+    height: 42px;
+    cursor: pointer;
+
+}
+.editing__block-btnDel{
+    font-family: "Montserrat";
+    width: 274px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    border: 0.7px solid #000;
+    background: #FFF;
+    cursor: pointer;
 }
