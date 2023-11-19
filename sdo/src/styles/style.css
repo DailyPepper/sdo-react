@@ -145,3 +145,8 @@
 .alternate-color{
     background: rgba(216, 216, 216, 0.38);
 }
+
+/* BreadCrumbs */
+.block_breadCumbs{
+    color: #FF7070;
+}
