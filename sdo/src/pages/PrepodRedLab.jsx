@@ -44,34 +44,33 @@ const PrepodRedLab = () => {
                             </p>    
                             <input type="text" className="some-input"/>   
                         </div>
-                        
-                        <div className="editing__block-bth">
-                            <button className="editing__block-bthAdd">
-                                Добавить проверку длины
-                            </button>
-                            <button className="editing__block-btnDel">
-                                Удалить
-                            </button>
-                        </div>   
+                            <div className="editing__block-bth">
+                                <button className="editing__block-bthAdd">
+                                    Добавить проверку длины
+                                </button>
+                                <button className="editing__block-btnDel">
+                                    Удалить
+                                </button>
+                            </div>   
                     </div>
                 </li>   
                 <li className="editing__container">
-                    <h3 className="editing__block-title"> 
-                        Проверка длины:
-                    </h3>
-                    <p className="editing__block-title">
-                        Максимальное количество символов:
-                    </p>
-                    <p className="editing__block-title">
-                        Максимальное количество строк:
-                    </p>
-                    <div>
-                        <button>
-                            Добавить проверку длины
-                        </button>
-                        <button>
-                            Удалить
-                        </button>
+                    <div className="editing__block-Two">
+                        <h3 className="editing__block-title"> 
+                            Конструкция: 
+                        </h3>
+                            <input className="editing__block-input" type="text" />
+                            <p className="editing__block-title">
+                                Состояние проверки
+                            </p>
+                            <div className="editing__block-bth">
+                                <button className="editing__block-bthAdd">
+                                    Добавить конструкцию
+                                </button>
+                                <button className="editing__block-btnDel">
+                                    Удалить конструкцию
+                                </button>
+                            </div>  
                     </div>
                 </li> 
             </ul>

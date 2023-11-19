@@ -221,6 +221,7 @@
     color: inherit;
     outline: none;
     margin-left: 5px;
+    font-family: "Montserrat";
 }
 .editing__block-text{
     color: #000;
@@ -253,6 +254,11 @@
     cursor: pointer;
 
 }
+.editing__block-bthAdd:hover{
+    background: #C8D5F6;
+    color: #FFF;
+    border-style: none;
+}
 .editing__block-btnDel{
     font-family: "Montserrat";
     width: 274px;
@@ -261,4 +267,9 @@
     border: 0.7px solid #000;
     background: #FFF;
     cursor: pointer;
+}
+.editing__block-btnDel:hover{
+    background: #FF7070;
+    color: #FFF;
+    border-style: none;
 }
