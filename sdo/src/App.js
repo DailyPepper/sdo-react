@@ -4,7 +4,7 @@ import Main from "./components/Main/Main";
 import Auto from "./pages/Auto";
 import Laboratory from "./pages/Laboratory";
 import PrepodRedLab from "./pages/PrepodRedLab";
-
+import Registration from "./pages/Registration";
 
 
 
@@ -17,7 +17,7 @@ function App() {
           <Route path="/login" element={<Auto />} />
           <Route path="/Laboratory" element={<Laboratory />} />
           <Route path="/editingLaboratoryPrep" element={<PrepodRedLab />} />
-          {/* Прописать все остальные route по тому же принципу */}
+          <Route path="/Registration" element={<Registration/>}/>
         </Routes> 
       </Router>
     </div>

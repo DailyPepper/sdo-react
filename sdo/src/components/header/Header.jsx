@@ -32,12 +32,12 @@ const Header = ({ setIsLoggedIn, isLoggedIn, isButtonClicked }) => {
                                 Выйти
                                 </button>
                             ) : (
-                                <Link to="/login" className="header__nav-lr">
+                                <Link to="/Registration" className="header__nav-lr">
                                 Войти
                                 </Link>
                             )}
                         </nav>
-                    {/* )} */}
+                    {/* // )} */}
                 </div>
                 
             </header>
