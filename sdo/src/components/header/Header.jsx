@@ -29,11 +29,11 @@ const Header = ({ setIsLoggedIn, isLoggedIn, isButtonClicked }) => {
                             </Link>
                             {isLoggedIn  ? (
                                 <button className="header__nav-lr" onClick={handleLogout}>
-                                Выйти
+                                    Выйти
                                 </button>
                             ) : (
                                 <Link to="/Registration" className="header__nav-lr">
-                                Войти
+                                    Регистрация
                                 </Link>
                             )}
                         </nav>

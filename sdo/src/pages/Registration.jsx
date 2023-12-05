@@ -1,7 +1,11 @@
 import React from "react";
-import React, { useState } from 'react';
+import { useState } from 'react';
 import "../styles/style.css"
-import Header from '../components/Header/Header';
+import Header from "../components/Header/Header";
+
+
+
+
 
 const registration = () => {
     return ( 
