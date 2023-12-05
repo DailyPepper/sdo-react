@@ -39,6 +39,10 @@
     color: #252525;
     font-family: 'Montserrat';
 }
+.section__login-button:hover{
+    background-color: #DDE5F9;
+    color: #FFF;
+}
 
 /* Laboratory */
 .section__lab{
