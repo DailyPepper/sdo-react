@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import "../styles/style.css"
-import Header from '../../components/Header/Header';
+import "../../styles/style.css"
+import Header from '../../components/header/Header';
 import Footer from '../../components/Footer/Footer';
 
 const Auto = () => {

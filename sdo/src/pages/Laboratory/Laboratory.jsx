@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
-import Header from "../../components/Header/Header";
+import Header from "../../components/header/Header";
 // import Footer from "../components/Footer/Footer";
-import "../styles/style.css";
+import "../../styles/style.css";
 
 const Laboratory = () => {
 

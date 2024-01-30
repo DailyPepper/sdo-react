@@ -1,12 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Main from "./components/Main/Main";
-import Auto from "./pages/Auto";
-import Laboratory from "./pages/Laboratory";
-import PrepodRedLab from "./pages/PrepodRedLab";
-import Registration from "./pages/Registration";
-
-
+import Auto from './pages/Auto/Auto';
+import Laboratory from './pages/Laboratory/Laboratory';
+import PrepodRedLab from './pages/PrepodRedLab/PrepodRedLab';
+import Registration from './pages/Registration/Registration';
 
 function App() {
   return (
@@ -21,7 +19,7 @@ function App() {
         </Routes> 
       </Router>
     </div>
-  );
+  );  
 }
 
 export default App;

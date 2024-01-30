@@ -1,9 +1,9 @@
 import React from "react";
 import "../Main/style.css";
 import { Link } from "react-router-dom";
-import Header from "../Header/Header";
+import Header from "../header/Header";
 import Footer from "../Footer/Footer";
-import Logged from "../Logged";
+// import Logged from "../Logged";
 import { useState } from "react";
 const Main = ({Logged}) => {
 
