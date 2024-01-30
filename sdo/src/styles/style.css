@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&family=Montserrat:wght@500&display=swap');
 
 /* Auto */
-.section__login{
+/* .section__login{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,15 +21,15 @@
     flex-direction: column;
     gap: 10px;
     padding-top: 2%;
-}
-.section__login-formInput{
+} */
+/* .section__login-formInput{
     width: 450px;
     height: 35px;
     font-size: 15px;
     color: #252525;
     font-family: 'Montserrat';
-}
-.section__login-button{
+} */
+/* .section__login-button{
     height: 40px;
     cursor: pointer;
     border-radius: 6px;
@@ -42,10 +42,10 @@
 .section__login-button:hover{
     background-color: #DDE5F9;
     color: #FFF;
-}
+} */
 
 /* Laboratory */
-.section__lab{
+/* .section__lab{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,12 +53,12 @@
 }
 .section__lab-block{
     padding: 60px 355px 0px 0px;
-}
-.section__lab-list{
+} */
+/* .section__lab-list{
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
+} */
 .section__lab-page{
     width: 1246px;
     height: 120px;
@@ -66,23 +66,23 @@
     border-radius: 10px;
     list-style: none;
 }
-.section__lab-input{
+/* .section__lab-input{
     width: 395px;
     height: 26px;
     padding: 10px;
     background: #F0F0F0;
     border-style: none;
     border-radius: 4px;
-}
-.section__lab-input:focus{
+} */
+/* .section__lab-input:focus{
     outline-width: 0;
-}
-.section__lab-blockSearch{
+} */
+/* .section__lab-blockSearch{
     display: flex;
     gap: 10px;
     align-items: center;
-}
-.section__lab-button{
+} */
+/* .section__lab-button{
     width: 395px;
     padding: 10px;
     border-radius: 4px;
@@ -98,12 +98,12 @@
 .section__lab-button:hover{
     background: #C8D5F6;
     color: #FFF;
-}
-.section__lab-spn{
+} */
+/* .section__lab-spn{
     display: flex;
     gap: 30px;
-}
-.section__lab-edit{
+} */
+/* .section__lab-edit{
     margin-left: 50px;
     padding: 10px;
     width: 180px;
@@ -117,13 +117,13 @@
     text-decoration: none;
     font-family: "Montserrat";
     font-size: 16px;
-}
-.section__lab-edit:hover{
+} */
+/* .section__lab-edit:hover{
     background: #C8D5F6;
     color: #FFF;
     border-style: none;
-}
-.section__lab-btnDelete{
+} */
+/* .section__lab-btnDelete{
     padding: 10px;
     width: 180px;
     background-color: white;
@@ -139,16 +139,16 @@
     background: #FF7070;
     color: #FFF;
     border-style: none;
-}
-.section__lab-name{
+} */
+/* .section__lab-name{
     color: #000;
     text-align: center;
     font-family: 'Montserrat';
     font-size: 19px;
-}
-.alternate-color{
+} */
+/* .alternate-color{
     background: rgba(216, 216, 216, 0.38);
-}
+} */
 
 /* BreadCrumbs */
 /* .breadcrumbs{
@@ -169,17 +169,17 @@
 
 /* PrepodRedLab */
 
-.section__editing{
-    /* display: flex;
+/* .section__editing{
+    display: flex;
     justify-content: center;
-    flex-wrap: nowrap; */
+    flex-wrap: nowrap;
 }
 .editing__blocks{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
-}
+} */
 .editing__block{
     width: 608px;
     height: 260px;

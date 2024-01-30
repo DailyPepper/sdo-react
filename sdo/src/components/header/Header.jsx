@@ -38,7 +38,7 @@ const Nav = styled.nav`
     .header__nav-lr:hover{
         color: #FFF;
         background-color: #DDE5F9;
-        transition: 0.3s;
+        transition: 0.5s;
     }
 `
 const ButtonEx = styled.button`
@@ -70,7 +70,6 @@ const Header = ({ setIsLoggedIn, isLoggedIn, isButtonClicked }) => {
                 <HeaderWrapper>
                     <div>
                         <Link to="/">
-                        
                             <img src={logo} alt="логотип"/>
                         </Link>    
                     </div>

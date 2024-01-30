@@ -1,13 +1,25 @@
 import React from "react";
 import Header from "../../components/header/Header";
-import Footer from "../../components/Footer/Footer";
+// import Footer from "../../components/Footer/Footer";
+import styled from 'styled-components'
 
+const Section = styled.section`
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+`
+const UlList = styled.ul`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+` 
 const PrepodRedLab = () => {
     return ( 
         <>
         <Header></Header>
-        <section className="section__editing">
-            <ul className="editing__blocks">
+        <Section>
+            <UlList>
                 <li className="editing__block">
                     <h3 className="editing__block-heading">
                         Вы находитесть в режиме редактирования: 
@@ -73,9 +85,8 @@ const PrepodRedLab = () => {
                             </div>  
                     </div>
                 </li> 
-            </ul>
-            
-        </section>
+            </UlList>  
+        </Section>
         
         {/* <Footer></Footer> */}
         </>

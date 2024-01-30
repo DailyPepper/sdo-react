@@ -3,7 +3,114 @@ import React, { useState } from "react";
 import Header from "../../components/header/Header";
 // import Footer from "../components/Footer/Footer";
 import "../../styles/style.css";
+import styled from 'styled-components'
 
+const SectionLab = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    .section__lab-blockSearch{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    }
+    .section__lab-input{
+        width: 395px;
+        height: 26px;
+        padding: 10px;
+        background: #F0F0F0;
+        border-style: none;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+    .section__lab-input:focus{
+        outline-width: 0;
+    }
+    .section__lab-block{
+        padding: 60px 355px 0px 0px;
+    }
+
+    .section__lab-button{
+        width: 395px;
+        padding: 10px;
+        border-radius: 4px;
+        text-align: center;
+        color: #000;
+        font-family: 'Montserrat';
+        line-height: 27px;
+        text-decoration: none;
+        background: #F0F0F0;
+        border-style: none;
+        border-radius: 4px;
+    }
+    .section__lab-button:hover{
+        background: #C8D5F6;
+        color: #FFF;
+        transition: 0.5s;
+    }
+    .alternate-color{
+    background: rgba(216, 216, 216, 0.38);
+    }   
+`
+const NameLab = styled.p`
+    color: #000;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-size: 19px;
+`
+const ListLab = styled.ul`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+`
+
+const ButtonDelete = styled.button`
+    padding: 10px;
+    width: 180px;
+    background-color: white;
+    display: flex;
+    border-radius: 5px;
+    justify-content: center;
+    cursor: pointer;
+    font-family: "Montserrat";
+    font-size: 16px;
+    border: 0.7px solid #000;
+
+    &:hover{
+    background: #FF7070;
+    color: #FFF;
+    border-style: none;
+    transition: 0.5s;
+    }
+`
+const SpnLab = styled.span`
+    display: flex;
+    gap: 30px;
+
+    .section__lab-edit{
+    margin-left: 50px;
+    padding: 10px;
+    width: 180px;
+    background-color: white;
+    color: #000;
+    border: 0.7px solid #000;
+    display: flex;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-family: "Montserrat";
+    font-size: 16px;
+    }
+    .section__lab-edit:hover{
+    background: #C8D5F6;
+    color: #FFF;
+    border-style: none;
+    transition: 0.5s;
+}
+`
 const Laboratory = () => {
 
     const handleDeleteClick = (event) => {
@@ -32,8 +139,7 @@ const Laboratory = () => {
     return (
         <>
         <Header/>
-            <div className="content">
-                <div className="section__lab">
+                <SectionLab>
                     <div className="section__lab-block">
                         <div className="section__lab-blockSearch">
                             {/* <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -51,26 +157,24 @@ const Laboratory = () => {
                             </Link> 
                         </div>
                     </div>
-                    <ul className="section__lab-list">
+                    <ListLab>
                         {labItems.map((item, index) => (
                             <li className={getColors(index)}  key={index}>
-                                <p className="section__lab-name">
+                                <NameLab>
                                     {item.title}
-                                </p>
-                                    <span className="section__lab-spn">
+                                </NameLab>
+                                    <SpnLab>
                                         <Link to="/editingLaboratoryPrep" className="section__lab-edit">
                                             Редактировать
                                         </Link>  
-                                        <button onClick={handleDeleteClick} className="section__lab-btnDelete">
+                                        <ButtonDelete onClick={handleDeleteClick}>
                                             Удалить
-                                        </button>     
-                                    </span>
+                                        </ButtonDelete>     
+                                    </SpnLab>
                             </li> 
                         ))}
-                    </ul>
-                </div>
-            </div>
-        
+                    </ListLab>
+                </SectionLab>
         </>
     );
 }
