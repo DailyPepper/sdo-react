@@ -2,6 +2,22 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import "../styles/style.css";
+import styled from 'styled-components'
+
+const Ul = styled.ul`
+    display: flex;
+    gap: 15px;
+    flex-direction: row;
+    .list__bread{
+    list-style-type: none;
+    }
+    .link__bread{
+        text-decoration: none;
+        color: #000;
+        font-family: "Montserrat";
+        font-size: 16px;
+    }
+`
 
 const Bread = () => {
     const location = useLocation();
@@ -36,16 +52,14 @@ const Bread = () => {
 
     return (
         <>
-            <div>
-                <nav aria-label="breadcrumbs">
-                    <ul className="breadcrumbs" >
-                        <li className="list__bread">
-                            <Link to='/' className="link__bread">Главная /</Link>
-                        </li>
-                        {breadcrumbs}
-                    </ul>
-                </nav>
-            </div>
+            <nav aria-label="breadcrumbs">
+                <Ul>
+                    <li className="list__bread">
+                        <Link to='/' className="link__bread">Главная /</Link>
+                    </li>
+                    {breadcrumbs}
+                </Ul>
+            </nav>
         </> 
     );
 }
