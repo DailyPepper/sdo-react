@@ -8,7 +8,7 @@ const Section = styled.div`
   align-items: center;
   flex-direction: column;
   padding-top: 7%;
-  padding: 40px 0px 230px;
+  padding: 40px 0px 245px;
 `
 const SectionHeading = styled.h1`
   text-align: center;

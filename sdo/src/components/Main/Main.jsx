@@ -9,7 +9,7 @@ const Section = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 0px 230px;
+    padding: 40px 0px 245px;
 `
 const SectionHead = styled.h1`
     color: #000;

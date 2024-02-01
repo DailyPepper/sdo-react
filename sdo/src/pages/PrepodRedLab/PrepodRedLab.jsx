@@ -13,11 +13,11 @@ const UlList = styled.ul`
     gap: 25px;
 
     .editing__container{
-    width: 608px;
-    height: 260px;
-    background: #E2EDD0;
-    border-radius: 7px;
-    list-style-type: none;
+        width: 608px;
+        height: 260px;
+        background: #E2EDD0;
+        border-radius: 7px;
+        list-style-type: none;
     }
     .editing__block-Two{
     padding: 0px 35px 20px 18px;
@@ -58,14 +58,14 @@ const UlList = styled.ul`
     }
 ` 
 const List = styled.li`
-    width: 608px;
-    height: 260px;
-    background-color: #D5DEF6;
-    border-radius: 7px;
-    display: flex;
-    align-items: center;
-    list-style-type: none;
-`
+  width: ${({ $Block }) => ($Block ? '1248px' : '608px')};
+  height: ${({ $Block }) => ($Block ? '59px' : '260px')};
+  background-color: ${({ $Block }) => ($Block ? '#D9D9D9' : '#D5DEF6')};
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+`;
 const NameLab = styled.h3`
     color: #000;
     text-align: center;
@@ -105,12 +105,12 @@ const ButtonDelete = styled.button`
     border: 0.7px solid #000;
     background: #FFF;
     cursor: pointer;
-    &:hover{
-        background: #FF7070;
-        color: #FFF;
-        border-style: none;
-        transition: 0.6s;
-    }
+        &:hover{
+            background: #FF7070;
+            color: #FFF;
+            border-style: none;
+            transition: 0.6s;
+        }
 `
 const PrepodRedLab = () => {
     return ( 
@@ -163,7 +163,7 @@ const PrepodRedLab = () => {
                             </div>   
                     </div>
                 </li>   
-                <List>
+                <li className="editing__container">
                     <div className="editing__block-Two">
                         <TitleBlock> 
                             Конструкция: 
@@ -181,7 +181,12 @@ const PrepodRedLab = () => {
                                 </ButtonDelete>
                             </div>  
                     </div>
-                </List> 
+                </li> 
+                <List $Block>
+                    <div className="editing__block-Two">
+
+                    </div>
+                </List>
             </UlList>  
         </Section>
         </>

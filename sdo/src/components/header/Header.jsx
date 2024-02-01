@@ -75,10 +75,10 @@ const Header = ({ setIsLoggedIn, isLoggedIn, isButtonClicked }) => {
                     </div>
                     {/* {isButtonClicked && ( */}
                         <Nav>
-                            <Link to="/laboratory"className="header__nav-lr">
+                            <Link to={LABORATORY_ROUTE}className="header__nav-lr">
                                 Лабараторная работа
                             </Link>
-                            <Link to="/profile" className="header__nav-lr">
+                            <Link to={PROFILE_ROUTE} className="header__nav-lr">
                                 Личный кабинет
                             </Link>
                             {isLoggedIn  ? (
@@ -86,7 +86,7 @@ const Header = ({ setIsLoggedIn, isLoggedIn, isButtonClicked }) => {
                                     Выйти
                                 </ButtonEx>
                             ) : (
-                                <Link to="/Registration" className="header__nav-lr">
+                                <Link to={REGISTRATION_ROUTE} className="header__nav-lr">
                                     Регистрация
                                 </Link>
                             )}
