@@ -1,7 +1,54 @@
 import React, { useState } from "react";
 import "../../styles/style.css";
 import Header from "../../components/header/Header";
+import styled from 'styled-components'
 
+const Section = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 7%;
+`
+const SectionHeading = styled.h1`
+  text-align: center;
+  font-size: 29px;
+  line-height: 35px;
+  color: #252525;
+  font-family: 'Montserrat';
+`
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 2%;
+
+  .section__login-formInput{
+    width: 450px;
+    height: 35px;
+    font-size: 16px;
+    color: #252525;
+    font-family: 'Montserrat';
+    outline: none;
+}
+`
+const Button = styled.button`
+    height: 40px;
+    cursor: pointer;
+    border-radius: 6px;
+    border-style: none;
+    background-color: #C8D5F6;
+    font-size: 15px;
+    color: #252525;
+    font-family: 'Montserrat';
+    
+    &:hover{
+    background-color: #DDE5F9;
+    color: #FFF;
+    transition: 0.4s;
+
+}
+`
 const Registration = () => {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -58,11 +105,11 @@ const Registration = () => {
   return (
     <>
       <Header />
-      <div className='section__login'>
-        <h1 className="section__login-heading"> 
+      <Section>
+        <SectionHeading> 
           Регистрация
-        </h1>
-        <form 
+        </SectionHeading>
+        <Form 
           className='section__login-form' 
           method='post'
           action='#'
@@ -70,7 +117,7 @@ const Registration = () => {
         >
           <input 
             type="text" 
-            placeholder=" username" 
+            placeholder=" Username" 
             name='username'
             value={username}
             className='section__login-formInput'
@@ -92,11 +139,11 @@ const Registration = () => {
             <option value="Group1">Group1</option>
             <option value="Group2">Group2</option>
           </select>
-          <button type="submit" className='section__login-button'>
+          <Button type="submit">
             Зарегистрироваться
-          </button>
-        </form>
-      </div>
+          </Button>
+        </Form>
+      </Section>
     </>
   );
 }
