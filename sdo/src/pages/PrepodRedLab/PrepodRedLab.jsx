@@ -1,6 +1,4 @@
 import React from "react";
-import Header from "../../components/header/Header";
-// import Footer from "../../components/Footer/Footer";
 import styled from 'styled-components'
 
 const Section = styled.section`
@@ -117,7 +115,6 @@ const ButtonDelete = styled.button`
 const PrepodRedLab = () => {
     return ( 
         <>
-        <Header></Header>
         <Section>
             <UlList>
                 <List>
@@ -187,8 +184,6 @@ const PrepodRedLab = () => {
                 </List> 
             </UlList>  
         </Section>
-        
-        {/* <Footer></Footer> */}
         </>
      );
 }

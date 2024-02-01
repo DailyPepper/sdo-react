@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../../styles/style.css";
-import Header from "../../components/header/Header";
 import styled from 'styled-components'
 
 const Section = styled.div`
@@ -9,6 +8,7 @@ const Section = styled.div`
   align-items: center;
   flex-direction: column;
   padding-top: 7%;
+  padding: 40px 0px 200px;
 `
 const SectionHeading = styled.h1`
   text-align: center;
@@ -104,7 +104,6 @@ const Registration = () => {
 
   return (
     <>
-      <Header />
       <Section>
         <SectionHeading> 
           Регистрация

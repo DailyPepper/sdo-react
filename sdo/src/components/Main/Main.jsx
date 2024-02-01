@@ -1,9 +1,7 @@
 import React from "react";
 import "../Main/style.css";
 import { Link } from "react-router-dom";
-import Header from "../header/Header";
-import Footer from "../Footer/Footer";
-// import Logged from "../Logged";
+import Logged from "../Logged";
 import { useState } from "react";
 import styled from 'styled-components'
 
@@ -11,7 +9,7 @@ const Section = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 40px;
+    padding: 40px 0px 230px;
 `
 const SectionHead = styled.h1`
     color: #000;
@@ -53,7 +51,6 @@ const Main = ({Logged}) => {
     }
     return ( 
         <>
-            <Header/>
                 <Section>
                     {Logged ? (
                         <SectionHead>Добро пожаловать в личный кабинет!</SectionHead>
@@ -74,7 +71,6 @@ const Main = ({Logged}) => {
                     )
                 }
                 </Section>
-            <Footer/>
         </>
         
      );

@@ -1,25 +1,19 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Main from "./components/Main/Main";
-import Auto from './pages/Auto/Auto';
-import Laboratory from './pages/Laboratory/Laboratory';
-import PrepodRedLab from './pages/PrepodRedLab/PrepodRedLab';
-import Registration from './pages/Registration/Registration';
+import { BrowserRouter as Router } from "react-router-dom";
+import Header from "./components/header/Header";
+import MainRouter from "./app/routing";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
     <div className="App">
       <Router>
-         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/login" element={<Auto />} />
-          <Route path="/Laboratory" element={<Laboratory />} />
-          <Route path="/editingLaboratoryPrep" element={<PrepodRedLab />} />
-          <Route path="/Registration" element={<Registration/>}/>
-        </Routes> 
+        <Header />
+        <MainRouter />
+        <Footer />
       </Router>
     </div>
-  );  
+  );
 }
 
 export default App;

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import "../../styles/style.css"
-import Header from '../../components/header/Header';
-import Footer from '../../components/Footer/Footer';
 import styled from 'styled-components'
 
 const Section = styled.div`
@@ -10,6 +8,7 @@ const Section = styled.div`
   align-items: center;
   flex-direction: column;
   padding-top: 7%;
+  padding: 40px 0px 230px;
 `
 const SectionHeading = styled.h1`
   text-align: center;
@@ -129,7 +128,6 @@ const Auto = () => {
 
   return (
     <>
-      <Header />
       <Section>
         <SectionHeading>
           Войдите в личный кабинет
@@ -159,7 +157,6 @@ const Auto = () => {
         </Form>
         {error && <SectionHeading>{error}</SectionHeading>}
       </Section>
-      <Footer />
     </>
   );
 }

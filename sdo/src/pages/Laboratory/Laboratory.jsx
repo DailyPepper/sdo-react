@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
-import Header from "../../components/header/Header";
-// import Footer from "../components/Footer/Footer";
 import "../../styles/style.css";
 import styled from 'styled-components'
 
@@ -10,7 +8,7 @@ const SectionLab = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 10px;
-
+    padding: 0px 0px 20px;
     .section__lab-blockSearch{
     display: flex;
     gap: 10px;
@@ -139,7 +137,6 @@ const Laboratory = () => {
     }; 
     return (
         <>
-        <Header/>
                 <SectionLab>
                     <div className="section__lab-block">
                         <div className="section__lab-blockSearch">
