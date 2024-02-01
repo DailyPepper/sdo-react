@@ -13,78 +13,178 @@ const UlList = styled.ul`
     flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
+
+    .editing__container{
+    width: 608px;
+    height: 260px;
+    background: #E2EDD0;
+    border-radius: 7px;
+    list-style-type: none;
+    }
+    .editing__block-Two{
+    padding: 0px 35px 20px 18px;
+    }
+    .editing__block-text{
+    color: #000;
+    font-family: "Montserrat";
+    font-size: 16px;
+    }
+    .editing__block-inp{
+    display: flex;
+    align-items: center;
+    }
+    .some-input {
+        border: none;
+        border-bottom: 1px solid #000;
+        background-color: transparent;
+        color: inherit;
+        outline: none;
+        margin-left: 5px;
+        font-family: "Montserrat";
+    }
+
+    .editing__block-input{
+        width: 515px;
+        height: 60px;
+        border-radius: 7px;
+        border-style: none;
+        color: #000;
+        font-family: "Montserrat";
+        font-size: 16px;
+        line-height: 27px; 
+        outline: none;
+    }
+    .editing__block-bth{
+        display: flex;
+        gap: 10px;
+    }
 ` 
+const List = styled.li`
+    width: 608px;
+    height: 260px;
+    background-color: #D5DEF6;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+`
+const NameLab = styled.h3`
+    color: #000;
+    text-align: center;
+    font-family: "Montserrat";
+    font-size: 20px;
+    line-height: 40px;
+    font-weight: 500;
+`
+const TitleBlock = styled.h3`
+    color: #000;
+    font-family: "Montserrat";
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 27px;
+`
+const ButtonAdd = styled.button`
+    font-family: "Montserrat";
+    width: 274px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    border: 0.7px solid #000;
+    background: #FFF;
+    height: 42px;
+    cursor: pointer;
+        &:hover{
+            background: #C8D5F6;
+            color: #FFF;
+            border-style: none;
+            transition: 0.5s;
+        }
+`
+const ButtonDelete = styled.button`
+    font-family: "Montserrat";
+    width: 274px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    border: 0.7px solid #000;
+    background: #FFF;
+    cursor: pointer;
+    &:hover{
+        background: #FF7070;
+        color: #FFF;
+        border-style: none;
+        transition: 0.6s;
+    }
+`
 const PrepodRedLab = () => {
     return ( 
         <>
         <Header></Header>
         <Section>
             <UlList>
-                <li className="editing__block">
-                    <h3 className="editing__block-heading">
+                <List>
+                    <NameLab>
                         Вы находитесть в режиме редактирования: 
                         Объектно-ориентированное программирование 
                         Лабораторная работа №1 
                         “Создание программы с использованием классов”
-                    </h3>
-                </li>
-                <li className="editing__block">
+                    </NameLab>
+                </List>
+                <List>
                     <div className="editing__block-Two">
-                        <h3 className="editing__block-title">
+                        <TitleBlock>
                             Формат ввода данных:
-                        </h3>
+                        </TitleBlock>
                             <p className="editing__block-text">
                                 Вы можете пояснить, как будет происходить ввод данных
                             </p>
                             <input className="editing__block-input" type="text" />   
                     </div>
-                </li> 
+                </List> 
                 <li className="editing__container">
                     <div className="editing__block-Two">
-                        <h3 className="editing__block-title"> 
+                        <TitleBlock> 
                             Проверка длины:
-                        </h3>
+                        </TitleBlock>
+                            <div className="editing__block-inp">
+                                <TitleBlock>
+                                    Максимальное количество символов:
+                                </TitleBlock> 
+                                    <input type="text" className="some-input"/>   
+                            </div>
                         <div className="editing__block-inp">
-                            <p className="editing__block-title">
-                                Максимальное количество символов:
-                            </p> 
-                            <input type="text" className="some-input"/>   
-                        </div>
-                        <div className="editing__block-inp">
-                            <p className="editing__block-title">
+                            <TitleBlock>
                                 Максимальное количество строк:
-                            </p>    
+                            </TitleBlock>    
                             <input type="text" className="some-input"/>   
                         </div>
                             <div className="editing__block-bth">
-                                <button className="editing__block-bthAdd">
+                                <ButtonAdd>
                                     Добавить проверку длины
-                                </button>
-                                <button className="editing__block-btnDel">
+                                </ButtonAdd>
+                                <ButtonDelete>
                                     Удалить
-                                </button>
+                                </ButtonDelete>
                             </div>   
                     </div>
                 </li>   
-                <li className="editing__container">
+                <List>
                     <div className="editing__block-Two">
-                        <h3 className="editing__block-title"> 
+                        <TitleBlock> 
                             Конструкция: 
-                        </h3>
+                        </TitleBlock>
                             <input className="editing__block-input" type="text" />
-                            <p className="editing__block-title">
+                            <TitleBlock>
                                 Состояние проверки
-                            </p>
+                            </TitleBlock>
                             <div className="editing__block-bth">
-                                <button className="editing__block-bthAdd">
+                                <ButtonAdd>
                                     Добавить конструкцию
-                                </button>
-                                <button className="editing__block-btnDel">
+                                </ButtonAdd>
+                                <ButtonDelete>
                                     Удалить конструкцию
-                                </button>
+                                </ButtonDelete>
                             </div>  
                     </div>
-                </li> 
+                </List> 
             </UlList>  
         </Section>
         

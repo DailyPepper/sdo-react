@@ -53,6 +53,7 @@ const SectionLab = styled.div`
     .alternate-color{
     background: rgba(216, 216, 216, 0.38);
     }   
+
 `
 const NameLab = styled.p`
     color: #000;
