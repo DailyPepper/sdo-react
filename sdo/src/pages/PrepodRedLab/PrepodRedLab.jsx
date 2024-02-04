@@ -6,6 +6,24 @@ const Section = styled.section`
     justify-content: center;
     flex-wrap: nowrap;
 `
+const BigBlock = styled.div`
+    width: ${({$BigWeight}) => ($BigWeight ? '1248px' : '1247px')};
+    height: ${({$BigHeight}) => ($BigHeight ? '406px' : '357px')};
+    background-color: ${({$BigFon}) => ($BigFon ? '#E2EDD0' : '#D5DEF6')};
+    border-radius: 10px;
+`
+const MinBlock = styled.div`
+    width: 592px;
+    height: 102px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+
+`
+const UlMinBlock = styled.ul`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+`
 const UlList = styled.ul`
     display: flex;
     flex-wrap: wrap;
@@ -20,7 +38,7 @@ const UlList = styled.ul`
         list-style-type: none;
     }
     .editing__block-Two{
-    padding: 0px 35px 20px 18px;
+        padding: 0px 30px 0px 20px;
     }
     .editing__block-text{
     color: #000;
@@ -56,6 +74,16 @@ const UlList = styled.ul`
         display: flex;
         gap: 10px;
     }
+    .editing__block{
+        padding: 0px 30px 0px 20px;
+        display: flex;
+        gap: 75px;
+        align-items: baseline;
+    }
+    .editing__block-name{
+        display: flex;
+        align-items: baseline;
+    }
 ` 
 const List = styled.li`
   width: ${({ $Block }) => ($Block ? '1248px' : '608px')};
@@ -77,9 +105,11 @@ const NameLab = styled.h3`
 const TitleBlock = styled.h3`
     color: #000;
     font-family: "Montserrat";
-    font-size: 19px;
-    font-weight: 500;
+    font-size: ${({$FontSize}) => ($FontSize ? '16px' : '19px')};
+    font-weight: ${({$FontWeight}) => ($FontWeight ? '400' : '500')};
     line-height: 27px;
+    padding-left: ${({$Padding}) => ($Padding ? '45px' : '0px')};
+    /* width: ${({$Width}) => ($Width ? '194px' : '221px')}; */
 `
 const ButtonAdd = styled.button`
     font-family: "Montserrat";
@@ -183,10 +213,60 @@ const PrepodRedLab = () => {
                     </div>
                 </li> 
                 <List $Block>
-                    <div className="editing__block-Two">
-
+                    <div className="editing__block">
+                        <TitleBlock >
+                            Функция 1
+                        </TitleBlock>
+                        <div className="editing__block-name">
+                            <TitleBlock $FontSize $FontWeight>
+                                Название:
+                            </TitleBlock> 
+                                <input type="text" className="some-input"/>     
+                        </div>  
                     </div>
                 </List>
+                <BigBlock $BigFon $BigHeight $BigWeight>
+                    <div>
+                        <TitleBlock $Padding>
+                            Cписок тестов:
+                        </TitleBlock> 
+                        <UlMinBlock>
+                            <MinBlock>
+                                <div>
+                                    <TitleBlock $FontSize $FontWeight >
+                                        Тест 1 "Проверка на ..."
+                                    </TitleBlock>
+                                    <div className="editing__block-name">
+                                        <TitleBlock $FontSize $FontWeight>
+                                            Входные данные:
+                                        </TitleBlock> 
+                                            <input type="text" className="some-input"/>     
+                                    </div>  
+                                    <div className="editing__block-name">
+                                        <TitleBlock $FontSize $FontWeight>  
+                                           Вывод:
+                                        </TitleBlock> 
+                                            <input type="text" className="some-input"/>     
+                                    </div> 
+                                </div>
+
+                            </MinBlock>
+                            <MinBlock>
+                                
+                            </MinBlock>
+                            <MinBlock>
+                                
+                            </MinBlock>   
+                        </UlMinBlock>
+                        
+                    </div>
+                    <div>
+
+                    </div>
+                </BigBlock>
+                <BigBlock >
+
+                </BigBlock>
             </UlList>  
         </Section>
         </>

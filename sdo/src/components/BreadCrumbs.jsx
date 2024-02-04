@@ -31,7 +31,6 @@ const Bread = () => {
         "editingLaboratoryPrep": "Редактирование лабораторной работы", 
         "Registration" : "Регистрация",
         "profile" : "Личный кабинет",
-
     };
 
 
