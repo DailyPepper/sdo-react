@@ -11,6 +11,12 @@ const BigBlock = styled.div`
     height: ${({$BigHeight}) => ($BigHeight ? '406px' : '357px')};
     background-color: ${({$BigFon}) => ($BigFon ? '#E2EDD0' : '#D5DEF6')};
     border-radius: 10px;
+    display: flex;
+    gap: 75px;
+    .block__test{
+        width: 400px;
+        padding-left: 50px;
+    }
 `
 const MinBlock = styled.div`
     width: 592px;
@@ -230,38 +236,61 @@ const PrepodRedLab = () => {
                         <TitleBlock $Padding>
                             Cписок тестов:
                         </TitleBlock> 
-                        <UlMinBlock>
-                            <MinBlock>
-                                <div>
-                                    <TitleBlock $FontSize $FontWeight >
-                                        Тест 1 "Проверка на ..."
-                                    </TitleBlock>
-                                    <div className="editing__block-name">
-                                        <TitleBlock $FontSize $FontWeight>
-                                            Входные данные:
-                                        </TitleBlock> 
-                                            <input type="text" className="some-input"/>     
-                                    </div>  
-                                    <div className="editing__block-name">
-                                        <TitleBlock $FontSize $FontWeight>  
-                                           Вывод:
-                                        </TitleBlock> 
-                                            <input type="text" className="some-input"/>     
-                                    </div> 
-                                </div>
-
-                            </MinBlock>
-                            <MinBlock>
+                            <UlMinBlock>
+                                <MinBlock>
+                                    <div>
+                                        <TitleBlock $FontSize $FontWeight >
+                                            Тест 1 "Проверка на ..."
+                                        </TitleBlock>
+                                        <div className="editing__block-name">
+                                            <TitleBlock $FontSize $FontWeight>
+                                                Входные данные:
+                                            </TitleBlock> 
+                                                <input type="text" className="some-input"/>     
+                                        </div>  
+                                        <div className="editing__block-name">
+                                            <TitleBlock $FontSize $FontWeight>  
+                                            Вывод:
+                                            </TitleBlock> 
+                                                <input type="text" className="some-input"/>     
+                                        </div> 
+                                    </div>
                                 
-                            </MinBlock>
-                            <MinBlock>
-                                
-                            </MinBlock>   
-                        </UlMinBlock>
+                                </MinBlock>
+                                <MinBlock>
+                                    
+                                </MinBlock>
+                                <MinBlock>
+                                    
+                                </MinBlock>   
+                            </UlMinBlock>
                         
                     </div>
-                    <div>
-
+                    <div className="block__test">
+                        <TitleBlock>
+                            Добавить новый тест:    
+                        </TitleBlock> 
+                        <div className="editing__block-name">
+                            <TitleBlock $FontSize $FontWeight>
+                                Введите название теста:
+                            </TitleBlock> 
+                                <input type="text" className="some-input"/>     
+                        </div>
+                        <div className="editing__block-name">
+                            <TitleBlock $FontSize $FontWeight>
+                                Входные данные:
+                            </TitleBlock> 
+                                <input type="text" className="some-input"/>     
+                        </div>
+                        <div className="editing__block-name">
+                            <TitleBlock $FontSize $FontWeight>
+                                Вывод:
+                            </TitleBlock> 
+                                <input type="text" className="some-input"/>     
+                        </div>
+                        <button>
+                            Добавить тест
+                        </button>
                     </div>
                 </BigBlock>
                 <BigBlock >
