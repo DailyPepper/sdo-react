@@ -1,9 +1,10 @@
 import "./style.css"
 import logo from "../../img/logo.svg"
-import React, { useState } from "react";
+import React from "react";
 import Bread from "../BreadCrumbs";
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
+import { LABORATORY_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE } from '../../app/routing/route';
 
 const HeaderStyle = styled.header`
     width: 100%;
@@ -75,7 +76,7 @@ const Header = ({ setIsLoggedIn, isLoggedIn, isButtonClicked }) => {
                     </div>
                     {/* {isButtonClicked && ( */}
                         <Nav>
-                            <Link to={LABORATORY_ROUTE}className="header__nav-lr">
+                            <Link to={LABORATORY_ROUTE} className="header__nav-lr">
                                 Лабараторная работа
                             </Link>
                             <Link to={PROFILE_ROUTE} className="header__nav-lr">
