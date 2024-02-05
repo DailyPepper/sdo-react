@@ -8,7 +8,7 @@ const Section = styled.section`
 `
 const BigBlock = styled.div`
     width: ${({$BigWeight}) => ($BigWeight ? '1248px' : '1247px')};
-    height: ${({$BigHeight}) => ($BigHeight ? '406px' : '357px')};
+    height: ${({$BigHeight}) => ($BigHeight ? '425px' : '357px')};
     background-color: ${({$BigFon}) => ($BigFon ? '#E2EDD0' : '#D5DEF6')};
     border-radius: 10px;
     display: flex;
@@ -16,14 +16,22 @@ const BigBlock = styled.div`
     .block__test{
         width: 400px;
         padding-left: 50px;
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .block__one{
+        margin-top: 5px;
     }
 `
-const MinBlock = styled.div`
+const MinBlock = styled.li`
     width: 592px;
     height: 102px;
     border-radius: 10px;
     background-color: #FFFFFF;
-
+    padding: 10px;
+    list-style-type: none;
 `
 const UlMinBlock = styled.ul`
     display: flex;
@@ -99,7 +107,7 @@ const List = styled.li`
   display: flex;
   align-items: center;
   list-style-type: none;
-`;
+`
 const NameLab = styled.h3`
     color: #000;
     text-align: center;
@@ -115,11 +123,12 @@ const TitleBlock = styled.h3`
     font-weight: ${({$FontWeight}) => ($FontWeight ? '400' : '500')};
     line-height: 27px;
     padding-left: ${({$Padding}) => ($Padding ? '45px' : '0px')};
+    margin: ${({$Margin}) => ($Margin ? '2px' : '0px')};
     /* width: ${({$Width}) => ($Width ? '194px' : '221px')}; */
 `
 const ButtonAdd = styled.button`
     font-family: "Montserrat";
-    width: 274px;
+    width: ${({$ButtonAddW}) => ($ButtonAddW ? '400px' : '274px') };
     flex-shrink: 0;
     border-radius: 4px;
     border: 0.7px solid #000;
@@ -232,14 +241,13 @@ const PrepodRedLab = () => {
                     </div>
                 </List>
                 <BigBlock $BigFon $BigHeight $BigWeight>
-                    <div>
+                    <div className="block__one">
                         <TitleBlock $Padding>
                             Cписок тестов:
                         </TitleBlock> 
                             <UlMinBlock>
                                 <MinBlock>
-                                    <div>
-                                        <TitleBlock $FontSize $FontWeight >
+                                        <TitleBlock $FontSize $FontWeight $Margin>
                                             Тест 1 "Проверка на ..."
                                         </TitleBlock>
                                         <div className="editing__block-name">
@@ -254,17 +262,42 @@ const PrepodRedLab = () => {
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
                                         </div> 
-                                    </div>
-                                
                                 </MinBlock>
                                 <MinBlock>
-                                    
+                                    <TitleBlock $FontSize $FontWeight $Margin>
+                                            Тест 1 "Проверка на ..."
+                                        </TitleBlock>
+                                        <div className="editing__block-name">
+                                            <TitleBlock $FontSize $FontWeight>
+                                                Входные данные:
+                                            </TitleBlock> 
+                                                <input type="text" className="some-input"/>     
+                                        </div>  
+                                        <div className="editing__block-name">
+                                            <TitleBlock $FontSize $FontWeight>  
+                                                Вывод:
+                                            </TitleBlock> 
+                                                <input type="text" className="some-input"/>     
+                                        </div> 
                                 </MinBlock>
                                 <MinBlock>
-                                    
+                                    <TitleBlock $FontSize $FontWeight $Margin>
+                                            Тест 1 "Проверка на ..."
+                                        </TitleBlock>
+                                        <div className="editing__block-name">
+                                            <TitleBlock $FontSize $FontWeight>
+                                                Входные данные:
+                                            </TitleBlock> 
+                                                <input type="text" className="some-input"/>     
+                                        </div>  
+                                        <div className="editing__block-name">
+                                            <TitleBlock $FontSize $FontWeight>  
+                                                Вывод:
+                                            </TitleBlock> 
+                                                <input type="text" className="some-input"/>     
+                                        </div> 
                                 </MinBlock>   
                             </UlMinBlock>
-                        
                     </div>
                     <div className="block__test">
                         <TitleBlock>
@@ -288,9 +321,9 @@ const PrepodRedLab = () => {
                             </TitleBlock> 
                                 <input type="text" className="some-input"/>     
                         </div>
-                        <button>
+                        <ButtonAdd $ButtonAddW>
                             Добавить тест
-                        </button>
+                        </ButtonAdd>
                     </div>
                 </BigBlock>
                 <BigBlock >
