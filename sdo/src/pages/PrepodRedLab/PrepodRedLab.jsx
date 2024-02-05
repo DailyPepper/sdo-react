@@ -37,6 +37,7 @@ const UlMinBlock = styled.ul`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding-top: ${({$PaddingTopForm}) => ($PaddingTopForm ? '10px' : '0px')};
 `
 const UlList = styled.ul`
     display: flex;
@@ -89,6 +90,7 @@ const UlList = styled.ul`
     .editing__block-bth{
         display: flex;
         gap: 10px;
+        /* padding-left: 5px; */
     }
     .editing__block{
         padding: 0px 30px 0px 20px;
@@ -133,9 +135,25 @@ const ButtonAdd = styled.button`
     width: ${({$ButtonAddW}) => ($ButtonAddW ? '400px' : '274px') };
     flex-shrink: 0;
     border-radius: 4px;
-    border: 0.7px solid #000;
+    border: none;
     background: #FFF;
     height: 42px;
+    cursor: pointer;
+        &:hover{
+            background: #C8D5F6;
+            color: #FFF;
+            border-style: none;
+            transition: 0.5s;
+        }
+`
+const ButtonAddForm = styled.button`
+    font-family: "Montserrat";
+    width: 310px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background: #FFF;
+    height: 42px;
+    border: none;
     cursor: pointer;
         &:hover{
             background: #C8D5F6;
@@ -149,8 +167,9 @@ const ButtonDelete = styled.button`
     width: 274px;
     flex-shrink: 0;
     border-radius: 4px;
-    border: 0.7px solid #000;
+    border: none;
     background: #FFF;
+    
     cursor: pointer;
         &:hover{
             background: #FF7070;
@@ -158,6 +177,28 @@ const ButtonDelete = styled.button`
             border-style: none;
             transition: 0.6s;
         }
+`
+const FormBlock = styled.li`
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    gap: 2px;
+`
+const FormLabel = styled.label`
+    font-family: 'Montserrat';
+    font-size: 16px;
+    line-height: 27px;
+    font-weight: 400;
+    color: #000000;
+`
+const FormInput = styled.input`
+    width: 590px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    border: none;
+    outline: none;
+    font-size: 16px;
 `
 const PrepodRedLab = () => {
     return ( 
@@ -329,7 +370,60 @@ const PrepodRedLab = () => {
                     </div>
                 </BigBlock>
                 <BigBlock >
-
+                    <div className="block__one">
+                        <TitleBlock $Padding>
+                            Формулы
+                        </TitleBlock> 
+                        <UlMinBlock $PaddingTopForm>
+                            <FormBlock>
+                                <FormLabel htmlFor="Id формулы">ID формулы</FormLabel>
+                                <FormInput type="text" />
+                            </FormBlock>
+                            <FormBlock>
+                                <FormLabel htmlFor="Описание формулы">Описание формулы</FormLabel>
+                                <FormInput type="text" />
+                            </FormBlock>
+                            <FormBlock>
+                                <FormLabel htmlFor="Формула">Формула</FormLabel>
+                                <FormInput type="text" />
+                            </FormBlock>
+                            <div className="editing__block-bth">
+                                <ButtonAddForm>
+                                    Добавить формулу
+                                </ButtonAddForm>
+                                <ButtonDelete>
+                                    Удалить формулу
+                                </ButtonDelete>
+                            </div>   
+                        </UlMinBlock>
+                    </div>
+                    <div className="block__test">
+                        <TitleBlock $Padding>
+                            Связанные формулы
+                        </TitleBlock> 
+                        <UlMinBlock $PaddingTopForm>
+                            <FormBlock>
+                                <FormLabel htmlFor="Id формулы">ID формулы</FormLabel>
+                                <FormInput type="text" />
+                            </FormBlock>
+                            <FormBlock>
+                                <FormLabel htmlFor="Описание формулы">Описание формулы</FormLabel>
+                                <FormInput type="text" />
+                            </FormBlock>
+                            <FormBlock>
+                                <FormLabel htmlFor="Формула">Формула</FormLabel>
+                                <FormInput type="text" />
+                            </FormBlock>
+                            <div className="editing__block-bth">
+                                <ButtonAddForm>
+                                    Добавить формулу
+                                </ButtonAddForm>
+                                <ButtonDelete>
+                                    Удалить формулу
+                                </ButtonDelete>
+                            </div>   
+                        </UlMinBlock>
+                    </div>
                 </BigBlock>
             </UlList>  
         </Section>
