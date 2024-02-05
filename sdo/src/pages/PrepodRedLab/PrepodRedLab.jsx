@@ -50,9 +50,11 @@ const UlList = styled.ul`
         background: #E2EDD0;
         border-radius: 7px;
         list-style-type: none;
+        display: flex;
+        align-items: center;
     }
     .editing__block-Two{
-        padding: 0px 30px 0px 20px;
+        padding: 0px 30px 30px 20px;
     }
     .editing__block-text{
     color: #000;
@@ -60,8 +62,8 @@ const UlList = styled.ul`
     font-size: 16px;
     }
     .editing__block-inp{
-    display: flex;
-    align-items: center;
+        display: flex;
+        align-items: center;
     }
     .some-input {
         border: none;
@@ -74,7 +76,7 @@ const UlList = styled.ul`
     }
 
     .editing__block-input{
-        width: 515px;
+        width: 555px;
         height: 60px;
         border-radius: 7px;
         border-style: none;
@@ -121,7 +123,7 @@ const TitleBlock = styled.h3`
     font-family: "Montserrat";
     font-size: ${({$FontSize}) => ($FontSize ? '16px' : '19px')};
     font-weight: ${({$FontWeight}) => ($FontWeight ? '400' : '500')};
-    line-height: 27px;
+    line-height: ${({$LineHeight}) => ($LineHeight ? '45px' : '27px')};
     padding-left: ${({$Padding}) => ($Padding ? '45px' : '0px')};
     margin: ${({$Margin}) => ($Margin ? '2px' : '0px')};
     /* width: ${({$Width}) => ($Width ? '194px' : '221px')}; */
@@ -183,17 +185,17 @@ const PrepodRedLab = () => {
                 </List> 
                 <li className="editing__container">
                     <div className="editing__block-Two">
-                        <TitleBlock> 
+                        <TitleBlock $LineHeight> 
                             Проверка длины:
                         </TitleBlock>
                             <div className="editing__block-inp">
-                                <TitleBlock>
+                                <TitleBlock $LineHeight>
                                     Максимальное количество символов:
                                 </TitleBlock> 
                                     <input type="text" className="some-input"/>   
                             </div>
                         <div className="editing__block-inp">
-                            <TitleBlock>
+                            <TitleBlock $LineHeight>
                                 Максимальное количество строк:
                             </TitleBlock>    
                             <input type="text" className="some-input"/>   
@@ -210,11 +212,11 @@ const PrepodRedLab = () => {
                 </li>   
                 <li className="editing__container">
                     <div className="editing__block-Two">
-                        <TitleBlock> 
+                        <TitleBlock $LineHeight> 
                             Конструкция: 
                         </TitleBlock>
                             <input className="editing__block-input" type="text" />
-                            <TitleBlock>
+                            <TitleBlock $LineHeight>
                                 Состояние проверки
                             </TitleBlock>
                             <div className="editing__block-bth">
