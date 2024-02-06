@@ -12,14 +12,12 @@ const BigBlock = styled.div`
     background-color: ${({$BigFon}) => ($BigFon ? '#E2EDD0' : '#D5DEF6')};
     border-radius: 10px;
     display: flex;
-    gap: 75px;
+    gap: ${({$GapForm}) => ($GapForm ? '75px' : '0px')};
     .block__test{
-        width: 400px;
-        padding-left: 50px;
-        padding-top: 10px;
+        width: 540px;
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        margin-top: 5px;
     }
     .block__one{
         margin-top: 5px;
@@ -148,12 +146,13 @@ const ButtonAdd = styled.button`
 `
 const ButtonAddForm = styled.button`
     font-family: "Montserrat";
-    width: 310px;
+    width: 275px;
     flex-shrink: 0;
     border-radius: 4px;
     background: #FFF;
     height: 42px;
     border: none;
+    margin-left: 5px;
     cursor: pointer;
         &:hover{
             background: #C8D5F6;
@@ -164,7 +163,7 @@ const ButtonAddForm = styled.button`
 `
 const ButtonDelete = styled.button`
     font-family: "Montserrat";
-    width: 274px;
+    width: 268px;
     flex-shrink: 0;
     border-radius: 4px;
     border: none;
@@ -192,7 +191,7 @@ const FormLabel = styled.label`
     color: #000000;
 `
 const FormInput = styled.input`
-    width: 590px;
+    width: 550px;
     height: 30px;
     border-radius: 10px;
     background-color: #FFFFFF;
@@ -283,7 +282,7 @@ const PrepodRedLab = () => {
                         </div>  
                     </div>
                 </List>
-                <BigBlock $BigFon $BigHeight $BigWeight>
+                <BigBlock $BigFon $BigHeight $BigWeight $GapForm>
                     <div className="block__one">
                         <TitleBlock $Padding>
                             Cписок тестов:
@@ -403,15 +402,15 @@ const PrepodRedLab = () => {
                         </TitleBlock> 
                         <UlMinBlock $PaddingTopForm>
                             <FormBlock>
-                                <FormLabel htmlFor="Id формулы">ID формулы</FormLabel>
+                                <FormLabel htmlFor="Id формулы">ID связанной формулы</FormLabel>
                                 <FormInput type="text" />
                             </FormBlock>
                             <FormBlock>
-                                <FormLabel htmlFor="Описание формулы">Описание формулы</FormLabel>
+                                <FormLabel htmlFor="Описание формулы">Описание связанных формулы</FormLabel>
                                 <FormInput type="text" />
                             </FormBlock>
                             <FormBlock>
-                                <FormLabel htmlFor="Формула">Формула</FormLabel>
+                                <FormLabel htmlFor="Формула">ID формул (через запятую, без пробелов)</FormLabel>
                                 <FormInput type="text" />
                             </FormBlock>
                             <div className="editing__block-bth">
