@@ -34,7 +34,7 @@ const MinBlock = styled.li`
 const UlMinBlock = styled.ul`
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     padding-top: ${({$PaddingTopForm}) => ($PaddingTopForm ? '10px' : '0px')};
 `
 const UlList = styled.ul`
@@ -156,9 +156,9 @@ const TitleBlock = styled.h3`
     font-weight: ${({$FontWeight}) => ($FontWeight ? '400' : '500')};
     line-height: ${({$LineHeight}) => ($LineHeight ? '45px' : '27px')};
     padding-left: ${({$Padding}) => ($Padding ? '45px' : '0px')};
-    margin: ${({$Margin}) => ($Margin ? '2px' : '0px')};
-    /* width: ${({$Width}) => ($Width ? '194px' : '221px')}; */
+    margin: ${({$Margin}) => ($Margin ? '0px' : 'none')};
 `
+
 const ButtonAdd = styled.button`
     font-family: "Montserrat";
     width: ${({$ButtonAddW}) => ($ButtonAddW ? '400px' : '274px') };
@@ -273,17 +273,17 @@ const PrepodRedLab = () => {
                 </List> 
                 <li className="editing__container">
                     <div className="editing__block-Two">
-                        <TitleBlock $LineHeight> 
+                        <TitleBlock > 
                             Проверка длины:
                         </TitleBlock>
                             <div className="editing__block-inp">
-                                <TitleBlock $LineHeight>
+                                <TitleBlock >
                                     Максимальное количество символов:
                                 </TitleBlock> 
                                     <input type="text" className="some-input"/>   
                             </div>
                         <div className="editing__block-inp">
-                            <TitleBlock $LineHeight>
+                            <TitleBlock>
                                 Максимальное количество строк:
                             </TitleBlock>    
                             <input type="text" className="some-input"/>   
@@ -300,11 +300,11 @@ const PrepodRedLab = () => {
                 </li>   
                 <li className="editing__container">
                     <div className="editing__block-Two">
-                        <TitleBlock $LineHeight> 
+                        <TitleBlock> 
                             Конструкция: 
                         </TitleBlock>
                             <input className="editing__block-input" type="text" />
-                            <TitleBlock $LineHeight>
+                            <TitleBlock >
                                 Состояние проверки
                             </TitleBlock>
                             <div className="editing__block-bth">
@@ -332,7 +332,7 @@ const PrepodRedLab = () => {
                 </List>
                 <BigBlock $BigFon $BigHeight $BigWeight $GapForm>
                     <div className="block__one">
-                        <TitleBlock $Padding>
+                        <TitleBlock $Padding $Margin>
                             Cписок тестов:
                         </TitleBlock> 
                             <UlMinBlock>
@@ -341,13 +341,13 @@ const PrepodRedLab = () => {
                                             Тест 1 "Проверка на ..."
                                         </TitleBlock>
                                         <div className="editing__block-name">
-                                            <TitleBlock $FontSize $FontWeight>
+                                            <TitleBlock $FontSize $FontWeight  $Margin>
                                                 Входные данные:
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
                                         </div>  
                                         <div className="editing__block-name">
-                                            <TitleBlock $FontSize $FontWeight>  
+                                            <TitleBlock $FontSize $FontWeight  $Margin>  
                                             Вывод:
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
@@ -358,13 +358,13 @@ const PrepodRedLab = () => {
                                             Тест 1 "Проверка на ..."
                                         </TitleBlock>
                                         <div className="editing__block-name">
-                                            <TitleBlock $FontSize $FontWeight>
+                                            <TitleBlock $FontSize $FontWeight  $Margin>
                                                 Входные данные:
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
                                         </div>  
                                         <div className="editing__block-name">
-                                            <TitleBlock $FontSize $FontWeight>  
+                                            <TitleBlock $FontSize $FontWeight  $Margin>  
                                                 Вывод:
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
@@ -375,13 +375,13 @@ const PrepodRedLab = () => {
                                             Тест 1 "Проверка на ..."
                                         </TitleBlock>
                                         <div className="editing__block-name">
-                                            <TitleBlock $FontSize $FontWeight>
+                                            <TitleBlock $FontSize $FontWeight  $Margin>
                                                 Входные данные:
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
                                         </div>  
                                         <div className="editing__block-name">
-                                            <TitleBlock $FontSize $FontWeight>  
+                                            <TitleBlock $FontSize $FontWeight  $Margin>  
                                                 Вывод:
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
@@ -421,7 +421,7 @@ const PrepodRedLab = () => {
                         <TitleBlock $Padding>
                             Формулы
                         </TitleBlock> 
-                        <UlMinBlock $PaddingTopForm>
+                        <UlMinBlock >
                             <FormBlock>
                                 <FormLabel htmlFor="Id формулы">ID формулы</FormLabel>
                                 <FormInput type="text" />
@@ -448,7 +448,7 @@ const PrepodRedLab = () => {
                         <TitleBlock $Padding>
                             Связанные формулы
                         </TitleBlock> 
-                        <UlMinBlock $PaddingTopForm>
+                        <UlMinBlock >
                             <FormBlock>
                                 <FormLabel htmlFor="Id формулы">ID связанной формулы</FormLabel>
                                 <FormInput type="text" />
