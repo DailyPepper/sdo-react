@@ -1,6 +1,6 @@
 import React from "react";
 import styled from 'styled-components'
-
+import { Link } from "react-router-dom";
 const Section = styled.section`
     display: flex;
     justify-content: center;
@@ -104,6 +104,32 @@ const UlList = styled.ul`
         display: flex;
         flex-direction: column;
         gap: 10px;
+    }
+    .block__end{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background-color: #E2EDD0;
+        border-radius: 5px;
+        width: 1248px;
+        height: 117px;
+        justify-content: center;
+        border-style: none;
+        align-items: center;
+        cursor: pointer;
+        &:hover{
+            background-color: #d7ebb5eb;
+        }
+    }
+    .block__end-link{
+        color: #000;
+        font-size: 16px;
+        font-family: 'Montserrat';
+        line-height: 27px;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        width: 1248px;
     }
 ` 
 const List = styled.li`
@@ -458,9 +484,14 @@ const PrepodRedLab = () => {
                         </ButtonFun>   
                     </div>   
                 </div>
-  
+                <div className="block__button"> 
+                    <button className="block__end">
+                        <Link className="block__end-link" to='/Laboratory'>
+                            Завершить редактирование и добавить лабораторную
+                        </Link>
+                    </button>   
+                </div>
             </UlList>  
-            
         </Section>
         </>
      );
