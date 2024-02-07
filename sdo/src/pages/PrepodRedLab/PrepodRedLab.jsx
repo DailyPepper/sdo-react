@@ -100,6 +100,11 @@ const UlList = styled.ul`
         display: flex;
         align-items: baseline;
     }
+    .block__button{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
 ` 
 const List = styled.li`
   width: ${({ $Block }) => ($Block ? '1248px' : '608px')};
@@ -198,6 +203,23 @@ const FormInput = styled.input`
     border: none;
     outline: none;
     font-size: 16px;
+`
+const ButtonFun = styled.button`
+    background-color: #D9D9D9;
+    width: 1248px;
+    height: 48px;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    font-weight: 400px;
+
+    &:hover{
+        background-color: ${({$HoverButton}) => ($HoverButton ? '#C8D5F6' : '#FF7070')};
+        color: #FFFFFF;
+        transition: 0.5s;
+    }
 `
 const PrepodRedLab = () => {
     return ( 
@@ -424,7 +446,21 @@ const PrepodRedLab = () => {
                         </UlMinBlock>
                     </div>
                 </BigBlock>
+                <div className="block__button">
+                    <div className="editing__block-name">
+                        <ButtonFun $HoverButton>
+                            Добавить функцию 
+                        </ButtonFun>   
+                    </div>
+                    <div className="editing__block-name">
+                        <ButtonFun>
+                            Удалить предыдущую функцию    
+                        </ButtonFun>   
+                    </div>   
+                </div>
+  
             </UlList>  
+            
         </Section>
         </>
      );
