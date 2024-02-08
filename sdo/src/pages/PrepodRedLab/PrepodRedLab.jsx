@@ -268,7 +268,7 @@ const PrepodRedLab = () => {
                             <p className="editing__block-text">
                                 Вы можете пояснить, как будет происходить ввод данных
                             </p>
-                            <input className="editing__block-input" type="text" />   
+                            <input className="editing__block-input" type="text" placeholder="Введите текст"/>   
                     </div>
                 </List> 
                 <li className="editing__container">
