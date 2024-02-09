@@ -151,7 +151,7 @@ const Laboratory = () => {
                                 className="section__lab-input"
                                 />
                             <Link id="buttonAdd" className="section__lab-button">
-                                Добавить новую Лабараторную работу
+                                Добавить новую Лабораторную работу
                             </Link> 
                         </div>
                     </div>

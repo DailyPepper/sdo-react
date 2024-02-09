@@ -77,7 +77,7 @@ const Header = ({ setIsLoggedIn, isLoggedIn, isButtonClicked }) => {
                     {/* {isButtonClicked && ( */}
                         <Nav>
                             <Link to={LABORATORY_ROUTE} className="header__nav-lr">
-                                Лабараторная работа
+                                Лабораторная работа
                             </Link>
                             <Link to={PROFILE_ROUTE} className="header__nav-lr">
                                 Личный кабинет
