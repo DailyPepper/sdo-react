@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from 'styled-components'
 import { Link } from "react-router-dom";
 const Section = styled.section`
@@ -247,7 +247,35 @@ const ButtonFun = styled.button`
         transition: 0.5s;
     }
 `
+
 const PrepodRedLab = () => {
+    const [inputValueSimbol, setInputValueSimbol] = useState('')
+    const [inputValueStr, setInputValueStr] = useState('')
+    const [lengthInput, setLengthInput] = useState([])
+
+    const handleChange = (event, inputNumber) => {
+        const newValue = event.target.value;
+        if ((inputNumber === 1 && newValue !== inputValueStr) || 
+            (inputNumber === 2 && newValue !== inputValueSimbol)) {
+                inputNumber === 1 ? setInputValueSimbol(newValue) : setInputValueStr(newValue);
+            }
+    }
+    const handleDelete = () => {
+        setInputValueSimbol('')
+        setInputValueStr('')
+    }
+
+    const handleAddLengthCheck = () => {
+        const newCheck = {
+            symbolLength: inputValueSimbol.length,
+            stringLength: inputValueStr.length,
+        };
+        setLengthInput([...lengthInput, newCheck]);
+
+        setInputValueSimbol('');
+        setInputValueStr('');
+    }
+
     return ( 
         <>
         <Section>
@@ -280,19 +308,19 @@ const PrepodRedLab = () => {
                                 <TitleBlock >
                                     Максимальное количество символов:
                                 </TitleBlock> 
-                                    <input type="text" className="some-input"/>   
+                                    <input type="text" className="some-input" value={inputValueSimbol} onChange={(event) => handleChange(event,1)}/>   
                             </div>
                         <div className="editing__block-inp">
                             <TitleBlock>
                                 Максимальное количество строк:
                             </TitleBlock>    
-                            <input type="text" className="some-input"/>   
+                            <input type="text" className="some-input" value={inputValueStr} onChange={(event) => handleChange(event,2)}/>   
                         </div>
                             <div className="editing__block-bth">
-                                <ButtonAdd>
+                                <ButtonAdd onClick={handleAddLengthCheck}>
                                     Добавить проверку длины
                                 </ButtonAdd>
-                                <ButtonDelete>
+                                <ButtonDelete onClick={handleDelete}>
                                     Удалить
                                 </ButtonDelete>
                             </div>   
@@ -303,7 +331,7 @@ const PrepodRedLab = () => {
                         <TitleBlock> 
                             Конструкция: 
                         </TitleBlock>
-                            <input className="editing__block-input" type="text" />
+                            <input className="editing__block-input" type="text"/>
                             <TitleBlock >
                                 Состояние проверки
                             </TitleBlock>
