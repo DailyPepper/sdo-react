@@ -252,6 +252,26 @@ const PrepodRedLab = () => {
     const [inputValueSimbol, setInputValueSimbol] = useState('')
     const [inputValueStr, setInputValueStr] = useState('')
     const [lengthInput, setLengthInput] = useState([])
+    const [addConstr, setAddConstr] = useState('')
+    const [addConstrBtn, setAddConstrBtn] = useState([])
+
+    const handleAddConstr = (event) => {
+        setAddConstr(event.target.value)
+    }
+
+    const handleAddConstrBtn = () => {
+        if(addConstr.trim !== ''){
+            const newConstr = [...addConstrBtn, addConstr]
+            
+            setAddConstrBtn(newConstr)
+            setAddConstr('')
+        }
+    }
+
+    const handleDeleteConstr = () => {
+        setAddConstr('')
+    }
+
 
     const handleChange = (event, inputNumber) => {
         const newValue = event.target.value;
@@ -275,6 +295,8 @@ const PrepodRedLab = () => {
         setInputValueSimbol('');
         setInputValueStr('');
     }
+
+
 
     return ( 
         <>
@@ -311,7 +333,8 @@ const PrepodRedLab = () => {
                                     <input 
                                         type="text" 
                                         className="some-input" 
-                                        value={inputValueSimbol} onChange={(event) => handleChange(event,1)}
+                                        value={inputValueSimbol} 
+                                        onChange={(event) => handleChange(event,1)}
                                     />   
                             </div>
                         <div className="editing__block-inp">
@@ -321,7 +344,8 @@ const PrepodRedLab = () => {
                                 <input 
                                     type="text" 
                                     className="some-input" 
-                                    value={inputValueStr} onChange={(event) => handleChange(event,2)}
+                                    value={inputValueStr} 
+                                    onChange={(event) => handleChange(event,2)}
                                 />   
                         </div>
                             <div className="editing__block-bth">
@@ -339,17 +363,23 @@ const PrepodRedLab = () => {
                         <TitleBlock> 
                             Конструкция: 
                         </TitleBlock>
-                            <input className="editing__block-input" type="text"/>
+                            <input 
+                                className="editing__block-input" 
+                                type="text"
+                                value={addConstr}
+                                onChange={handleAddConstr}
+                                placeholder="Введите конструкцию"
+                            />
                             <TitleBlock >
                                 Состояние проверки
                             </TitleBlock>
                             <div className="editing__block-bth">
-                                <ButtonAdd>
+                                <ButtonAdd onClick={handleAddConstrBtn}>
                                     Добавить конструкцию
                                 </ButtonAdd>
-                                <ButtonDelete>
+                                <ButtonDelete onClick={handleDeleteConstr}>
                                     Удалить конструкцию
-                                </ButtonDelete>
+                                </ButtonDelete >
                             </div>  
                     </div>
                 </li> 
