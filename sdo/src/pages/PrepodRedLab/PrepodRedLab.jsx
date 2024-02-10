@@ -272,7 +272,6 @@ const PrepodRedLab = () => {
         setAddConstr('')
     }
 
-
     const handleChange = (event, inputNumber) => {
         const newValue = event.target.value;
         if ((inputNumber === 1 && newValue !== inputValueStr) || 
@@ -296,7 +295,73 @@ const PrepodRedLab = () => {
         setInputValueStr('');
     }
 
+    const [idFormula, setIdFormula] = useState('');
+    const [descriptionFormula, setDescriptionFormula] = useState('');
+    const [formula, setFormula] = useState('');
+    const [addFormula, setAddFormula] = useState([])
+    
+    const [idRelatedFormula, setIdRelatedFormula] = useState('');
+    const [descriptionRelatedFormula, setDescriptionRelatedFormula] = useState('');
+    const [formulaRelated, setRelatedFormula] = useState('');
+    const [addRelatedFormula, setAddRelatedFormula] = useState([])
+    
+    const handleAddFormul = (event, inputFormul) => {
+        const newFormulaValue = event.target.value;
+        if (inputFormul === 1) {
+            setIdFormula(newFormulaValue);
+        } else if (inputFormul === 2) {
+            setDescriptionFormula(newFormulaValue);
+        } else if (inputFormul === 3) {
+            setFormula(newFormulaValue);
+        }
+    };
+      
+    const handleAddFormulBtn = () => {
+        const newFormul = {
+            idForm: idFormula.length,
+            descriptionForm: descriptionFormula.length,
+            Form: formula.length,
+        };
+        setAddFormula([...addFormula, newFormul]);
+        setIdFormula('');
+        setDescriptionFormula('');
+        setFormula('');
+    };
 
+    const handleDelFormulBtn = () => {
+        setIdFormula('')
+        setDescriptionFormula('')
+        setFormula('')
+    }
+
+    const handleAddRelatedFormul = (event, inputFormulRelated) => {
+        const newFormulaRelatedValue = event.target.value;
+        if (inputFormulRelated === 1) {
+            setIdRelatedFormula(newFormulaRelatedValue);
+        } else if (inputFormulRelated === 2) {
+            setDescriptionRelatedFormula(newFormulaRelatedValue);
+        } else if (inputFormulRelated === 3) {
+            setRelatedFormula(newFormulaRelatedValue);
+        }
+    };
+      
+    const handleAddFormulRelatedBtn = () => {
+        const newFormulRelated = {
+            idForm: idFormula.length,
+            descriptionForm: descriptionFormula.length,
+            Form: formula.length,
+        };
+        setAddRelatedFormula([...addRelatedFormula, newFormulRelated]);
+        setIdRelatedFormula('');
+        setDescriptionRelatedFormula('');
+        setRelatedFormula('');
+    };
+
+    const handleDelFormulRelatedBtn = () => {
+        setIdRelatedFormula('')
+        setDescriptionRelatedFormula('')
+        setRelatedFormula('')
+    }
 
     return ( 
         <>
@@ -490,21 +555,33 @@ const PrepodRedLab = () => {
                         <UlMinBlock >
                             <FormBlock>
                                 <FormLabel htmlFor="Id формулы">ID формулы</FormLabel>
-                                <FormInput type="text" />
+                                <FormInput 
+                                    type="text" 
+                                    value={idFormula}
+                                    onChange={(event) => handleAddFormul(event,1)}
+                                />
                             </FormBlock>
                             <FormBlock>
                                 <FormLabel htmlFor="Описание формулы">Описание формулы</FormLabel>
-                                <FormInput type="text" />
+                                <FormInput 
+                                    type="text"
+                                    value={descriptionFormula}
+                                    onChange={(event) => handleAddFormul(event,2)}
+                                />
                             </FormBlock>
                             <FormBlock>
                                 <FormLabel htmlFor="Формула">Формула</FormLabel>
-                                <FormInput type="text" />
+                                <FormInput 
+                                    type="text" 
+                                    value={formula}
+                                    onChange={(event) => handleAddFormul(event,3)}
+                                />
                             </FormBlock>
                             <div className="editing__block-bth">
-                                <ButtonAddForm>
+                                <ButtonAddForm onClick={handleAddFormulBtn}>
                                     Добавить формулу
                                 </ButtonAddForm>
-                                <ButtonDelete>
+                                <ButtonDelete onClick={handleDelFormulBtn}>
                                     Удалить формулу
                                 </ButtonDelete>
                             </div>   
@@ -517,21 +594,33 @@ const PrepodRedLab = () => {
                         <UlMinBlock >
                             <FormBlock>
                                 <FormLabel htmlFor="Id формулы">ID связанной формулы</FormLabel>
-                                <FormInput type="text" />
+                                <FormInput 
+                                    type="text"
+                                    value={idRelatedFormula}
+                                    onChange={(event) => handleAddRelatedFormul(event,1)}
+                                 />
                             </FormBlock>
                             <FormBlock>
                                 <FormLabel htmlFor="Описание формулы">Описание связанных формулы</FormLabel>
-                                <FormInput type="text" />
+                                <FormInput 
+                                    type="text"
+                                    value={descriptionRelatedFormula}
+                                    onChange={(event) => handleAddRelatedFormul(event,2)}
+                                />
                             </FormBlock>
                             <FormBlock>
                                 <FormLabel htmlFor="Формула">ID формул (через запятую, без пробелов)</FormLabel>
-                                <FormInput type="text" />
+                                <FormInput 
+                                    type="text"
+                                    value={formulaRelated}
+                                    onChange={(event) => handleAddRelatedFormul(event,3)}
+                                />
                             </FormBlock>
                             <div className="editing__block-bth">
-                                <ButtonAddForm>
+                                <ButtonAddForm onClick={handleAddFormulRelatedBtn}>
                                     Добавить формулу
                                 </ButtonAddForm>
-                                <ButtonDelete>
+                                <ButtonDelete onClick={handleDelFormulRelatedBtn}>
                                     Удалить формулу
                                 </ButtonDelete>
                             </div>   
