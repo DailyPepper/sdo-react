@@ -308,13 +308,21 @@ const PrepodRedLab = () => {
                                 <TitleBlock >
                                     Максимальное количество символов:
                                 </TitleBlock> 
-                                    <input type="text" className="some-input" value={inputValueSimbol} onChange={(event) => handleChange(event,1)}/>   
+                                    <input 
+                                        type="text" 
+                                        className="some-input" 
+                                        value={inputValueSimbol} onChange={(event) => handleChange(event,1)}
+                                    />   
                             </div>
                         <div className="editing__block-inp">
                             <TitleBlock>
                                 Максимальное количество строк:
                             </TitleBlock>    
-                            <input type="text" className="some-input" value={inputValueStr} onChange={(event) => handleChange(event,2)}/>   
+                                <input 
+                                    type="text" 
+                                    className="some-input" 
+                                    value={inputValueStr} onChange={(event) => handleChange(event,2)}
+                                />   
                         </div>
                             <div className="editing__block-bth">
                                 <ButtonAdd onClick={handleAddLengthCheck}>
