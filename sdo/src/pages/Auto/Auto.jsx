@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "../../styles/style.css"
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Section = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ const Form = styled.form`
     color: #252525;
     font-family: 'Montserrat';
     outline: none;
-}
+  }
 `
 const Button = styled.button`
     height: 40px;
@@ -46,14 +47,15 @@ const Button = styled.button`
     background-color: #DDE5F9;
     color: #FFF;
     transition: 0.4s;
-
-}
+  }
 `
 
 const Auto = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoggedIn, setLoggedIn] = useState(false);  // Добавлено новое состояние
+  const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -61,6 +63,11 @@ const Auto = () => {
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+  };
+
+  const handleSuccessfulLogin = () => {
+    setLoggedIn(true);
+    navigate('/'); // Переход на главную страницу или другую страницу по вашему выбору
   };
 
   const handleSubmit = (event) => {
@@ -81,81 +88,54 @@ const Auto = () => {
         }
       })
       .then(data => {
-        // Сохраняем access_token в LocalStorage
         localStorage.setItem('access_token', data.access_token);
-        // Очищаем форму и ошибки
         setUsername('');
         setPassword('');
         setError('');
+        handleSuccessfulLogin();  // Вызываем функцию при успешном входе
       })
       .catch(error => {
         setError(error.message);
       });
   };
-
-  // Функция для отправки запросов с учетом токена
-  const authorizedFetch = (url, options) => {
-    // Получаем access_token из LocalStorage
-    const access_token = localStorage.getItem('access_token');
-
-    // Добавляем заголовок Authorization, если токен существует
-    if (access_token) {
-      options.headers = {
-        ...options.headers,
-        'Authorization': `Bearer ${access_token}`
-      };
-    }
-
-    // Отправляем запрос
-    return fetch(url, options);
-  };
-
-  // Пример использования
-  const fetchData = () => {
-    authorizedFetch('http://127.0.0.1:8000/docs#/default/login_for_access_token_login_post', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
-        // Обработка ответа
-      })
-      .catch(error => {
-        // Обработка ошибки
-      });
-  };
-
   return (
     <>
       <Section>
-        <SectionHeading>
-          Войдите в личный кабинет
-        </SectionHeading>
-        <Form
-          onSubmit={handleSubmit}
-          method='post'
-          action='#'
-        >
-          <input
-            type="text"
-            placeholder=" Ваше имя"
-            onChange={handleUsernameChange}
-            name='username'
-            value={username}
-            className='section__login-formInput'
-          />
-          <input
-            type="password"
-            placeholder=" Пароль"
-            name='password'
-            value={password}
-            onChange={handlePasswordChange}
-            className='section__login-formInput'
-          />
-          <Button type="submit" className='section__login-button'>Войти</Button>
-        </Form>
-        {error && <SectionHeading>{error}</SectionHeading>}
+        {isLoggedIn ? (
+          <SectionHeading>
+            Навигационное меню после успешного входа
+          </SectionHeading>
+        ) : (
+          <>
+            <SectionHeading>
+              Войдите в личный кабинет
+            </SectionHeading>
+            <Form
+              onSubmit={handleSubmit}
+              method='post'
+              action='#'
+            >
+              <input
+                type="text"
+                placeholder=" Ваше имя"
+                onChange={handleUsernameChange}
+                name='username'
+                value={username}
+                className='section__login-formInput'
+            />
+              <input
+                type="password"
+                placeholder=" Пароль"
+                name='password'
+                value={password}
+                onChange={handlePasswordChange}
+                className='section__login-formInput'
+              />
+              <Button type="submit" className='section__login-button'>Войти</Button>
+            </Form>
+            {error && <SectionHeading>{error}</SectionHeading>}
+          </>
+        )}
       </Section>
     </>
   );

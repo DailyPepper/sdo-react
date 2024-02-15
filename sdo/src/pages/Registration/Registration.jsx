@@ -54,25 +54,15 @@ const Registration = () => {
   const [password, setPassword] = useState('');
   const [numberGroup, setNumberGroup] = useState('');
 
-  const handleGroupChange = (e) => {
-    const selectedGroupName = e.target.value;
-    const groupMappings = {
-      'Group1': 1,
-      'Group2': 2,
-    };
-    const selectedGroupId = groupMappings[selectedGroupName];
-    setNumberGroup(selectedGroupId);
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const data = {
       username,
       password,
-      group_id: numberGroup,
+      group_name: numberGroup,
     };
-
+  
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -80,26 +70,24 @@ const Registration = () => {
       },
       body: JSON.stringify(data),
     };
-
-    fetch('http://127.0.0.1:8000/register', requestOptions)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Не удалось зарегистрироваться');
-        }
-        return response.json();
-      })
-      .then(data => {
-
-        localStorage.setItem('access_token', data.access_token);
-        localStorage.setItem('role', data.role);
-
-        setUserName('');
-        setPassword('');
-        setNumberGroup('');
-      })
-      .catch(error => {
-        console.error('Ошибка при регистрации:', error);
-      });
+  
+    try {
+      const response = await fetch('http://127.0.0.1:8000/register', requestOptions);
+  
+      if (!response.ok) {
+        throw new Error('Не удалось зарегистрироваться');
+      }
+  
+      const responseData = await response.json();
+      localStorage.setItem('access_token', responseData.access_token);
+      localStorage.setItem('role', responseData.role);
+  
+      setUserName('');
+      setPassword('');
+      setNumberGroup('');
+    } catch (error) {
+      console.error('Ошибка при регистрации:', error.message);
+    }
   };
 
   return (
@@ -130,14 +118,14 @@ const Registration = () => {
             className='section__login-formInput'
             onChange={(e) => setPassword(e.target.value)}
           />
-          <select
+          <input 
+            type="text"
+            placeholder=" Group"
+            name='somepassword'
             value={numberGroup}
-            onChange={handleGroupChange}
             className='section__login-formInput'
-          >
-            <option value="Group1">Group1</option>
-            <option value="Group2">Group2</option>
-          </select>
+            onChange={(e) => setNumberGroup(e.target.value)}
+          />
           <Button type="submit">
             Зарегистрироваться
           </Button>

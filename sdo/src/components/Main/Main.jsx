@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../Main/style.css";
-import { Link } from "react-router-dom";
-import Logged from "../Logged";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from 'styled-components'
+import { useAuth } from "../AuthContext";
+import { LABORATORY_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE } from '../../app/routing/route';
 
 const Section = styled.section`
     display: flex;
@@ -42,38 +42,45 @@ const Block = styled.div`
         transition: 0.3s;
     }
 `
-const Main = ({Logged}) => {
 
-    const [showNav, setShowNav] = useState(false);
-    const [isButtonClicked, setButtonClicked] = useState(false);
-    const handleClick = ()=>{
-        setButtonClicked(true)
-    }
+const Main = () => {
+    const { login } = useAuth();
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const navigate = useNavigate();
+  
+    const handleLogin = (role) => {
+      login(role);
+      setIsAuthenticated(true);
+      // После успешной аутентификации перенаправьте пользователя
+      console.log("Successful login. Redirecting...");
+      navigate(LABORATORY_ROUTE);
+    };
+  
     return ( 
-        <>
-                <Section>
-                    {Logged ? (
-                        <SectionHead>Добро пожаловать в личный кабинет!</SectionHead>
-                    ) : (
-                        <>
-                            <SectionHead>
-                                Войдите в учетную запись или зарегистрируйтесть:
-                            </SectionHead>
-                            <Block>
-                                <Link className="section__block-btn" to="/login" onClick={handleClick}>
-                                    Студент
-                                </Link>
-                                <Link className="section__block-btn" to="/login" onClick={handleClick}> 
-                                    Преподователь
-                                </Link>
-                            </Block>  
-                        </>
-                    )
-                }
-                </Section>
-        </>
-        
-     );
+      <>
+        <Section>
+          <SectionHead>
+            Войдите в учетную запись или зарегистрируйтесть:
+          </SectionHead>
+          <Block>
+            <Link 
+              className="section__block-btn" 
+              to="/login" 
+              onClick={() => handleLogin('student')}
+            >
+              Студент
+            </Link>
+            <Link 
+              className="section__block-btn" 
+              to="/login" 
+              onClick={() => handleLogin('teacher')}
+            > 
+              Преподователь
+            </Link>
+          </Block>
+        </Section>
+      </>
+    );
 }
- 
+
 export default Main;
