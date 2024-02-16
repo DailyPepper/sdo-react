@@ -110,7 +110,7 @@ const SpnLab = styled.span`
     transition: 0.5s;
 }
 `
-const Laboratory = () => {
+const StudLaboratory = () => {
 
     const handleDeleteClick = (event) => {
         const listItem = event.target.closest(".section__lab-page");
@@ -200,4 +200,4 @@ const Laboratory = () => {
     );
 }
 
-export default Laboratory;
+export default StudLaboratory;
