@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/style.css";
 import styled from 'styled-components'
+import LaboratoryAdd from '../LaboratoryAdd/index'
 
 const SectionLab = styled.div`
     display: flex;
@@ -111,43 +112,42 @@ const SpnLab = styled.span`
 }
 `
 const Laboratory = () => {
-
-    const handleDeleteClick = (event) => {
-        const listItem = event.target.closest(".section__lab-page");
-        listItem.remove();
-      };
-
-    const [searchValue, setSearchValue] = useState("")
-    
+    const [labItems, setLabItems] = useState([]);
+    const [searchValue, setSearchValue] = useState("");
 
     const handleSearchChange = (event) => {
-        setSearchValue(event.target.value)
-    }
+        setSearchValue(event.target.value);
+    };
 
-    const requestOptions = {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 'title': title })
-      };
-      fetch('/tasks', { 
-        method: 'GET', 
-        headers: new Headers({
-            'Authorization': `Bearer ${localStorage.getItem("access_token")}`, 
-        }), 
-        }).then(response => {
-        if (response.ok) {
-            return response.json();
-        }
+    const handleDeleteClick = (index) => {
+        const updatedLabItems = [...labItems];
+        updatedLabItems.splice(index, 1);
+        setLabItems(updatedLabItems);
+    };
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8000/tasks', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("access_token")}`,
+            },
         })
-    // .then(data => {
-    //   localStorage.setItem('access_token', data.access_token);
-    //   handleSuccessfulLogin();  // Вызываем функцию при успешном входе
-    // })
-    // .catch(error => {
-    //   setError(error.message);
-    // });
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to fetch tasks');
+                }
+            })
+            .then(data => {
+                setLabItems(data);
+            })
+            .catch(error => {
+                console.error(error.message);
+            });
+    }, []);
 
-    const labItems = [
+    const labItem = [
         {title: "Лабораторная работа 1"},
         {title: "Лабораторная работа 2"},
         {title: "Лабораторная работа 3"},
@@ -159,7 +159,7 @@ const Laboratory = () => {
         return index % 2 === 0 ? "section__lab-page" : "section__lab-page alternate-color"
     }; 
     return (
-        <>
+            <>
                 <SectionLab>
                     <div className="section__lab-block">
                         <div className="section__lab-blockSearch">
@@ -173,13 +173,13 @@ const Laboratory = () => {
                                 onChange={handleSearchChange}
                                 className="section__lab-input"
                                 />
-                            <Link id="buttonAdd" className="section__lab-button">
+                            <Link to="/LaboratoryAdd" id="buttonAdd" className="section__lab-button">
                                 Добавить новую Лабораторную работу
                             </Link> 
                         </div>
                     </div>
                     <ListLab>
-                        {labItems.map((item, index) => (
+                        {labItem.map((item, index) => (
                             <li className={getColors(index)}  key={index}>
                                 <NameLab>
                                     {item.title}
@@ -196,7 +196,7 @@ const Laboratory = () => {
                         ))}
                     </ListLab>
                 </SectionLab>
-        </>
+            </>
     );
 }
 

@@ -1,15 +1,15 @@
-// MainRouter.jsx
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import Main from '../../components/Main/Main';
 import Auto from '../../pages/Auto/Auto';
 import Laboratory from '../../pages/Laboratory/Laboratory';
 import PrepodRedLab from '../../pages/PrepodRedLab/PrepodRedLab';
 import Registration from '../../pages/Registration/Registration';
-import { useAuth } from '../../components/AuthContext';
+import StudLaboratory from '../../pages/Laboratory/StudLaboratory';
+import LaboratoryAdd from '../../pages/LaboratoryAdd/index'
 
 const MainRouter = () => {
-  const userRole = 'teacher'; // Или 'stud'
+  const userRole = 'teacher';
 
   return (
     <Routes>
@@ -18,18 +18,19 @@ const MainRouter = () => {
 
       {userRole === 'teacher' && (
         <>
-          <Route path="Laboratory" element={<Laboratory />} />
-          <Route path="editingLaboratoryPrep" element={<PrepodRedLab />} />
+          <Route path="/Laboratory" element={<Laboratory />} />
+          <Route path="/editingLaboratoryPrep" element={<PrepodRedLab />} />
+          <Route path="/LaboratoryAdd" element={<LaboratoryAdd/>} />
         </>
       )}
 
       {userRole === 'stud' && (
         <>
-          <Route path="StudLaboratory" element={<StudLaboratory />} />
+          <Route path="/StudLaboratory" element={<StudLaboratory />} />
         </>
       )}
 
-      <Route path="Registration" element={<Registration />} />
+      <Route path="registration" element={<Registration />} />
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );

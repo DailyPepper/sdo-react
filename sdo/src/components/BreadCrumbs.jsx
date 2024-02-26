@@ -27,10 +27,11 @@ const Bread = () => {
     const pageNames = {
         "/": "Главная",
         "login": "Авторизация", 
-        "Laboratory": "Лабораторные работы", 
+        "laboratory": "Лабораторные работы", 
         "editingLaboratoryPrep": "Редактирование лабораторной работы", 
         "Registration" : "Регистрация",
         "profile" : "Личный кабинет",
+        "LaboratoryAdd" : 'Добавить лабораторные работы'
     };
 
 
