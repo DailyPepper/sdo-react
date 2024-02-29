@@ -112,7 +112,7 @@ const Header = ({ setIsLoggedIn, isLoggedIn, isButtonClicked }) => {
                                 Лабораторные работы
                             </Link>
                         )}
-                        <Link to="/profile" className="header__nav-lr">
+                        <Link to="/PersonalTeacher" className="header__nav-lr">
                             Личный кабинет
                         </Link>
                         {isLoggedIn ? (

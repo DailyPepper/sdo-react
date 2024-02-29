@@ -7,6 +7,7 @@ import PrepodRedLab from '../../pages/PrepodRedLab/PrepodRedLab';
 import Registration from '../../pages/Registration/Registration';
 import StudLaboratory from '../../pages/Laboratory/StudLaboratory';
 import LaboratoryAdd from '../../pages/LaboratoryAdd/index'
+import PersonalTeacher from '../../pages/Personal/PersonalTeacher';
 
 const MainRouter = () => {
   const userRole = 'teacher';
@@ -21,6 +22,7 @@ const MainRouter = () => {
           <Route path="/Laboratory" element={<Laboratory />} />
           <Route path="/editingLaboratoryPrep" element={<PrepodRedLab />} />
           <Route path="/LaboratoryAdd" element={<LaboratoryAdd/>} />
+          <Route path="/PersonalTeacher" element={<PersonalTeacher/>} />
         </>
       )}
 

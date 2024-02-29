@@ -345,7 +345,7 @@ const LaboratoryAdd = () => {
     
       const handleSaveTaskPyTest = async (data) => {
         return Axios.post('http://0.0.0.0:8000/docs#/newTaskPyTest',data)
-      }
+      } 
 
 
 
