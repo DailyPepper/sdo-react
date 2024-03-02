@@ -8,7 +8,7 @@ const Section = styled.section`
 `
 const BigBlock = styled.div`
     width: ${({$BigWeight}) => ($BigWeight ? '1248px' : '1247px')};
-    height: ${({$BigHeight}) => ($BigHeight ? '425px' : '357px')};
+    height: ${({$BigHeight}) => ($BigHeight ? '465px' : '357px')};
     background-color: ${({$BigFon}) => ($BigFon ? '#E2EDD0' : '#D5DEF6')};
     border-radius: 10px;
     display: flex;
@@ -17,10 +17,9 @@ const BigBlock = styled.div`
         width: 540px;
         display: flex;
         flex-direction: column;
-        margin-top: 5px;
     }
     .block__one{
-        margin-top: 5px;
+        margin-top: 15px;
     }
 `
 const MinBlock = styled.li`
@@ -30,12 +29,13 @@ const MinBlock = styled.li`
     background-color: #FFFFFF;
     padding: 10px;
     list-style-type: none;
+    margin-top: 10px;
 `
 const UlMinBlock = styled.ul`
     display: flex;
     flex-direction: column;
     gap: 5px;
-    padding-top: ${({$PaddingTopForm}) => ($PaddingTopForm ? '10px' : '0px')};
+    padding-top: ${({$PaddingTopForm}) => ($PaddingTopForm ? '10px' : '5px')};
 `
 const UlList = styled.ul`
     display: flex;
@@ -76,7 +76,7 @@ const UlList = styled.ul`
 
     .editing__block-input{
         width: 555px;
-        height: 60px;
+        height: 110px;
         border-radius: 7px;
         border-style: none;
         color: #000;
@@ -177,7 +177,7 @@ const ButtonAdd = styled.button`
 `
 const ButtonAddForm = styled.button`
     font-family: "Montserrat";
-    width: 275px;
+    width: 490px;
     flex-shrink: 0;
     border-radius: 4px;
     background: #FFF;
@@ -185,7 +185,7 @@ const ButtonAddForm = styled.button`
     border: none;
     margin-left: 5px;
     cursor: pointer;
-        &:hover{
+        &:hover{    
             background: #C8D5F6;
             color: #FFF;
             border-style: none;
@@ -200,29 +200,12 @@ const FormBlock = styled.li`
 `
 const FormInput = styled.input`
     height: 45px;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #FFFFFF;
     border: none;
     outline: none;
     font-size: 16px;
 `
-// const ButtonFun = styled.button`
-//     background-color: #D9D9D9;
-//     width: 1248px;
-//     height: 48px;
-//     border-radius: 5px;
-//     border-style: none;
-//     cursor: pointer;
-//     font-size: 16px;
-//     font-family: 'Montserrat';
-//     font-weight: 400px;
-
-//     &:hover{
-//         background-color: ${({$HoverButton}) => ($HoverButton ? '#C8D5F6' : '#FF7070')};
-//         color: #FFFFFF;
-//         transition: 0.5s;
-//     }
-// `
 
 const PrepodRedLab = () => {
     const [inputValueSimbol, setInputValueSimbol] = useState('')
@@ -500,24 +483,9 @@ const PrepodRedLab = () => {
                                     type="text"
                                     value={idRelatedFormula}
                                     onChange={(event) => handleAddRelatedFormul(event,1)}
+                                    placeholder="Введите формулу:"
                                  />
                             </FormBlock>
-                            {/* <FormBlock>
-                                <FormLabel htmlFor="Описание формулы">Описание связанных формулы</FormLabel>
-                                <FormInput 
-                                    type="text"
-                                    value={descriptionRelatedFormula}
-                                    onChange={(event) => handleAddRelatedFormul(event,2)}
-                                />
-                            </FormBlock>
-                            <FormBlock>
-                                <FormLabel htmlFor="Формула">ID формул (через запятую, без пробелов)</FormLabel>
-                                <FormInput 
-                                    type="text"
-                                    value={formulaRelated}
-                                    onChange={(event) => handleAddRelatedFormul(event,3)}
-                                />
-                            </FormBlock> */}
                             <div className="editing__block-bth">
                                 <ButtonAddForm onClick={handleAddFormulRelatedBtn}>
                                     Добавить формулу
