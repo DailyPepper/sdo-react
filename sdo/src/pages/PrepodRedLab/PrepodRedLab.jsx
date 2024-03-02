@@ -192,61 +192,37 @@ const ButtonAddForm = styled.button`
             transition: 0.5s;
         }
 `
-const ButtonDelete = styled.button`
-    font-family: "Montserrat";
-    width: 268px;
-    flex-shrink: 0;
-    border-radius: 4px;
-    border: none;
-    background: #FFF;
-    
-    cursor: pointer;
-        &:hover{
-            background: #FF7070;
-            color: #FFF;
-            border-style: none;
-            transition: 0.6s;
-        }
-`
 const FormBlock = styled.li`
     display: flex;
     flex-direction: column;
     padding: 5px;
     gap: 2px;
 `
-const FormLabel = styled.label`
-    font-family: 'Montserrat';
-    font-size: 16px;
-    line-height: 27px;
-    font-weight: 400;
-    color: #000000;
-`
 const FormInput = styled.input`
-    width: 550px;
-    height: 30px;
+    height: 45px;
     border-radius: 10px;
     background-color: #FFFFFF;
     border: none;
     outline: none;
     font-size: 16px;
 `
-const ButtonFun = styled.button`
-    background-color: #D9D9D9;
-    width: 1248px;
-    height: 48px;
-    border-radius: 5px;
-    border-style: none;
-    cursor: pointer;
-    font-size: 16px;
-    font-family: 'Montserrat';
-    font-weight: 400px;
+// const ButtonFun = styled.button`
+//     background-color: #D9D9D9;
+//     width: 1248px;
+//     height: 48px;
+//     border-radius: 5px;
+//     border-style: none;
+//     cursor: pointer;
+//     font-size: 16px;
+//     font-family: 'Montserrat';
+//     font-weight: 400px;
 
-    &:hover{
-        background-color: ${({$HoverButton}) => ($HoverButton ? '#C8D5F6' : '#FF7070')};
-        color: #FFFFFF;
-        transition: 0.5s;
-    }
-`
+//     &:hover{
+//         background-color: ${({$HoverButton}) => ($HoverButton ? '#C8D5F6' : '#FF7070')};
+//         color: #FFFFFF;
+//         transition: 0.5s;
+//     }
+// `
 
 const PrepodRedLab = () => {
     const [inputValueSimbol, setInputValueSimbol] = useState('')
@@ -386,81 +362,6 @@ const PrepodRedLab = () => {
                             <input className="editing__block-input" type="text" placeholder="Введите текст"/>   
                     </div>
                 </List> 
-                <li className="editing__container">
-                    <div className="editing__block-Two">
-                        <TitleBlock > 
-                            Проверка длины:
-                        </TitleBlock>
-                            <div className="editing__block-inp">
-                                <TitleBlock >
-                                    Максимальное количество символов:
-                                </TitleBlock> 
-                                    <input 
-                                        type="text" 
-                                        className="some-input" 
-                                        value={inputValueSimbol} 
-                                        onChange={(event) => handleChange(event,1)}
-                                    />   
-                            </div>
-                        <div className="editing__block-inp">
-                            <TitleBlock>
-                                Максимальное количество строк:
-                            </TitleBlock>    
-                                <input 
-                                    type="text" 
-                                    className="some-input" 
-                                    value={inputValueStr} 
-                                    onChange={(event) => handleChange(event,2)}
-                                />   
-                        </div>
-                            <div className="editing__block-bth">
-                                <ButtonAdd onClick={handleAddLengthCheck}>
-                                    Добавить проверку длины
-                                </ButtonAdd>
-                                <ButtonDelete onClick={handleDelete}>
-                                    Удалить
-                                </ButtonDelete>
-                            </div>   
-                    </div>
-                </li>   
-                <li className="editing__container">
-                    <div className="editing__block-Two">
-                        <TitleBlock> 
-                            Конструкция: 
-                        </TitleBlock>
-                            <input 
-                                className="editing__block-input" 
-                                type="text"
-                                value={addConstr}
-                                onChange={handleAddConstr}
-                                placeholder="Введите конструкцию"
-                            />
-                            <TitleBlock >
-                                Состояние проверки
-                            </TitleBlock>
-                            <div className="editing__block-bth">
-                                <ButtonAdd onClick={handleAddConstrBtn}>
-                                    Добавить конструкцию
-                                </ButtonAdd>
-                                <ButtonDelete onClick={handleDeleteConstr}>
-                                    Удалить конструкцию
-                                </ButtonDelete >
-                            </div>  
-                    </div>
-                </li> 
-                <List $Block>
-                    <div className="editing__block">
-                        <TitleBlock >
-                            Функция 1
-                        </TitleBlock>
-                        <div className="editing__block-name">
-                            <TitleBlock $FontSize $FontWeight>
-                                Название:
-                            </TitleBlock> 
-                                <input type="text" className="some-input"/>     
-                        </div>  
-                    </div>
-                </List>
                 <BigBlock $BigFon $BigHeight $BigWeight $GapForm>
                     <div className="block__one">
                         <TitleBlock $Padding $Margin>
@@ -548,59 +449,60 @@ const PrepodRedLab = () => {
                     </div>
                 </BigBlock>
                 <BigBlock >
-                    <div className="block__one">
+                <div className="block__one">
+                        <TitleBlock $Padding $Margin>
+                            Cписок тестов:
+                        </TitleBlock> 
+                            <UlMinBlock>
+                                <MinBlock>
+                                        <TitleBlock $FontSize $FontWeight $Margin>
+                                            Тест 1 "Проверка на ..."
+                                        </TitleBlock>
+                                        <div className="editing__block-name">
+                                            <TitleBlock $FontSize $FontWeight  $Margin>
+                                                Входные данные:
+                                            </TitleBlock> 
+                                                <input type="text" className="some-input"/>     
+                                        </div>  
+                                        <div className="editing__block-name">
+                                            <TitleBlock $FontSize $FontWeight  $Margin>  
+                                            Вывод:
+                                            </TitleBlock> 
+                                                <input type="text" className="some-input"/>     
+                                        </div> 
+                                </MinBlock>
+                                <MinBlock>
+                                    <TitleBlock $FontSize $FontWeight $Margin>
+                                            Тест 1 "Проверка на ..."
+                                        </TitleBlock>
+                                        <div className="editing__block-name">
+                                            <TitleBlock $FontSize $FontWeight  $Margin>
+                                                Входные данные:
+                                            </TitleBlock> 
+                                                <input type="text" className="some-input"/>     
+                                        </div>  
+                                        <div className="editing__block-name">
+                                            <TitleBlock $FontSize $FontWeight  $Margin>  
+                                                Вывод:
+                                            </TitleBlock> 
+                                                <input type="text" className="some-input"/>     
+                                        </div> 
+                                </MinBlock>  
+                            </UlMinBlock>
+                    </div>
+                    <div className="block__test">
                         <TitleBlock $Padding>
                             Формулы
                         </TitleBlock> 
                         <UlMinBlock >
                             <FormBlock>
-                                <FormLabel htmlFor="Id формулы">ID формулы</FormLabel>
-                                <FormInput 
-                                    type="text" 
-                                    value={idFormula}
-                                    onChange={(event) => handleAddFormul(event,1)}
-                                />
-                            </FormBlock>
-                            <FormBlock>
-                                <FormLabel htmlFor="Описание формулы">Описание формулы</FormLabel>
-                                <FormInput 
-                                    type="text"
-                                    value={descriptionFormula}
-                                    onChange={(event) => handleAddFormul(event,2)}
-                                />
-                            </FormBlock>
-                            <FormBlock>
-                                <FormLabel htmlFor="Формула">Формула</FormLabel>
-                                <FormInput 
-                                    type="text" 
-                                    value={formula}
-                                    onChange={(event) => handleAddFormul(event,3)}
-                                />
-                            </FormBlock>
-                            <div className="editing__block-bth">
-                                <ButtonAddForm onClick={handleAddFormulBtn}>
-                                    Добавить формулу
-                                </ButtonAddForm>
-                                <ButtonDelete onClick={handleDelFormulBtn}>
-                                    Удалить формулу
-                                </ButtonDelete>
-                            </div>   
-                        </UlMinBlock>
-                    </div>
-                    <div className="block__test">
-                        <TitleBlock $Padding>
-                            Связанные формулы
-                        </TitleBlock> 
-                        <UlMinBlock >
-                            <FormBlock>
-                                <FormLabel htmlFor="Id формулы">ID связанной формулы</FormLabel>
                                 <FormInput 
                                     type="text"
                                     value={idRelatedFormula}
                                     onChange={(event) => handleAddRelatedFormul(event,1)}
                                  />
                             </FormBlock>
-                            <FormBlock>
+                            {/* <FormBlock>
                                 <FormLabel htmlFor="Описание формулы">Описание связанных формулы</FormLabel>
                                 <FormInput 
                                     type="text"
@@ -615,30 +517,15 @@ const PrepodRedLab = () => {
                                     value={formulaRelated}
                                     onChange={(event) => handleAddRelatedFormul(event,3)}
                                 />
-                            </FormBlock>
+                            </FormBlock> */}
                             <div className="editing__block-bth">
                                 <ButtonAddForm onClick={handleAddFormulRelatedBtn}>
                                     Добавить формулу
                                 </ButtonAddForm>
-                                <ButtonDelete onClick={handleDelFormulRelatedBtn}>
-                                    Удалить формулу
-                                </ButtonDelete>
                             </div>   
                         </UlMinBlock>
                     </div>
                 </BigBlock>
-                <div className="block__button">
-                    <div className="editing__block-name">
-                        <ButtonFun $HoverButton>
-                            Добавить функцию 
-                        </ButtonFun>   
-                    </div>
-                    <div className="editing__block-name">
-                        <ButtonFun>
-                            Удалить предыдущую функцию    
-                        </ButtonFun>   
-                    </div>   
-                </div>
                 <div className="block__button"> 
                     <button className="block__end">
                         <Link className="block__end-link" to='/Laboratory'>
