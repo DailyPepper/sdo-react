@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import styled from 'styled-components'
 import { Link } from "react-router-dom";
+import { IoIosClose } from "react-icons/io";
 const Section = styled.section`
     display: flex;
     justify-content: center;
@@ -8,7 +9,7 @@ const Section = styled.section`
 `
 const BigBlock = styled.div`
     width: ${({$BigWeight}) => ($BigWeight ? '1248px' : '1247px')};
-    height: ${({$BigHeight}) => ($BigHeight ? '465px' : '357px')};
+    height: ${({$BigHeight}) => ($BigHeight ? '530px' : '357px')};
     background-color: ${({$BigFon}) => ($BigFon ? '#E2EDD0' : '#D5DEF6')};
     border-radius: 10px;
     display: flex;
@@ -29,7 +30,15 @@ const MinBlock = styled.li`
     background-color: #FFFFFF;
     padding: 10px;
     list-style-type: none;
-    margin-top: 10px;
+    margin-top: 27px;
+    position: relative;
+
+    .icon{
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
+    }
 `
 const UlMinBlock = styled.ul`
     display: flex;
@@ -367,6 +376,7 @@ const PrepodRedLab = () => {
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
                                         </div> 
+                                        <IoIosClose className="icon"/>
                                 </MinBlock>
                                 <MinBlock>
                                     <TitleBlock $FontSize $FontWeight $Margin>
@@ -384,6 +394,7 @@ const PrepodRedLab = () => {
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
                                         </div> 
+                                        <IoIosClose className="icon"/>
                                 </MinBlock>
                                 <MinBlock>
                                     <TitleBlock $FontSize $FontWeight $Margin>
@@ -401,6 +412,7 @@ const PrepodRedLab = () => {
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
                                         </div> 
+                                        <IoIosClose className="icon"/>
                                 </MinBlock>   
                             </UlMinBlock>
                     </div>
@@ -453,6 +465,7 @@ const PrepodRedLab = () => {
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
                                         </div> 
+                                        <IoIosClose className="icon"/>
                                 </MinBlock>
                                 <MinBlock>
                                     <TitleBlock $FontSize $FontWeight $Margin>
@@ -470,6 +483,7 @@ const PrepodRedLab = () => {
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
                                         </div> 
+                                        <IoIosClose className="icon"/>
                                 </MinBlock>  
                             </UlMinBlock>
                     </div>
