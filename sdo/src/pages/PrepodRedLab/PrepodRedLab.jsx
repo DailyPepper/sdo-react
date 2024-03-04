@@ -9,7 +9,7 @@ const Section = styled.section`
 `
 const BigBlock = styled.div`
     width: ${({$BigWeight}) => ($BigWeight ? '1248px' : '1247px')};
-    height: ${({$BigHeight}) => ($BigHeight ? '530px' : '357px')};
+    height: ${({$BigHeight}) => ($BigHeight ? '530px' : '375px')};
     background-color: ${({$BigFon}) => ($BigFon ? '#E2EDD0' : '#D5DEF6')};
     border-radius: 10px;
     display: flex;
@@ -331,6 +331,14 @@ const PrepodRedLab = () => {
         setRelatedFormula('')
     }
 
+    const [test, setTest] = useState([])
+
+    const handleTestDelete = (index) => {
+        const updateTest = [...test]
+        updateTest.splice(index, 1)
+        setTest(updateTest)
+    } 
+
     return ( 
         <>
         <Section>
@@ -376,7 +384,7 @@ const PrepodRedLab = () => {
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
                                         </div> 
-                                        <IoIosClose className="icon"/>
+                                        <IoIosClose className="icon" onClick={()=>handleTestDelete(index)}/>
                                 </MinBlock>
                                 <MinBlock>
                                     <TitleBlock $FontSize $FontWeight $Margin>
@@ -465,9 +473,9 @@ const PrepodRedLab = () => {
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
                                         </div> 
-                                        <IoIosClose className="icon"/>
+                                        <IoIosClose className="icon" />
                                 </MinBlock>
-                                <MinBlock>
+                                <MinBlock>  
                                     <TitleBlock $FontSize $FontWeight $Margin>
                                             Тест 1 "Проверка на ..."
                                         </TitleBlock>
@@ -483,7 +491,7 @@ const PrepodRedLab = () => {
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
                                         </div> 
-                                        <IoIosClose className="icon"/>
+                                        <IoIosClose className="icon" />
                                 </MinBlock>  
                             </UlMinBlock>
                     </div>
