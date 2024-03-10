@@ -8,7 +8,6 @@ const SectionLab = styled.div`
     justify-content: center;
     padding: 25px 0px 75px;
 `
-
 const List = styled.li`
     width: 320px;
     height: 100px;
@@ -59,6 +58,9 @@ const Button = styled.div`
         text-decoration: none;
         display: flex;
         justify-content: space-around;
+        font-family: 'Montserrat';
+        font-size: 16px;
+        font-weight: 600;
     }
 `
 
