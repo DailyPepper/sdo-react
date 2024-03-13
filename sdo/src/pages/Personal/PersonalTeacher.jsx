@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components"
 import { Link } from "react-router-dom";
-
+import {UserContext} from '../Auto/Hooks/UserContext'
 const SectionLab = styled.div`
     display: flex;
     gap: 10px;
     justify-content: center;
-    padding: 25px 0px 75px;
+    padding: 75px 0px 100px;
 `
 const List = styled.li`
     width: 320px;
@@ -46,7 +46,7 @@ const RowBlocks = styled.div`
 
 `
 const Button = styled.div`
-    width: 120px;
+    width: 125px;
     height: 50px;
     background-color: #C8D5F6;
     border-radius: 7px;
@@ -65,40 +65,34 @@ const Button = styled.div`
 `
 
 const PersonalTeacher = () => {
+const {username} = useContext(UserContext)
+
     return (
         <>
             <SectionLab>
                 <RowBlocks>
                         <List>
                             <Text>
-                                ФИО студента:
+                                ФИО преподавателя:
                             </Text>
                             <Text>
-                                Иваов Иван Иванович
-                            </Text>
-                        </List>
-                        <List>
-                            <Text>
-                                Номер группы:
-                            </Text>
-                            <Text>
-                                221-111  
+                                {username}
                             </Text>
                         </List>
                         <List>
                             <Text>
-                                Форма обучения:
+                                Преподаваемая дисциплина::
                             </Text>
                             <Text>
-                                Очная
+                                Информационные Технологии  
                             </Text>
                         </List>
                         <List>
                             <Text>
-                                Направление обучения:
+                                Группы:
                             </Text>
                             <Text>
-                                Информационная безопасность
+                                218-221, 218-222, 221-734, 221-735
                             </Text>
                         </List>
                 </RowBlocks>

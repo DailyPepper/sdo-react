@@ -32,12 +32,11 @@ const MinBlock = styled.li`
     list-style-type: none;
     margin-top: 27px;
     position: relative;
-
     .icon{
-        position: absolute;
         top: 5px;
         right: 10px;
         cursor: pointer;
+        position: absolute;
     }
 `
 const UlMinBlock = styled.ul`
@@ -384,7 +383,7 @@ const PrepodRedLab = () => {
                                             </TitleBlock> 
                                                 <input type="text" className="some-input"/>     
                                         </div> 
-                                        <IoIosClose className="icon" onClick={()=>handleTestDelete(index)}/>
+                                        <IoIosClose className="icon" />
                                 </MinBlock>
                                 <MinBlock>
                                     <TitleBlock $FontSize $FontWeight $Margin>

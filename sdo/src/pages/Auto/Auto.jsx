@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import "../../styles/style.css"
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import {UserContext} from './Hooks/UserContext';
 
 const Section = styled.div`
   display: flex;
@@ -10,21 +10,23 @@ const Section = styled.div`
   flex-direction: column;
   padding-top: 7%;
   padding: 40px 0px 245px;
-`
+`;
+
 const SectionHeading = styled.h1`
   text-align: center;
   font-size: 29px;
   line-height: 35px;
   color: #252525;
   font-family: 'Montserrat';
-`
+`;
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding-top: 2%;
 
-  .section__login-formInput{
+  .section__login-formInput {
     width: 450px;
     height: 35px;
     font-size: 16px;
@@ -32,42 +34,38 @@ const Form = styled.form`
     font-family: 'Montserrat';
     outline: none;
   }
-`
+`;
+
 const Button = styled.button`
-    height: 40px;
-    cursor: pointer;
-    border-radius: 6px;
-    border-style: none;
-    background-color: #C8D5F6;
-    font-size: 15px;
-    color: #252525;
-    font-family: 'Montserrat';
-    
-    &:hover{
-    background-color: #DDE5F9;
-    color: #FFF;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 6px;
+  border-style: none;
+  background-color: #c8d5f6;
+  font-size: 15px;
+  color: #252525;
+  font-family: 'Montserrat';
+
+  &:hover {
+    background-color: #dde5f9;
+    color: #fff;
     transition: 0.4s;
   }
-`
+`;
 
 const Auto = () => {
-  const [username, setUsername] = useState('');
+  const { isLoggedIn, username, setLoggedIn, setUsername } = useContext(UserContext);
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [isLoggedIn, setLoggedIn] = useState(false);  // Добавлено новое состояние
   const navigate = useNavigate();
-
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
 
   const handleSuccessfulLogin = () => {
     setLoggedIn(true);
-    navigate('/'); // Переход на главную страницу или другую страницу по вашему выбору
+    navigate('/personal-teacher');
+  };
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -89,15 +87,15 @@ const Auto = () => {
       })
       .then(data => {
         localStorage.setItem('access_token', data.access_token);
-        setUsername('');
         setPassword('');
         setError('');
-        handleSuccessfulLogin();  // Вызываем функцию при успешном входе
+        handleSuccessfulLogin();
       })
       .catch(error => {
         setError(error.message);
       });
   };
+
   return (
     <>
       <Section>
@@ -122,13 +120,13 @@ const Auto = () => {
                 name='username'
                 value={username}
                 className='section__login-formInput'
-            />
+              />
               <input
                 type="password"
                 placeholder=" Пароль"
                 name='password'
                 value={password}
-                onChange={handlePasswordChange}
+                onChange={(e) => setPassword(e.target.value)}
                 className='section__login-formInput'
               />
               <Button type="submit" className='section__login-button'>Войти</Button>
