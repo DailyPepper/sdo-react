@@ -8,6 +8,7 @@ import Registration from '../../pages/Registration/Registration';
 import StudLaboratory from '../../pages/Laboratory/StudLaboratory';
 import LaboratoryAdd from '../../pages/LaboratoryAdd/index'
 import PersonalTeacher from '../../pages/Personal/PersonalTeacher';
+import PersonalStud from '../../pages/Personal/PersonalStud'
 
 const MainRouter = () => {
   const userRole = 'teacher';
@@ -29,6 +30,7 @@ const MainRouter = () => {
       {userRole === 'stud' && (
         <>
           <Route path="/StudLaboratory" element={<StudLaboratory />} />
+          <Route path="/PersonalStud" element={<PersonalStud />} />
         </>
       )}
 

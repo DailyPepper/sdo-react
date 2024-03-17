@@ -516,7 +516,7 @@ const PrepodRedLab = () => {
                     </div>
                 </BigBlock>
                 <div className="block__button"> 
-                    <button className="block__end">
+                    <button className="block__end" type="submit">
                         <Link className="block__end-link" to='/Laboratory'>
                             Завершить редактирование и добавить лабораторную
                         </Link>
