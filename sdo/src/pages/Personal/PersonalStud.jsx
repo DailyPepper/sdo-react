@@ -71,7 +71,7 @@ const Button = styled.div`
     align-items: center;
     margin-left: 20px;
 `
-const PersonalTeacher = () => {
+const PersonalStud = () => {
 
     return (
         <>
@@ -197,4 +197,4 @@ const PersonalTeacher = () => {
      );
 }
  
-export default PersonalTeacher;
+export default PersonalStud;

@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import styled from 'styled-components'
-import { Link } from "react-router-dom";
+import { Await, Link } from "react-router-dom";
+import Laboratory from "../Laboratory/Laboratory";
+import { Axios } from "axios";
+import axios from "axios";
 import { IoIosClose } from "react-icons/io";
 const Section = styled.section`
     display: flex;
@@ -18,9 +21,10 @@ const BigBlock = styled.div`
         width: 540px;
         display: flex;
         flex-direction: column;
+        margin-top: 5px;
     }
     .block__one{
-        margin-top: 15px;
+        margin-top: 5px;
     }
 `
 const MinBlock = styled.li`
@@ -30,20 +34,19 @@ const MinBlock = styled.li`
     background-color: #FFFFFF;
     padding: 10px;
     list-style-type: none;
-    margin-top: 27px;
     position: relative;
     .icon{
+        position: absolute;
         top: 5px;
         right: 10px;
         cursor: pointer;
-        position: absolute;
     }
 `
 const UlMinBlock = styled.ul`
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    padding-top: ${({$PaddingTopForm}) => ($PaddingTopForm ? '10px' : '5px')};
+    gap: 30px;
+    padding-top: ${({$PaddingTopForm}) => ($PaddingTopForm ? '10px' : '15px')};
 `
 const UlList = styled.ul`
     display: flex;
@@ -84,8 +87,8 @@ const UlList = styled.ul`
 
     .editing__block-input{
         width: 555px;
-        height: 110px;
-        border-radius: 7px;
+        height: 60px;
+        border-radius: 7px;     
         border-style: none;
         color: #000;
         font-family: "Montserrat";
@@ -200,11 +203,34 @@ const ButtonAddForm = styled.button`
             transition: 0.5s;
         }
 `
+const ButtonDelete = styled.button`
+    font-family: "Montserrat";
+    width: 268px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    border: none;
+    background: #FFF;
+    
+    cursor: pointer;
+        &:hover{
+            background: #FF7070;
+            color: #FFF;
+            border-style: none;
+            transition: 0.6s;
+        }
+`
 const FormBlock = styled.li`
     display: flex;
     flex-direction: column;
     padding: 5px;
     gap: 2px;
+`
+const FormLabel = styled.label`
+    font-family: 'Montserrat';
+    font-size: 16px;
+    line-height: 27px;
+    font-weight: 400;
+    color: #000000;
 `
 const FormInput = styled.input`
     height: 45px;
@@ -214,14 +240,130 @@ const FormInput = styled.input`
     outline: none;
     font-size: 16px;
 `
+const ButtonFun = styled.button`
+    background-color: #D9D9D9;
+    width: 1248px;
+    height: 48px;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    font-weight: 400px;
 
-const PrepodRedLab = () => {
+    &:hover{
+        background-color: ${({$HoverButton}) => ($HoverButton ? '#C8D5F6' : '#FF7070')};
+        color: #FFFFFF;
+        transition: 0.5s;
+    }
+`
+const NameLabInput = styled.input`
+    display: flex;
+    border: none;
+    background: none;
+    width: 608px;
+    height: 260px;
+    font-size: 18px;
+    padding: 0px 0px 0px 30px;
+    outline: none;
+`
+
+const LaboratoryAdd = () => {
+    const [labTitle, setLabTitle] = useState("");
+    const [labDescription, setLabDescription] = useState("");
+    const [functions, setFunctions] = useState([]);
+    const [constructions, setConstructions] = useState([]);
+    const [symbols, setSymbols] = useState(0);
+    const [rows, setRows] = useState(0);
+  
+    const handleLabTitleChange = (event) => {
+      setLabTitle(event.target.value);
+    };
+  
+    const handleLabDescriptionChange = (event) => {
+      setLabDescription(event.target.value);
+    };
+  
+    const handleFunctionInputChange = (event, index) => {
+      const updatedFunctions = [...functions];
+      updatedFunctions[index][event.target.name] = event.target.value;
+      setFunctions(updatedFunctions);
+    };
+  
+    const handleTestCaseInputChange = (event, funcIndex, testCaseIndex) => {
+      const updatedFunctions = [...functions];
+      updatedFunctions[funcIndex].test_cases[testCaseIndex][event.target.name] = event.target.value;
+      setFunctions(updatedFunctions);
+    };
+  
+    const handleFormulaInputChange = (event, funcIndex, formulaIndex) => {
+      const updatedFunctions = [...functions];
+      updatedFunctions[funcIndex].formulas[formulaIndex][event.target.name] = event.target.value;
+      setFunctions(updatedFunctions);
+    };
+  
+    const handleLinkedFormulaInputChange = (event, funcIndex, linkedFormulaIndex) => {
+      const updatedFunctions = [...functions];
+      updatedFunctions[funcIndex].linked_formulas[linkedFormulaIndex][event.target.name] = event.target.value;
+      setFunctions(updatedFunctions);
+    };
+  
+    const handleConstructionInputChange = (event, index) => {
+      const updatedConstructions = [...constructions];
+      updatedConstructions[index][event.target.name] = event.target.value;
+      setConstructions(updatedConstructions);
+    };
+  
+    const handleLengthCheckInputChange = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+  
+      if (name === "symbols") {
+        setSymbols(value);
+      } else if (name === "rows") {
+        setRows(value);
+      }
+    };
+  
+    const handleSaveLabData = async () => {
+        const labData = {
+          lab_task: {
+            task_text: labDescription,
+            functions,
+            constructions,
+            length_checks: {
+              symbols,
+              rows,
+            },
+          },
+        };
+      
+        try {
+          const response = await Axios.post(
+            'http://0.0.0.0:8000/newtask',
+            labData
+          );
+          console.log(response.data);
+          return response.data;
+        } catch (error) {
+          console.error('Error during lab data save:', error);
+          return { error: 'Failed to save lab data' };
+        }
+      };
+    
+      const handleSaveTaskPyTest = async (data) => {
+        return Axios.post('http://0.0.0.0:8000/newTaskPyTest',data)
+      } 
+
+
+
+
     const [inputValueSimbol, setInputValueSimbol] = useState('')
     const [inputValueStr, setInputValueStr] = useState('')
     const [lengthInput, setLengthInput] = useState([])
     const [addConstr, setAddConstr] = useState('')
     const [addConstrBtn, setAddConstrBtn] = useState([])
-
+    
     const handleAddConstr = (event) => {
         setAddConstr(event.target.value)
     }
@@ -329,26 +471,71 @@ const PrepodRedLab = () => {
         setDescriptionRelatedFormula('')
         setRelatedFormula('')
     }
+    const [responseMessage, setResponseMessage] = useState("");
 
-    const [test, setTest] = useState([])
+  const sendDataToServer = async () => {
+    const labData = {
+      lab_task: {
+        task_text: "Ваш текст задания",
+        functions: [
+          {
+            name: "Имя функции",
+            test_cases: [
+              {
+                input: ["Входные данные"],
+                output: "Ожидаемый вывод"
+              }
+            ],
+            formulas: [
+              {
+                id: "ID формулы",
+                description: "Описание формулы",
+                formula: "Формула"
+              }
+            ],
+            linked_formulas: [
+              {
+                id: "ID связанной формулы",
+                description: "Описание связанной формулы",
+                formula_ids: ["ID1", "ID2"]
+              }
+            ]
+          }
+        ],
+        constructions: [
+          {
+            name: "Имя конструкции",
+            state: true
+          }
+        ],
+        length_checks: [
+          {
+            symbols: 0,
+            rows: 0
+          }
+        ]
+      }
+    };
 
-    const handleTestDelete = (index) => {
-        const updateTest = [...test]
-        updateTest.splice(index, 1)
-        setTest(updateTest)
-    } 
-
+    try {
+      const response = await axios.post("http://0.0.0.0:8000/newtask", labData);
+      console.log("Ответ от сервера:", response.data);
+      setResponseMessage("Лабораторная работа успешно добавлена!");
+    } catch (error) {
+      console.error("Ошибка при отправке запроса:", error);
+      setResponseMessage("Ошибка при добавлении лабораторной работы");
+    }
+  };
     return ( 
         <>
         <Section>
             <UlList>
                 <List>
-                    <NameLab>
-                        Вы находитесть в режиме редактирования: 
-                        Объектно-ориентированное программирование 
-                        Лабораторная работа №1 
-                        “Создание программы с использованием классов”
-                    </NameLab>
+                    <NameLabInput 
+                        type="text" 
+                        placeholder="Введите назавание лабораторной работы"
+                        onChange={handleLabTitleChange}
+                    /> 
                 </List>
                 <List>
                     <div className="editing__block-Two">
@@ -358,7 +545,12 @@ const PrepodRedLab = () => {
                             <p className="editing__block-text">
                                 Вы можете пояснить, как будет происходить ввод данных
                             </p>
-                            <input className="editing__block-input" type="text" placeholder="Введите текст"/>   
+                            <input 
+                                className="editing__block-input" 
+                                type="text" 
+                                onChange={handleLabDescriptionChange}
+                                placeholder="Введите текст"
+                            />   
                     </div>
                 </List> 
                 <BigBlock $BigFon $BigHeight $BigWeight $GapForm>
@@ -516,11 +708,12 @@ const PrepodRedLab = () => {
                     </div>
                 </BigBlock>
                 <div className="block__button"> 
-                    <button className="block__end" type="submit">
+                    <button className="block__end" type="submit" onClick={sendDataToServer}>
                         <Link className="block__end-link" to='/Laboratory'>
                             Завершить редактирование и добавить лабораторную
                         </Link>
-                    </button>   
+                    </button>
+                    <p>{responseMessage}</p>   
                 </div>
             </UlList>  
         </Section>
@@ -528,4 +721,4 @@ const PrepodRedLab = () => {
      );
 }
  
-export default PrepodRedLab
+export default LaboratoryAdd;
