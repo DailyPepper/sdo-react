@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Await, Link } from "react-router-dom";
 import Laboratory from "../Laboratory/Laboratory";
 import { Axios } from "axios";
+import axios from "axios";
 import { IoIosClose } from "react-icons/io";
 const Section = styled.section`
     display: flex;
@@ -470,7 +471,61 @@ const LaboratoryAdd = () => {
         setDescriptionRelatedFormula('')
         setRelatedFormula('')
     }
+    const [responseMessage, setResponseMessage] = useState("");
 
+  const sendDataToServer = async () => {
+    const labData = {
+      lab_task: {
+        task_text: "Ваш текст задания",
+        functions: [
+          {
+            name: "Имя функции",
+            test_cases: [
+              {
+                input: ["Входные данные"],
+                output: "Ожидаемый вывод"
+              }
+            ],
+            formulas: [
+              {
+                id: "ID формулы",
+                description: "Описание формулы",
+                formula: "Формула"
+              }
+            ],
+            linked_formulas: [
+              {
+                id: "ID связанной формулы",
+                description: "Описание связанной формулы",
+                formula_ids: ["ID1", "ID2"]
+              }
+            ]
+          }
+        ],
+        constructions: [
+          {
+            name: "Имя конструкции",
+            state: true
+          }
+        ],
+        length_checks: [
+          {
+            symbols: 0,
+            rows: 0
+          }
+        ]
+      }
+    };
+
+    try {
+      const response = await axios.post("http://0.0.0.0:8000/newtask", labData);
+      console.log("Ответ от сервера:", response.data);
+      setResponseMessage("Лабораторная работа успешно добавлена!");
+    } catch (error) {
+      console.error("Ошибка при отправке запроса:", error);
+      setResponseMessage("Ошибка при добавлении лабораторной работы");
+    }
+  };
     return ( 
         <>
         <Section>
@@ -653,11 +708,12 @@ const LaboratoryAdd = () => {
                     </div>
                 </BigBlock>
                 <div className="block__button"> 
-                    <button className="block__end">
+                    <button className="block__end" type="submit" onClick={sendDataToServer}>
                         <Link className="block__end-link" to='/Laboratory'>
                             Завершить редактирование и добавить лабораторную
                         </Link>
-                    </button>   
+                    </button>
+                    <p>{responseMessage}</p>   
                 </div>
             </UlList>  
         </Section>

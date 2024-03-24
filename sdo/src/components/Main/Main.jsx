@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import "../Main/style.css";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import styled from 'styled-components'
-import { useAuth } from "../AuthContext";
-import { LABORATORY_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE } from '../../app/routing/route';
-
+import { LABORATORY_ROUTE } from '../../app/routing/route';
+import { useDispatch } from 'react-redux';
+import { login } from '../../pages/Auto/Slice/authSlice'; 
+import { useNavigate } from 'react-router-dom';
 const Section = styled.section`
     display: flex;
     flex-direction: column;
@@ -44,18 +44,14 @@ const Block = styled.div`
 `
 
 const Main = () => {
-    const { login } = useAuth();
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const navigate = useNavigate();
-  
-    const handleLogin = (role) => {
-      login(role);
-      setIsAuthenticated(true);
-      // После успешной аутентификации перенаправьте пользователя
-      console.log("Successful login. Redirecting...");
-      navigate(LABORATORY_ROUTE);
-    };
-  
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); 
+
+  const handleLogin = (role) => {
+    dispatch(login({ role }));
+    console.log("Successful login. Redirecting...");
+    navigate(LABORATORY_ROUTE);
+  };
     return ( 
       <>
         <Section>

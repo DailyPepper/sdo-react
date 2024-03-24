@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import {UserContext} from './Hooks/UserContext';
+import { useSelector, useDispatch } from 'react-redux';
+import { login } from './Slice/authSlice'; 
 
 const Section = styled.div`
   display: flex;
@@ -54,18 +55,21 @@ const Button = styled.button`
 `;
 
 const Auto = () => {
-  const { isLoggedIn, username, setLoggedIn, setUsername } = useContext(UserContext);
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSuccessfulLogin = () => {
-    setLoggedIn(true);
+    dispatch(login({ username: username })); 
     navigate('/personal-teacher');
   };
 
   const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+    setUsername(e.target.value); 
   };
 
   const handleSubmit = (event) => {
@@ -99,11 +103,11 @@ const Auto = () => {
   return (
     <>
       <Section>
-        {isLoggedIn ? (
+        {/* {isLoggedIn ? (
           <SectionHeading>
-            Навигационное меню после успешного входа
+            Добро пожаловать, {username}! 
           </SectionHeading>
-        ) : (
+        ) : ( */}
           <>
             <SectionHeading>
               Войдите в личный кабинет
@@ -118,7 +122,6 @@ const Auto = () => {
                 placeholder=" Ваше имя"
                 onChange={handleUsernameChange}
                 name='username'
-                value={username}
                 className='section__login-formInput'
               />
               <input
@@ -133,7 +136,7 @@ const Auto = () => {
             </Form>
             {error && <SectionHeading>{error}</SectionHeading>}
           </>
-        )}
+        {/* )} */}
       </Section>
     </>
   );
