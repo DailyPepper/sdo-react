@@ -64,8 +64,31 @@ const Auto = () => {
   const navigate = useNavigate();
 
   const handleSuccessfulLogin = () => {
-    dispatch(login({ username: username })); 
-    navigate('/personal-teacher');
+    fetch('http://127.0.0.1:8000/user-status', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Ошибка получения статуса пользователя');
+      }
+    })
+    .then(data => {
+      if (data.status === 'teacher') {
+        navigate('/mainTeacher');
+      } else if (data.status === 'student') {
+        navigate('/mainStud');
+      } else {
+        throw new Error('Неизвестный статус пользователя');
+      }
+    })
+    .catch(error => {
+      setError(error.message);
+    });
   };
 
   const handleUsernameChange = (e) => {
@@ -103,40 +126,34 @@ const Auto = () => {
   return (
     <>
       <Section>
-        {/* {isLoggedIn ? (
+        <>
           <SectionHeading>
-            Добро пожаловать, {username}! 
+            Войдите в личный кабинет
           </SectionHeading>
-        ) : ( */}
-          <>
-            <SectionHeading>
-              Войдите в личный кабинет
-            </SectionHeading>
-            <Form
-              onSubmit={handleSubmit}
-              method='post'
-              action='#'
-            >
-              <input
-                type="text"
-                placeholder=" Ваше имя"
-                onChange={handleUsernameChange}
-                name='username'
-                className='section__login-formInput'
-              />
-              <input
-                type="password"
-                placeholder=" Пароль"
-                name='password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className='section__login-formInput'
-              />
-              <Button type="submit" className='section__login-button'>Войти</Button>
-            </Form>
-            {error && <SectionHeading>{error}</SectionHeading>}
-          </>
-        {/* )} */}
+          <Form
+            onSubmit={handleSubmit}
+            method='post'
+            action='#'
+          >
+            <input
+              type="text"
+              placeholder=" Ваше имя"
+              onChange={handleUsernameChange}
+              name='username'
+              className='section__login-formInput'
+            />
+            <input
+              type="password"
+              placeholder=" Пароль"
+              name='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className='section__login-formInput'
+            />
+            <Button type="submit" className='section__login-button'>Войти</Button>
+          </Form>
+          {error && <SectionHeading>{error}</SectionHeading>}
+        </>
       </Section>
     </>
   );
