@@ -33,7 +33,8 @@ const Bread = () => {
         "profile" : "Личный кабинет",
         "LaboratoryAdd" : 'Добавить лабораторные работы',
         "PersonalTeacher" : 'Личный кабинет преподователя',
-        "registration" : 'Регистрация'
+        "registration" : 'Регистрация',
+        "labaStud" : 'Страничка лабораторных работ'
     };
 
 

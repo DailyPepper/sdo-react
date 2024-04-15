@@ -11,6 +11,7 @@ import PersonalTeacher from '../../pages/Personal/PersonalTeacher';
 import PersonalStud from '../../pages/Personal/PersonalStud'
 import MainTeacher from '../../components/Main/mainTeacher';
 import MainStud from '../../components/Main/mainStud';
+import LabaStud from '../../pages/LabaStud/index';
 
 const MainRouter = () => {
   return (
@@ -25,6 +26,8 @@ const MainRouter = () => {
       <Route path="/PersonalStud" element={<PersonalStud />} />
       <Route path="/mainStud" element={<MainStud />} />
       <Route path="/mainTeacher" element={<MainTeacher />} />
+      <Route path="registration" element={<Registration />} />
+      <Route path="/labaStud" element={<LabaStud />} />
       <Route path="registration" element={<Registration />} />
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
