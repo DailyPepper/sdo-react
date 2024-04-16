@@ -12,7 +12,7 @@ import PersonalStud from '../../pages/Personal/PersonalStud'
 import MainTeacher from '../../components/Main/mainTeacher';
 import MainStud from '../../components/Main/mainStud';
 import LabaStud from '../../pages/LabaStud/index';
-
+import Attempts from '../../pages/Attempts/index'
 const MainRouter = () => {
   return (
     <Routes>
@@ -28,6 +28,7 @@ const MainRouter = () => {
       <Route path="/mainTeacher" element={<MainTeacher />} />
       <Route path="registration" element={<Registration />} />
       <Route path="/labaStud" element={<LabaStud />} />
+      <Route path="/attempts" element={<Attempts />} />
       <Route path="registration" element={<Registration />} />
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>

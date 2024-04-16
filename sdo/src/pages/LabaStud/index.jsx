@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import FileUploadButton from './Button'
+import { Link } from "react-router-dom";
 const Section = styled.section`
     display: flex;
     flex-direction: column;
@@ -99,9 +100,9 @@ const LabaStud = () => {
                     <FileUploadButton/>
                 </Block>
                 <div className="block__pop">
-                    <Button>
+                    <Link to='/attempts'>
                         Мои попытки
-                    </Button>
+                    </Link>
                 </div>
             </Section>
         </>
