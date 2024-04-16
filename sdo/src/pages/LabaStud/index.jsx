@@ -18,6 +18,26 @@ const Section = styled.section`
             align-items: center;
             justify-content: center;
         }
+        .block__pop-link{
+            width: 1098px;
+            height: 75px;
+            background-color: #FFFFFF;
+            color: #000000;
+            cursor: pointer;
+            border-radius: 10px;
+            border-style: none;
+            font-family: 'Montserrat';
+            font-size: 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .block__pop-link:hover{
+            background-color: #C8D5F6;
+            color: #FFFFFF;
+            transition: 0.7s;
+        }
 `
 const Block = styled.div`
     width: 1248px;
@@ -29,17 +49,6 @@ const Block = styled.div`
     align-items: ${({ $Center }) => ($Center ? 'flex-start' : 'center')};
     justify-content: center;
     gap: ${({$gap}) => $gap ? '25px' : '0'};
-`
-const Button = styled.button`
-    width: 1098px;
-    height: 75px;
-    background-color: #FFFFFF;
-    color: #000000;
-    cursor: pointer;
-    border-radius: 10px;
-    border-style: none;
-    font-family: 'Montserrat';
-    font-size: 16px;
 `
 const Task = styled.h2`
     font-family: 'Montserrat';
@@ -100,7 +109,7 @@ const LabaStud = () => {
                     <FileUploadButton/>
                 </Block>
                 <div className="block__pop">
-                    <Link to='/attempts'>
+                    <Link to='/attempts' className="block__pop-link">
                         Мои попытки
                     </Link>
                 </div>

@@ -18,6 +18,19 @@ const Button = styled.button`
     border-style: none;
     font-family: 'Montserrat';
     font-size: 16px;
+
+    :hover{
+        width: 1098px;
+        height: 75px;
+        background-color: #C8D5F6;
+        color: #FFFFFF;
+        transition: 0.7s;
+        cursor: pointer;
+        border-radius: 10px;
+        border-style: none;
+        font-family: 'Montserrat';
+        font-size: 16px;
+    }
 `
 
 const Inpt = styled.input`

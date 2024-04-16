@@ -11,6 +11,17 @@ const Section = styled.section`
     padding-left: 8%;
     gap: 35px;
     padding-top: 2%;
+    .block__test{
+        width: 1294px;
+        background-color: #E2EDD0;
+        height: 85px;
+        border-radius: 10px;
+        margin-top: 5px;
+        margin-bottom: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
 `
 
 const Attempt = styled.div`
@@ -43,13 +54,6 @@ const Block = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* .block__test{
-        width: 1095px;
-        background-color: #ffffff;
-        height: 150px;
-        border-radius: 10px;
-        margin-top: 25px;
-    } */
     .block__ul{
         display: flex;
         align-items: center;
@@ -87,6 +91,35 @@ const LiStatus = styled.li`
     display: flex;
     justify-content: space-around;
 `
+const Span = styled.span`
+    width: 426px;
+    height: 45px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.5s, color 0.5s;
+    :hover {
+        background-color: #C8D5F6;
+        color: #FFFFFF;
+        width: 426px;
+        height: 45px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.7s;
+    }
+    a {
+        text-decoration: none;
+        color: #000000;
+        font-size: 16px;
+        font-weight: 400;
+        font-family: 'Montserrat';
+    }
+`;
+
 const Attempts = () => {
     const [hasWAStatus, setHasWAStatus] = useState(false);
 
@@ -129,11 +162,13 @@ const Attempts = () => {
                         ))}
                     </ul>
                 </Block>
-                <div>
-                    <div>
-                        <Link></Link>
-                        <Link></Link>
-                    </div>
+                <div className="block__test">
+                    <Span>
+                        <Link to='/labaStud'>Назад к лабораторной</Link>
+                    </Span>
+                    <Span>
+                        <Link to='/Laboratory'>Перейти на главную страницу</Link>
+                    </Span>
                 </div>
             </Section>
         </>
