@@ -104,7 +104,7 @@ const PersonalTeacher = () => {
                         Список лабораторных работ
                     </Text>
                     <Button>
-                        <Link to="/" className="button__link">
+                        <Link to="/StudLaboratory" className="button__link">
                             Перейти 
                         </Link>
                     </Button>
@@ -114,7 +114,7 @@ const PersonalTeacher = () => {
                         Список лабораторных работ
                     </Text>
                     <Button>
-                        <Link to="/" className="button__link">
+                        <Link to="/StudLaboratory" className="button__link">
                             Перейти 
                         </Link>
                     </Button>

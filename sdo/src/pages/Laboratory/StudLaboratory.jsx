@@ -47,7 +47,7 @@
         .section__lab-btn{
             width: 280px;
             padding: 10px;
-            font-size: 13px;
+            font-size: 16px;
             text-align: center;
             color: #000;
             font-family: 'Montserrat';
@@ -67,13 +67,13 @@
         }   
 
     `
-    const NameLab = styled.p`
+const NameLab = styled.p`
         color: #000;
         text-align: center;
         font-family: 'Montserrat';
         font-size: 19px;
         padding-left: 5%;
-    `
+`
     const ListLab = styled.ul`
         display: flex;
         flex-direction: column;
@@ -90,53 +90,7 @@
         .list__link{
             text-decoration: none;
         }
-    `
-
-    const ButtonDelete = styled.button`
-        padding: 10px;
-        width: 180px;
-        background-color: white;
-        display: flex;
-        border-radius: 5px;
-        justify-content: center;
-        cursor: pointer;
-        font-family: "Montserrat";
-        font-size: 16px;
-        border: 0.7px solid #000;
-
-        &:hover{
-        background: #FF7070;
-        color: #FFF;
-        border-style: none;
-        transition: 0.5s;
-        }
-    `
-    const SpnLab = styled.span`
-        display: flex;
-        gap: 30px;
-
-        .section__lab-edit{
-        margin-left: 50px;
-        padding: 10px;
-        width: 180px;
-        background-color: white;
-        color: #000;
-        border: 0.7px solid #000;
-        display: flex;
-        border-radius: 5px;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        font-family: "Montserrat";
-        font-size: 16px;
-        }
-        .section__lab-edit:hover{
-        background: #C8D5F6;
-        color: #FFF;
-        border-style: none;
-        transition: 0.5s;
-    }
-    `
+`
 const StudLaboratory = () => {
         const [labItems, setLabItems] = useState([]);
         const [searchValue, setSearchValue] = useState("");
@@ -152,34 +106,31 @@ const StudLaboratory = () => {
         };
     
         useEffect(() => {
-            fetch('http://127.0.0.1:8000/tasks', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem("access_token")}`,
-                },
+            fetch('http://0.0.0.0:8000/tasks', {
+              method: 'GET',
+              headers: {
+                'accept': 'application/json'
+              }
             })
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    } else {
-                        throw new Error('Failed to fetch tasks');
-                    }
-                })
-                .then(data => {
-                    setLabItems(data);
-                })
-                .catch(error => {
-                    console.error(error.message);
-                });
-        }, []);
-    
-        const labItem = [
-            {title: "Лабораторная работа 1"},
-            {title: "Лабораторная работа 2"},
-            {title: "Лабораторная работа 3"},
-            {title: "Лабораторная работа 4"},
-            {title: "Лабораторная работа 5"},
-        ]
+              .then(response => {
+                if (response.ok) {
+                  return response.json();
+                } else {
+                  throw new Error('Failed to fetch tasks');
+                }
+              })
+              .then(data => {
+                // Transform the object into an array of tasks
+                const tasksArray = Object.keys(data).map(key => ({
+                  id: key,
+                  description: data[key]
+                }));
+                setLabItems(tasksArray);
+              })
+              .catch(error => {
+                console.error(error.message);
+              });
+          }, []);        
     
         const getColors = (index) => {
             return index % 2 === 0 ? "section__lab-number" : "section__lab-number alternate-color"
@@ -200,7 +151,7 @@ const StudLaboratory = () => {
                                     className="section__lab-input"
                                     />
                                 <Link id="buttonAdd" className="section__lab-btn">
-                                    Добавить новую Лабораторную работу
+                                    Все лабораторные
                                 </Link>
                                 <Link id="buttonAdd" className="section__lab-btn">
                                     Выполнено                            
@@ -211,11 +162,11 @@ const StudLaboratory = () => {
                             </div>
                         </div>
                         <ListLab>
-                            {labItem.map((item, index) => (
+                            {labItems.map((labItem) => (
                                 <Link className="list__link" to='/labaStud'>
-                                    <li className={getColors(index)}  key={index}>
+                                    <li className={getColors()}  key={labItem.id}>
                                         <NameLab>
-                                            {item.title}
+                                            {labItem.description}
                                         </NameLab>
                                     </li> 
                                 </Link>
