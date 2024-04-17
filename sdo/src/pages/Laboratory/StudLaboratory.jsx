@@ -8,14 +8,14 @@
         flex-direction: column;
         align-items: center;
         gap: 10px;
-        padding: 0px 0px 20px;
+        padding: 25px 0px 20px;
         .section__lab-blockSearch{
         display: flex;
         gap: 10px;
         align-items: center;
         }
         .section__lab-input{
-            width: 395px;
+            width: 290px;
             height: 26px;
             padding: 10px;
             background: #F0F0F0;
@@ -27,13 +27,27 @@
             outline-width: 0;
         }
         .section__lab-block{
-            padding: 60px 355px 0px 0px;
+            padding-left: 2%;
         }
 
         .section__lab-button{
-            width: 395px;
+            width: 285px;
             padding: 10px;
             border-radius: 4px;
+            text-align: center;
+            color: #000;
+            font-family: 'Montserrat';
+            line-height: 27px;
+            text-decoration: none;
+            background: #F0F0F0;
+            border-style: none;
+            border-radius: 4px;
+            font-size: 10px;
+        }
+        .section__lab-btn{
+            width: 280px;
+            padding: 10px;
+            font-size: 13px;
             text-align: center;
             color: #000;
             font-family: 'Montserrat';
@@ -49,7 +63,7 @@
             transition: 0.5s;
         }
         .alternate-color{
-        background: rgba(216, 216, 216, 0.38);
+            background: rgba(216, 216, 216, 0.38);
         }   
 
     `
@@ -58,11 +72,24 @@
         text-align: center;
         font-family: 'Montserrat';
         font-size: 19px;
+        padding-left: 5%;
     `
     const ListLab = styled.ul`
         display: flex;
         flex-direction: column;
         gap: 10px;
+        .section__lab-number{
+            width: 1246px;
+            height: 120px;
+            background: rgba(226, 237, 208, 0.55);
+            border-radius: 10px;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+        .list__link{
+            text-decoration: none;
+        }
     `
 
     const ButtonDelete = styled.button`
@@ -110,20 +137,20 @@
         transition: 0.5s;
     }
     `
-    const StudLaboratory = () => {
+const StudLaboratory = () => {
         const [labItems, setLabItems] = useState([]);
         const [searchValue, setSearchValue] = useState("");
-
+    
         const handleSearchChange = (event) => {
             setSearchValue(event.target.value);
         };
-
+    
         const handleDeleteClick = (index) => {
             const updatedLabItems = [...labItems];
             updatedLabItems.splice(index, 1);
             setLabItems(updatedLabItems);
         };
-
+    
         useEffect(() => {
             fetch('http://127.0.0.1:8000/tasks', {
                 method: 'GET',
@@ -145,17 +172,17 @@
                     console.error(error.message);
                 });
         }, []);
-
-        // const labItems = [
-        //     {title: "Лабораторная работа 1"},
-        //     {title: "Лабораторная работа 2"},
-        //     {title: "Лабораторная работа 3"},
-        //     {title: "Лабораторная работа 4"},
-        //     {title: "Лабораторная работа 5"},
-        // ]
-
+    
+        const labItem = [
+            {title: "Лабораторная работа 1"},
+            {title: "Лабораторная работа 2"},
+            {title: "Лабораторная работа 3"},
+            {title: "Лабораторная работа 4"},
+            {title: "Лабораторная работа 5"},
+        ]
+    
         const getColors = (index) => {
-            return index % 2 === 0 ? "section__lab-page" : "section__lab-page alternate-color"
+            return index % 2 === 0 ? "section__lab-number" : "section__lab-number alternate-color"
         }; 
         return (
                 <>
@@ -172,32 +199,26 @@
                                     onChange={handleSearchChange}
                                     className="section__lab-input"
                                     />
-                                <Link id="buttonAdd" className="section__lab-button">
+                                <Link id="buttonAdd" className="section__lab-btn">
                                     Добавить новую Лабораторную работу
                                 </Link>
-                                <Link id="buttonAdd" className="section__lab-button">
+                                <Link id="buttonAdd" className="section__lab-btn">
                                     Выполнено                            
                                 </Link>
-                                <Link id="buttonAdd" className="section__lab-button">
+                                <Link id="buttonAdd" className="section__lab-btn">
                                     Не выполнено
                                 </Link>
                             </div>
                         </div>
                         <ListLab>
-                            {labItems.map((item, index) => (
-                                <li className={getColors(index)}  key={index}>
-                                    <NameLab>
-                                        {item.title}
-                                    </NameLab>
-                                        <SpnLab>
-                                            <Link to="/editingLaboratoryPrep" className="section__lab-edit">
-                                                Редактировать
-                                            </Link>  
-                                            <ButtonDelete onClick={handleDeleteClick}>
-                                                Удалить
-                                            </ButtonDelete>     
-                                        </SpnLab>
-                                </li> 
+                            {labItem.map((item, index) => (
+                                <Link className="list__link" to='/labaStud'>
+                                    <li className={getColors(index)}  key={index}>
+                                        <NameLab>
+                                            {item.title}
+                                        </NameLab>
+                                    </li> 
+                                </Link>
                             ))}
                         </ListLab>
                     </SectionLab>

@@ -1,6 +1,6 @@
     import "./style.css";
     import logo from "../../img/logo.svg";
-    import React , {useState, useEffect} from "react";
+    import React from "react";
     import Bread from "../BreadCrumbs";
     import { Link } from "react-router-dom";
     import styled from 'styled-components';
@@ -63,17 +63,17 @@
     align-items: center;
     `;
 const Header = ({ setIsLoggedIn, isLoggedIn, isButtonClicked }) => {
-    const [userRole, setUserRole] = useState(null);
+    // const [userRole, setUserRole] = useState(null);
 
-    useEffect(() => {
-        const user = getUserFromAuthentication();
-        setUserRole('teacher');
-         // или 'stud' в зависимости от того, что ожидается
-        if (user && user.role) {
-            setUserRole(user.role);
-            setIsLoggedIn(true);
-        }
-    }, [isLoggedIn]);
+    // useEffect(() => {
+    //     const user = getUserFromAuthentication();
+    //     setUserRole('teacher');
+    //      // или 'stud' в зависимости от того, что ожидается
+    //     if (user && user.role) {
+    //         setUserRole(user.role);
+    //         setIsLoggedIn(true);
+    //     }
+    // }, [isLoggedIn]);
 
     const getUserFromAuthentication = async () => {
         try {
@@ -88,7 +88,7 @@ const Header = ({ setIsLoggedIn, isLoggedIn, isButtonClicked }) => {
 
     const handleLogout = () => {
         setIsLoggedIn(false);
-        setUserRole(null);
+        // setUserRole(null);
     };
 
     return (
@@ -101,17 +101,17 @@ const Header = ({ setIsLoggedIn, isLoggedIn, isButtonClicked }) => {
                         </Link>
                     </div>
                     <Nav>
-                        {userRole === 'teacher' && (
+                        {/* {userRole === 'teacher' && (
                             <Link to="/laboratory" className="header__nav-lr">
                                 Лабораторные работы
                             </Link>
-                        )}
+                        )} */}
 
-                        {userRole === 'stud' && (
+                        {/* {userRole === 'stud' && ( */}
                             <Link to="/StudLaboratory" className="header__nav-lr">
                                 Лабораторные работы
                             </Link>
-                        )}
+                        {/* // )} */}
                         <Link to="/PersonalTeacher" className="header__nav-lr">
                             Личный кабинет
                         </Link>
