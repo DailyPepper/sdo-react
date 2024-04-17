@@ -356,14 +356,16 @@ const LaboratoryAdd = () => {
       } 
 
 
-
-
     const [inputValueSimbol, setInputValueSimbol] = useState('')
     const [inputValueStr, setInputValueStr] = useState('')
     const [lengthInput, setLengthInput] = useState([])
     const [addConstr, setAddConstr] = useState('')
     const [addConstrBtn, setAddConstrBtn] = useState([])
-    
+    // const [taskText, setTaskText] = useState(""); // Используем useState для создания состояния
+
+    // const handleTaskTextChange = (event) => {
+    //   setTaskText(event.target.value); // Обновляем состояние taskText при изменении поля ввода
+    // };
     const handleAddConstr = (event) => {
         setAddConstr(event.target.value)
     }
@@ -414,34 +416,34 @@ const LaboratoryAdd = () => {
     const [formulaRelated, setRelatedFormula] = useState('');
     const [addRelatedFormula, setAddRelatedFormula] = useState([])
     
-    const handleAddFormul = (event, inputFormul) => {
-        const newFormulaValue = event.target.value;
-        if (inputFormul === 1) {
-            setIdFormula(newFormulaValue);
-        } else if (inputFormul === 2) {
-            setDescriptionFormula(newFormulaValue);
-        } else if (inputFormul === 3) {
-            setFormula(newFormulaValue);
-        }
-    };
+    // const handleAddFormul = (event, inputFormul) => {
+    //     const newFormulaValue = event.target.value;
+    //     if (inputFormul === 1) {
+    //         setIdFormula(newFormulaValue);
+    //     } else if (inputFormul === 2) {
+    //         setDescriptionFormula(newFormulaValue);
+    //     } else if (inputFormul === 3) {
+    //         setFormula(newFormulaValue);
+    //     }
+    // };
       
-    const handleAddFormulBtn = () => {
-        const newFormul = {
-            idForm: idFormula.length,
-            descriptionForm: descriptionFormula.length,
-            Form: formula.length,
-        };
-        setAddFormula([...addFormula, newFormul]);
-        setIdFormula('');
-        setDescriptionFormula('');
-        setFormula('');
-    };
+    // const handleAddFormulBtn = () => {
+    //     const newFormul = {
+    //         idForm: idFormula.length,
+    //         descriptionForm: descriptionFormula.length,
+    //         Form: formula.length,
+    //     };
+    //     setAddFormula([...addFormula, newFormul]);
+    //     setIdFormula('');
+    //     setDescriptionFormula('');
+    //     setFormula('');
+    // };
 
-    const handleDelFormulBtn = () => {
-        setIdFormula('')
-        setDescriptionFormula('')
-        setFormula('')
-    }
+    // const handleDelFormulBtn = () => {
+    //     setIdFormula('')
+    //     setDescriptionFormula('')
+    //     setFormula('')
+    // }
 
     const handleAddRelatedFormul = (event, inputFormulRelated) => {
         const newFormulaRelatedValue = event.target.value;
@@ -466,57 +468,56 @@ const LaboratoryAdd = () => {
         setRelatedFormula('');
     };
 
-    const handleDelFormulRelatedBtn = () => {
-        setIdRelatedFormula('')
-        setDescriptionRelatedFormula('')
-        setRelatedFormula('')
-    }
+    // const handleDelFormulRelatedBtn = () => {
+    //     setIdRelatedFormula('')
+    //     setDescriptionRelatedFormula('')
+    //     setRelatedFormula('')
+    // }
     const [responseMessage, setResponseMessage] = useState("");
-
-  const sendDataToServer = async () => {
+    
     const labData = {
-      lab_task: {
-        task_text: "Ваш текст задания",
-        functions: [
-          {
-            name: "Имя функции",
-            test_cases: [
-              {
-                input: ["Входные данные"],
-                output: "Ожидаемый вывод"
-              }
-            ],
-            formulas: [
-              {
-                id: "ID формулы",
-                description: "Описание формулы",
-                formula: "Формула"
-              }
-            ],
-            linked_formulas: [
-              {
-                id: "ID связанной формулы",
-                description: "Описание связанной формулы",
-                formula_ids: ["ID1", "ID2"]
-              }
-            ]
-          }
-        ],
-        constructions: [
-          {
-            name: "Имя конструкции",
-            state: true
-          }
-        ],
-        length_checks: [
-          {
-            symbols: 0,
-            rows: 0
-          }
-        ]
-      }
-    };
-
+        lab_task: {
+          task_text: "Ваш текст задания",
+          functions: [
+            {
+              name: "Имя функции",
+              test_cases: [
+                {
+                  input: ["Входные данные"],
+                  output: "Ожидаемый вывод"
+                }
+              ],
+              formulas: [
+                {
+                  id: "ID формулы",
+                  description: "Описание формулы",
+                  formula: "Формула"
+                }
+              ],
+              linked_formulas: [
+                {
+                  id: "ID связанной формулы",
+                  description: "Описание связанной формулы",
+                  formula_ids: ["ID1", "ID2"]
+                }
+              ]
+            }
+          ],
+          constructions: [
+            {
+              name: "Имя конструкции",
+              state: true
+            }
+          ],
+          length_checks: [
+            {
+              symbols: 0,
+              rows: 0
+            }
+          ]
+        }
+      };
+    const sendDataToServer = async (labData) => {
     try {
       const response = await axios.post("http://0.0.0.0:8000/newtask", labData);
       console.log("Ответ от сервера:", response.data);
@@ -524,8 +525,7 @@ const LaboratoryAdd = () => {
     } catch (error) {
       console.error("Ошибка при отправке запроса:", error);
       setResponseMessage("Ошибка при добавлении лабораторной работы");
-    }
-  };
+    }} 
     return ( 
         <>
         <Section>
@@ -535,6 +535,8 @@ const LaboratoryAdd = () => {
                         type="text" 
                         placeholder="Введите назавание лабораторной работы"
                         onChange={handleLabTitleChange}
+                        // onChange={(e) => setLabTitle(e.target.value)}
+                        // value={taskText}
                     /> 
                 </List>
                 <List>
