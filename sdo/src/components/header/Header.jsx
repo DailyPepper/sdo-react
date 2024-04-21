@@ -1,7 +1,7 @@
     import "./style.css";
     import logo from "../../img/logo.svg";
     import React from "react";
-    import Bread from "../BreadCrumbs";
+    import Bread from "../BreadCrumbs"; 
     import { Link } from "react-router-dom";
     import styled from 'styled-components';
     import axios from 'axios';

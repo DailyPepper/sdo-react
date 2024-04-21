@@ -1,4 +1,4 @@
-    import { Link } from "react-router-dom";
+    import { Link, useLocation } from "react-router-dom";
     import React, { useState, useEffect } from "react";
     import "../../styles/style.css";
     import styled from 'styled-components'
@@ -94,7 +94,7 @@ const NameLab = styled.p`
 const StudLaboratory = () => {
         const [labItems, setLabItems] = useState([]);
         const [searchValue, setSearchValue] = useState("");
-    
+        const history = useLocation();
         const handleSearchChange = (event) => {
             setSearchValue(event.target.value);
         };
@@ -120,7 +120,6 @@ const StudLaboratory = () => {
                 }
               })
               .then(data => {
-                // Transform the object into an array of tasks
                 const tasksArray = Object.keys(data).map(key => ({
                   id: key,
                   description: data[key]
@@ -135,6 +134,10 @@ const StudLaboratory = () => {
         const getColors = (index) => {
             return index % 2 === 0 ? "section__lab-number" : "section__lab-number alternate-color"
         }; 
+        const handleLabClick = (labId) => {
+            // Переход к отображению выбранной лабораторной работы
+            history.push(`/lab/${labId}`);
+          };
         return (
                 <>
                     <SectionLab>
@@ -164,7 +167,7 @@ const StudLaboratory = () => {
                         <ListLab>
                             {labItems.map((labItem) => (
                                 <Link className="list__link" to='/labaStud'>
-                                    <li className={getColors()}  key={labItem.id}>
+                                    <li className={getColors()}  key={labItem.id} onClick={()=> handleLabClick(labItem.id)}>
                                         <NameLab>
                                             {labItem.description}
                                         </NameLab>

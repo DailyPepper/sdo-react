@@ -72,7 +72,7 @@ const Span = styled.span`
     transition: background-color 0.3s ease;
 `
 
-const FileUploader = () => {
+const FileUploader = ({id}) => {
     const [files, setFiles] = useState([]);
     const [isDragging, setIsDragging] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
@@ -103,8 +103,37 @@ const FileUploader = () => {
         }
     }
 
+    const handleSub = () => {
+        alert('Лабораторная успешно отправлена')
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (files.length === 0) {
+            alert('Выберите файл для отправки');
+            return;
+        }
+        const formData = new FormData();
+        formData.append('file', files[0]);
+        try {
+            const response = await fetch(`http://0.0.0.0:8000/check/${id}`, {
+                method: 'POST',
+                body: formData,
+            });
+            if (!response.ok) {
+                throw new Error('Ошибка при отправке файла');
+            }
+            const data = await response.json();
+            console.log('Ответ сервера:', data);
+        } catch (error) {
+            console.error('Ошибка:', error.message);
+        }
+    };
+    
+
     return (
         <Form
+            onSubmit={handleSubmit}
             onDragEnter={handleDragEnter}
             onDragOver={handleDragEnter}
             onDragLeave={handleDragLeave}
@@ -128,7 +157,7 @@ const FileUploader = () => {
                     onMouseLeave={() => setIsHovered(false)}
                 />
             </Label>
-            <Button type="submit">
+            <Button type="submit" onClick={handleSub}>
                 Отправить на проверку
             </Button>
         </Form>
