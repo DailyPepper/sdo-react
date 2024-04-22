@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 import styled from 'styled-components'
 import { Await, Link } from "react-router-dom";
-import Laboratory from "../Laboratory/Laboratory";
 import { Axios } from "axios";
 import axios from "axios";
 import { IoIosClose } from "react-icons/io";
-const Section = styled.section`
+const Section = styled.form`
     display: flex;
     justify-content: center;
     flex-wrap: nowrap;
@@ -283,77 +282,36 @@ const LaboratoryAdd = () => {
     const handleLabDescriptionChange = (event) => {
       setLabDescription(event.target.value);
     };
-  
-    const handleFunctionInputChange = (event, index) => {
-      const updatedFunctions = [...functions];
-      updatedFunctions[index][event.target.name] = event.target.value;
-      setFunctions(updatedFunctions);
-    };
-  
-    const handleTestCaseInputChange = (event, funcIndex, testCaseIndex) => {
-      const updatedFunctions = [...functions];
-      updatedFunctions[funcIndex].test_cases[testCaseIndex][event.target.name] = event.target.value;
-      setFunctions(updatedFunctions);
-    };
-  
-    const handleFormulaInputChange = (event, funcIndex, formulaIndex) => {
-      const updatedFunctions = [...functions];
-      updatedFunctions[funcIndex].formulas[formulaIndex][event.target.name] = event.target.value;
-      setFunctions(updatedFunctions);
-    };
-  
-    const handleLinkedFormulaInputChange = (event, funcIndex, linkedFormulaIndex) => {
-      const updatedFunctions = [...functions];
-      updatedFunctions[funcIndex].linked_formulas[linkedFormulaIndex][event.target.name] = event.target.value;
-      setFunctions(updatedFunctions);
-    };
-  
-    const handleConstructionInputChange = (event, index) => {
-      const updatedConstructions = [...constructions];
-      updatedConstructions[index][event.target.name] = event.target.value;
-      setConstructions(updatedConstructions);
-    };
-  
-    const handleLengthCheckInputChange = (event) => {
-      const name = event.target.name;
-      const value = event.target.value;
-  
-      if (name === "symbols") {
-        setSymbols(value);
-      } else if (name === "rows") {
-        setRows(value);
-      }
-    };
-  
-    const handleSaveLabData = async () => {
-        const labData = {
+    
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        const newTestCases = [];
+        const testInputs = document.querySelectorAll('.some-input'); // Выбираем все инпуты с классом .some-input
+      
+        testInputs.forEach(input => {
+          const testCase = {
+            input: input.value, // Значение инпута считываем как входные данные теста
+            output: input.nextElementSibling.value // Значение следующего за инпутом элемента считываем как ожидаемый вывод
+          };
+      
+          newTestCases.push(testCase); // Добавляем тестовый случай в массив
+        });
+      
+        // Создаем объект newData, содержащий данные из инпутов и другие данные
+        const newData = {
+          ...labData,
           lab_task: {
-            task_text: labDescription,
-            functions,
-            constructions,
-            length_checks: {
-              symbols,
-              rows,
-            },
+            ...labData.lab_task,
+            task_text: labTitle,
+            test_cases: newTestCases // Добавляем массив тестов в объект данных
           },
+          lab_description: labDescription // Добавляем описание лабораторной работы
         };
       
-        try {
-          const response = await Axios.post(
-            'http://0.0.0.0:8000/newtask',
-            labData
-          );
-          console.log(response.data);
-          return response.data;
-        } catch (error) {
-          console.error('Error during lab data save:', error);
-          return { error: 'Failed to save lab data' };
-        }
-      };
-    
-      const handleSaveTaskPyTest = async (data) => {
-        return Axios.post('http://0.0.0.0:8000/newTaskPyTest',data)
-      } 
+        // Отправляем данные на сервер
+        sendDataToServer(newData);
+    };
+      
 
 
     const [inputValueSimbol, setInputValueSimbol] = useState('')
@@ -366,45 +324,6 @@ const LaboratoryAdd = () => {
     // const handleTaskTextChange = (event) => {
     //   setTaskText(event.target.value); // Обновляем состояние taskText при изменении поля ввода
     // };
-    const handleAddConstr = (event) => {
-        setAddConstr(event.target.value)
-    }
-
-    const handleAddConstrBtn = () => {
-        if(addConstr.trim !== ''){
-            const newConstr = [...addConstrBtn, addConstr]
-            
-            setAddConstrBtn(newConstr)
-            setAddConstr('')
-        }
-    }
-
-    const handleDeleteConstr = () => {
-        setAddConstr('')
-    }
-
-    const handleChange = (event, inputNumber) => {
-        const newValue = event.target.value;
-        if ((inputNumber === 1 && newValue !== inputValueStr) || 
-            (inputNumber === 2 && newValue !== inputValueSimbol)) {
-                inputNumber === 1 ? setInputValueSimbol(newValue) : setInputValueStr(newValue);
-            }
-    }
-    const handleDelete = () => {
-        setInputValueSimbol('')
-        setInputValueStr('')
-    }
-
-    const handleAddLengthCheck = () => {
-        const newCheck = {
-            symbolLength: inputValueSimbol.length,
-            stringLength: inputValueStr.length,
-        };
-        setLengthInput([...lengthInput, newCheck]);
-
-        setInputValueSimbol('');
-        setInputValueStr('');
-    }
 
     const [idFormula, setIdFormula] = useState('');
     const [descriptionFormula, setDescriptionFormula] = useState('');
@@ -416,35 +335,6 @@ const LaboratoryAdd = () => {
     const [formulaRelated, setRelatedFormula] = useState('');
     const [addRelatedFormula, setAddRelatedFormula] = useState([])
     
-    // const handleAddFormul = (event, inputFormul) => {
-    //     const newFormulaValue = event.target.value;
-    //     if (inputFormul === 1) {
-    //         setIdFormula(newFormulaValue);
-    //     } else if (inputFormul === 2) {
-    //         setDescriptionFormula(newFormulaValue);
-    //     } else if (inputFormul === 3) {
-    //         setFormula(newFormulaValue);
-    //     }
-    // };
-      
-    // const handleAddFormulBtn = () => {
-    //     const newFormul = {
-    //         idForm: idFormula.length,
-    //         descriptionForm: descriptionFormula.length,
-    //         Form: formula.length,
-    //     };
-    //     setAddFormula([...addFormula, newFormul]);
-    //     setIdFormula('');
-    //     setDescriptionFormula('');
-    //     setFormula('');
-    // };
-
-    // const handleDelFormulBtn = () => {
-    //     setIdFormula('')
-    //     setDescriptionFormula('')
-    //     setFormula('')
-    // }
-
     const handleAddRelatedFormul = (event, inputFormulRelated) => {
         const newFormulaRelatedValue = event.target.value;
         if (inputFormulRelated === 1) {
@@ -468,13 +358,9 @@ const LaboratoryAdd = () => {
         setRelatedFormula('');
     };
 
-    // const handleDelFormulRelatedBtn = () => {
-    //     setIdRelatedFormula('')
-    //     setDescriptionRelatedFormula('')
-    //     setRelatedFormula('')
-    // }
+
     const [responseMessage, setResponseMessage] = useState("");
-    
+
     const labData = {
         lab_task: {
           task_text: "Ваш текст задания",
@@ -528,7 +414,7 @@ const LaboratoryAdd = () => {
     }} 
     return ( 
         <>
-        <Section>
+        <Section onSubmit={handleSubmit}>
             <UlList>
                 <List>
                     <NameLabInput 
@@ -536,7 +422,7 @@ const LaboratoryAdd = () => {
                         placeholder="Введите назавание лабораторной работы"
                         onChange={handleLabTitleChange}
                         // onChange={(e) => setLabTitle(e.target.value)}
-                        // value={taskText}
+                        value={labTitle}
                     /> 
                 </List>
                 <List>
@@ -710,7 +596,7 @@ const LaboratoryAdd = () => {
                     </div>
                 </BigBlock>
                 <div className="block__button"> 
-                    <button className="block__end" type="submit" onClick={sendDataToServer}>
+                    <button className="block__end" type="submit" onClick={()=> alert('Вы успешно добавили новую лабораторную работу')}>
                         <Link className="block__end-link" to='/Laboratory'>
                             Завершить редактирование и добавить лабораторную
                         </Link>
