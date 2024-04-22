@@ -165,7 +165,7 @@ const StudLaboratory = () => {
                             </div>
                         </div>
                         <ListLab>
-                            {labItems.map((labItem) => (
+                            {labItems.slice(0).reverse().map((labItem) => (
                                 <Link className="list__link" to='/labaStud'>
                                     <li className={getColors()}  key={labItem.id} onClick={()=> handleLabClick(labItem.id)}>
                                         <NameLab>

@@ -270,11 +270,9 @@ const NameLabInput = styled.input`
 const LaboratoryAdd = () => {
     const [labTitle, setLabTitle] = useState("");
     const [labDescription, setLabDescription] = useState("");
-    const [functions, setFunctions] = useState([]);
-    const [constructions, setConstructions] = useState([]);
-    const [symbols, setSymbols] = useState(0);
-    const [rows, setRows] = useState(0);
-  
+    const [entryList, setEntryList] = useState("")
+    const [outputList, setOutputList] = useState("")
+
     const handleLabTitleChange = (event) => {
       setLabTitle(event.target.value);
     };
@@ -282,91 +280,82 @@ const LaboratoryAdd = () => {
     const handleLabDescriptionChange = (event) => {
       setLabDescription(event.target.value);
     };
-    
+
+    const handleEntryList = (event) => {
+        setEntryList(event.target.value)
+    }
+    const handleOutputList = (event) => {
+        setOutputList(event.target.value)
+    }
+    // submit form
     const handleSubmit = (event) => {
         event.preventDefault()
         const newTestCases = [];
-        const testInputs = document.querySelectorAll('.some-input'); // Выбираем все инпуты с классом .some-input
+        const testInputs = document.querySelectorAll('.some-input');
       
         testInputs.forEach(input => {
           const testCase = {
-            input: input.value, // Значение инпута считываем как входные данные теста
-            output: input.nextElementSibling.value // Значение следующего за инпутом элемента считываем как ожидаемый вывод
+            input: input.value, 
+            output: input.nextElementSibling.value 
           };
-      
-          newTestCases.push(testCase); // Добавляем тестовый случай в массив
+          newTestCases.push(testCase); 
         });
-      
-        // Создаем объект newData, содержащий данные из инпутов и другие данные
         const newData = {
           ...labData,
           lab_task: {
             ...labData.lab_task,
-            task_text: labTitle,
-            test_cases: newTestCases // Добавляем массив тестов в объект данных
+            task_text: labTitle,            
+            name: labDescription,
+            test_cases: newTestCases
           },
-          lab_description: labDescription // Добавляем описание лабораторной работы
+          lab_description: labDescription 
         };
-      
-        // Отправляем данные на сервер
         sendDataToServer(newData);
     };
       
 
 
-    const [inputValueSimbol, setInputValueSimbol] = useState('')
-    const [inputValueStr, setInputValueStr] = useState('')
-    const [lengthInput, setLengthInput] = useState([])
-    const [addConstr, setAddConstr] = useState('')
-    const [addConstrBtn, setAddConstrBtn] = useState([])
-    // const [taskText, setTaskText] = useState(""); // Используем useState для создания состояния
-
-    // const handleTaskTextChange = (event) => {
-    //   setTaskText(event.target.value); // Обновляем состояние taskText при изменении поля ввода
+    // const [idFormula, setIdFormula] = useState('');
+    // const [descriptionFormula, setDescriptionFormula] = useState('');
+    // const [formula, setFormula] = useState('');
+    
+    // const [idRelatedFormula, setIdRelatedFormula] = useState('');
+    // const [descriptionRelatedFormula, setDescriptionRelatedFormula] = useState('');
+    // const [formulaRelated, setRelatedFormula] = useState('');
+    // const [addRelatedFormula, setAddRelatedFormula] = useState([])
+    
+    // const handleAddRelatedFormul = (event, inputFormulRelated) => {
+    //     const newFormulaRelatedValue = event.target.value;
+    //     if (inputFormulRelated === 1) {
+    //         setIdRelatedFormula(newFormulaRelatedValue);
+    //     } else if (inputFormulRelated === 2) {
+    //         setDescriptionRelatedFormula(newFormulaRelatedValue);
+    //     } else if (inputFormulRelated === 3) {
+    //         setRelatedFormula(newFormulaRelatedValue);
+    //     }
     // };
-
-    const [idFormula, setIdFormula] = useState('');
-    const [descriptionFormula, setDescriptionFormula] = useState('');
-    const [formula, setFormula] = useState('');
-    const [addFormula, setAddFormula] = useState([])
-    
-    const [idRelatedFormula, setIdRelatedFormula] = useState('');
-    const [descriptionRelatedFormula, setDescriptionRelatedFormula] = useState('');
-    const [formulaRelated, setRelatedFormula] = useState('');
-    const [addRelatedFormula, setAddRelatedFormula] = useState([])
-    
-    const handleAddRelatedFormul = (event, inputFormulRelated) => {
-        const newFormulaRelatedValue = event.target.value;
-        if (inputFormulRelated === 1) {
-            setIdRelatedFormula(newFormulaRelatedValue);
-        } else if (inputFormulRelated === 2) {
-            setDescriptionRelatedFormula(newFormulaRelatedValue);
-        } else if (inputFormulRelated === 3) {
-            setRelatedFormula(newFormulaRelatedValue);
-        }
-    };
       
-    const handleAddFormulRelatedBtn = () => {
-        const newFormulRelated = {
-            idForm: idFormula.length,
-            descriptionForm: descriptionFormula.length,
-            Form: formula.length,
-        };
-        setAddRelatedFormula([...addRelatedFormula, newFormulRelated]);
-        setIdRelatedFormula('');
-        setDescriptionRelatedFormula('');
-        setRelatedFormula('');
-    };
+    // const handleAddFormulRelatedBtn = () => {
+    //     const newFormulRelated = {
+    //         idForm: idFormula.length,
+    //         descriptionForm: descriptionFormula.length,
+    //         Form: formula.length,
+    //     };
+    //     setAddRelatedFormula([...addRelatedFormula, newFormulRelated]);
+    //     setIdRelatedFormula('');
+    //     setDescriptionRelatedFormula('');
+    //     setRelatedFormula('');
+    // };
 
 
     const [responseMessage, setResponseMessage] = useState("");
 
     const labData = {
         lab_task: {
-          task_text: "Ваш текст задания",
+          task_text: labTitle,
           functions: [
             {
-              name: "Имя функции",
+              name: labDescription,
               test_cases: [
                 {
                   input: ["Входные данные"],
@@ -403,15 +392,16 @@ const LaboratoryAdd = () => {
           ]
         }
       };
-    const sendDataToServer = async (labData) => {
-    try {
-      const response = await axios.post("http://0.0.0.0:8000/newtask", labData);
-      console.log("Ответ от сервера:", response.data);
-      setResponseMessage("Лабораторная работа успешно добавлена!");
-    } catch (error) {
-      console.error("Ошибка при отправке запроса:", error);
-      setResponseMessage("Ошибка при добавлении лабораторной работы");
-    }} 
+      const sendDataToServer = async (labData) => {
+        try {
+          const response = await axios.post("http://0.0.0.0:8000/newtask", labData);
+          console.log("Ответ от сервера:", response.data);
+          setResponseMessage("Лабораторная работа успешно добавлена!");
+        } catch (error) {
+          console.error("Ошибка при отправке запроса:", error);
+          setResponseMessage("Ошибка при добавлении лабораторной работы");
+        }
+      }
     return ( 
         <>
         <Section onSubmit={handleSubmit}>
@@ -438,6 +428,7 @@ const LaboratoryAdd = () => {
                                 type="text" 
                                 onChange={handleLabDescriptionChange}
                                 placeholder="Введите текст"
+                                value={labDescription}
                             />   
                     </div>
                 </List> 
@@ -455,13 +446,23 @@ const LaboratoryAdd = () => {
                                             <TitleBlock $FontSize $FontWeight  $Margin>
                                                 Входные данные:
                                             </TitleBlock> 
-                                                <input type="text" className="some-input"/>     
+                                                <input 
+                                                    type="text" 
+                                                    className="some-input"
+                                                    value={entryList}
+                                                    onChange={handleEntryList}
+                                                    />     
                                         </div>  
                                         <div className="editing__block-name">
                                             <TitleBlock $FontSize $FontWeight  $Margin>  
                                             Вывод:
                                             </TitleBlock> 
-                                                <input type="text" className="some-input"/>     
+                                                <input 
+                                                    type="text" 
+                                                    className="some-input"
+                                                    value={outputList}
+                                                    onChange={handleOutputList}
+                                                />     
                                         </div> 
                                         <IoIosClose className="icon" />
                                 </MinBlock>
@@ -473,13 +474,23 @@ const LaboratoryAdd = () => {
                                             <TitleBlock $FontSize $FontWeight  $Margin>
                                                 Входные данные:
                                             </TitleBlock> 
-                                                <input type="text" className="some-input"/>     
+                                                <input                                                    
+                                                    type="text" 
+                                                    className="some-input"
+                                                    value={entryList}
+                                                    onChange={handleEntryList}
+                                                />     
                                         </div>  
                                         <div className="editing__block-name">
                                             <TitleBlock $FontSize $FontWeight  $Margin>  
                                                 Вывод:
                                             </TitleBlock> 
-                                                <input type="text" className="some-input"/>     
+                                                <input 
+                                                    type="text" 
+                                                    className="some-input"
+                                                    value={outputList}
+                                                    onChange={handleOutputList}
+                                                />     
                                         </div> 
                                         <IoIosClose className="icon"/>
                                 </MinBlock>
@@ -491,13 +502,23 @@ const LaboratoryAdd = () => {
                                             <TitleBlock $FontSize $FontWeight  $Margin>
                                                 Входные данные:
                                             </TitleBlock> 
-                                                <input type="text" className="some-input"/>     
+                                                <input 
+                                                    type="text" 
+                                                    className="some-input"
+                                                    value={entryList}
+                                                    onChange={handleEntryList}                                                
+                                                />     
                                         </div>  
                                         <div className="editing__block-name">
                                             <TitleBlock $FontSize $FontWeight  $Margin>  
                                                 Вывод:
                                             </TitleBlock> 
-                                                <input type="text" className="some-input"/>     
+                                                <input 
+                                                    type="text" 
+                                                    className="some-input"
+                                                    value={outputList}
+                                                    onChange={handleOutputList}                                                
+                                                />     
                                         </div> 
                                         <IoIosClose className="icon"/>
                                 </MinBlock>   
@@ -582,13 +603,13 @@ const LaboratoryAdd = () => {
                             <FormBlock>
                                 <FormInput 
                                     type="text"
-                                    value={idRelatedFormula}
-                                    onChange={(event) => handleAddRelatedFormul(event,1)}
+                                    // value={idRelatedFormula}
+                                    // onChange={(event) => handleAddRelatedFormul(event,1)}
                                     placeholder="Введите формулу:"
                                  />
                             </FormBlock>
                             <div className="editing__block-bth">
-                                <ButtonAddForm onClick={handleAddFormulRelatedBtn}>
+                                <ButtonAddForm >
                                     Добавить формулу
                                 </ButtonAddForm>
                             </div>   
@@ -596,7 +617,13 @@ const LaboratoryAdd = () => {
                     </div>
                 </BigBlock>
                 <div className="block__button"> 
-                    <button className="block__end" type="submit" onClick={()=> alert('Вы успешно добавили новую лабораторную работу')}>
+                    <button 
+                        className="block__end" 
+                        type="submit"
+                        onClick={() => {
+                            sendDataToServer(labData);
+                            alert('Вы успешно добавили новую лабораторную работу');
+                        }}>
                         <Link className="block__end-link" to='/Laboratory'>
                             Завершить редактирование и добавить лабораторную
                         </Link>
