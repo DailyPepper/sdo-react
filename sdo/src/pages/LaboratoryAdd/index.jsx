@@ -24,6 +24,7 @@ const BigBlock = styled.div`
     }
     .block__one{
         margin-top: 5px;
+        width: 700px;
     }
 `
 const MinBlock = styled.li`
@@ -279,7 +280,10 @@ const LaboratoryAdd = () => {
     const [labDescription, setLabDescription] = useState("");
     const [entryList, setEntryList] = useState("")
     const [outputList, setOutputList] = useState("")
-
+    const [maxVariable, setMaxVariable] = useState("")
+    const [maxTime, setTimeVariable] = useState("")
+    const [remove,setRemove] = useState()
+    //отправка формы
     const handleLabTitleChange = (event) => {
       setLabTitle(event.target.value);
     };
@@ -294,6 +298,29 @@ const LaboratoryAdd = () => {
     const handleOutputList = (event) => {
         setOutputList(event.target.value)
     }
+    //сохранения на странице 
+    const [tests, setTests] = useState([]); 
+    const [newTest, setNewTest] = useState({
+        input: '',
+        output: '',
+        nameInput: '',
+        format: '',
+    });
+    // Обработчик изменения входных данных нового теста
+    const handleInputChange = (event) => {
+        setNewTest({ ...newTest, input: event.target.value });
+    };
+
+    // Обработчик изменения вывода нового теста
+    const handleOutputChange = (event) => {
+        setNewTest({ ...newTest, output: event.target.value });
+    };
+
+    // Обработчик добавления нового теста
+    const handleAddTest = () => {
+        setTests([...tests, newTest, ]); // Добавляем новый тест в список
+        setNewTest({ input: '', output: '', nameInput:'', format: ''}); // Сбрасываем значения нового теста
+    };
     // submit form
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -405,125 +432,102 @@ const LaboratoryAdd = () => {
                 </List> 
                 <BigBlock $BigFon $BigHeight $BigWeight $GapForm>
                     <div className="block__one">
-                        <TitleBlock $Padding $Margin>
+                        <TitleBlock $Padding >
                             Cписок тестов:
                         </TitleBlock> 
                             <UlMinBlock>
-                                <MinBlock>
-                                        <TitleBlock $FontSize $FontWeight $Margin>
-                                            Тест 1 "Проверка на ..."
-                                        </TitleBlock>
-                                        <div className="editing__block-name">
-                                            <TitleBlock $FontSize $FontWeight  $Margin>
-                                                Входные данные:
-                                            </TitleBlock> 
-                                                <input 
-                                                    type="text" 
-                                                    className="some-input"
-                                                    value={entryList}
-                                                    onChange={handleEntryList}
-                                                    />     
-                                        </div>  
-                                        <div className="editing__block-name">
-                                            <TitleBlock $FontSize $FontWeight  $Margin>  
-                                            Вывод:
-                                            </TitleBlock> 
-                                                <input 
-                                                    type="text" 
-                                                    className="some-input"
-                                                    value={outputList}
-                                                    onChange={handleOutputList}
-                                                />     
-                                        </div> 
-                                        <IoIosClose className="icon" />
-                                </MinBlock>
-                                <MinBlock>
+                            {tests.map((test, index) => (
+                                <MinBlock key={index}>
+                                <TitleBlock $FontSize $FontWeight $Margin>
+                                    Тест {index + 1} "{test.nameInput}"
+                                </TitleBlock>
+                                <div className="editing__block-name">
                                     <TitleBlock $FontSize $FontWeight $Margin>
-                                            Тест 1 "Проверка на ..."
-                                        </TitleBlock>
-                                        <div className="editing__block-name">
-                                            <TitleBlock $FontSize $FontWeight  $Margin>
-                                                Входные данные:
-                                            </TitleBlock> 
-                                                <input                                                    
-                                                    type="text" 
-                                                    className="some-input"
-                                                    value={entryList}
-                                                    onChange={handleEntryList}
-                                                />     
-                                        </div>  
-                                        <div className="editing__block-name">
-                                            <TitleBlock $FontSize $FontWeight  $Margin>  
-                                                Вывод:
-                                            </TitleBlock> 
-                                                <input 
-                                                    type="text" 
-                                                    className="some-input"
-                                                    value={outputList}
-                                                    onChange={handleOutputList}
-                                                />     
-                                        </div> 
-                                        <IoIosClose className="icon"/>
-                                </MinBlock>
-                                <MinBlock>
+                                        Входные данные:
+                                    </TitleBlock>
+                                    <input
+                                        type="text"
+                                        className="some-input"
+                                        value={test.input}
+                                        readOnly
+                                    />
+                                </div>
+                                <div className="editing__block-name">
                                     <TitleBlock $FontSize $FontWeight $Margin>
-                                            Тест 1 "Проверка на ..."
-                                        </TitleBlock>
-                                        <div className="editing__block-name">
-                                            <TitleBlock $FontSize $FontWeight  $Margin>
-                                                Входные данные:
-                                            </TitleBlock> 
-                                                <input 
-                                                    type="text" 
-                                                    className="some-input"
-                                                    value={entryList}
-                                                    onChange={handleEntryList}                                                
-                                                />     
-                                        </div>  
-                                        <div className="editing__block-name">
-                                            <TitleBlock $FontSize $FontWeight  $Margin>  
-                                                Вывод:
-                                            </TitleBlock> 
-                                                <input 
-                                                    type="text" 
-                                                    className="some-input"
-                                                    value={outputList}
-                                                    onChange={handleOutputList}                                                
-                                                />     
-                                        </div> 
-                                        <IoIosClose className="icon"/>
-                                </MinBlock>   
+                                        Формат ввода:
+                                    </TitleBlock>
+                                    <input
+                                        type="text"
+                                        className="some-input"
+                                        value={test.format}
+                                        readOnly
+                                    />
+                                </div>
+                                <div className="editing__block-name">
+                                    <TitleBlock $FontSize $FontWeight $Margin>
+                                        Вывод:
+                                    </TitleBlock>
+                                    <input
+                                        type="text"
+                                        className="some-input"
+                                        value={test.output}
+                                        readOnly
+                                    />
+                                </div>
+                                    <IoIosClose className="icon" onClick={()=> setRemove('')}/>
+                                </MinBlock>
+                            ))}
                             </UlMinBlock>
                     </div>
                     <div className="block__test">
                         <TitleBlock>
-                            Добавить новый тест:    
-                        </TitleBlock> 
+                            Добавить новый тест:
+                        </TitleBlock>
                         <div className="editing__block-name">
                             <TitleBlock $FontSize $FontWeight>
                                 Введите название теста:
-                            </TitleBlock> 
-                                <input type="text" className="some-input"/>     
+                            </TitleBlock>
+                            <input 
+                                type="text" 
+                                className="some-input" 
+                                value={newTest.nameInput} 
+                                onChange={(event)=>setNewTest({ ...newTest, nameInput: event.target.value })}
+                            />
                         </div>
                         <div className="editing__block-name">
                             <TitleBlock $FontSize $FontWeight>
                                 Входные данные:
-                            </TitleBlock> 
-                                <input type="text" className="some-input"/>     
+                            </TitleBlock>
+                            <input
+                                type="text"
+                                className="some-input"
+                                value={newTest.input}
+                                onChange={handleInputChange}
+                            />
                         </div>
                         <div className="editing__block-name">
                             <TitleBlock $FontSize $FontWeight>
                                 Формат ввода:
-                            </TitleBlock> 
-                                <input type="text" className="some-input"/>     
+                            </TitleBlock>
+                            <input 
+                                type="text" 
+                                className="some-input" 
+                                value={newTest.format}
+                                onChange={(event)=>setNewTest({ ...newTest, format: event.target.value })}
+                            />
                         </div>
                         <div className="editing__block-name">
                             <TitleBlock $FontSize $FontWeight>
                                 Вывод:
-                            </TitleBlock> 
-                                <input type="text" className="some-input"/>     
+                            </TitleBlock>
+                            <input
+                                type="text"
+                                className="some-input"
+                                value={newTest.output}
+                                onChange={handleOutputChange}
+                            />
                         </div>
-                        <ButtonAdd $ButtonAddW>
+                        <ButtonAdd $ButtonAddW onClick={handleAddTest}>
                             Добавить тест
                         </ButtonAdd>
                     </div>
@@ -600,10 +604,15 @@ const LaboratoryAdd = () => {
                             <input 
                                 type="text" 
                                 className="input__const" 
+                                value={maxVariable}
+                                onChange={(e)=>setMaxVariable(e.target.value)}
                                 placeholder="Введите максимальное количество переменных:" 
                             />
                         <div className="block__save">
-                            <button className="block__save-save">
+                            <button 
+                                className="block__save-save"
+                                onClick={()=> localStorage.setItem('maxVariable', maxVariable)}
+                            >
                                 Сохранить
                             </button>
                             <button className="block__save-remove">
@@ -618,13 +627,21 @@ const LaboratoryAdd = () => {
                             <input 
                                 type="text" 
                                 className="input__const" 
+                                value={maxTime}
+                                onChange={(e)=>setTimeVariable(e.target.value)}
                                 placeholder="Введите ограничение по скорости в секундах:" 
                             />
                             <div className="block__save">
-                                <button className="block__save-save">
+                                <button 
+                                    className="block__save-save"
+                                    onClick={()=> localStorage.setItem('maxTime', maxTime)}
+                                >
                                     Сохранить
                                 </button>
-                                <button className="block__save-remove">
+                                <button 
+                                    className="block__save-remove"
+                                    onClick={()=>setTimeVariable('')}
+                                >
                                     Удалить
                                 </button>
                             </div>
