@@ -306,22 +306,16 @@ const LaboratoryAdd = () => {
         nameInput: '',
         format: '',
     });
-    // Обработчик изменения входных данных нового теста
     const handleInputChange = (event) => {
         setNewTest({ ...newTest, input: event.target.value });
     };
-
-    // Обработчик изменения вывода нового теста
     const handleOutputChange = (event) => {
         setNewTest({ ...newTest, output: event.target.value });
     };
-
-    // Обработчик добавления нового теста
     const handleAddTest = () => {
-        setTests([...tests, newTest, ]); // Добавляем новый тест в список
-        setNewTest({ input: '', output: '', nameInput:'', format: ''}); // Сбрасываем значения нового теста
+        setTests([...tests, newTest, ]); 
+        setNewTest({ input: '', output: '', nameInput:'', format: ''});
     };
-    // submit form
     const handleSubmit = (event) => {
         event.preventDefault()
         const newTestCases = [];

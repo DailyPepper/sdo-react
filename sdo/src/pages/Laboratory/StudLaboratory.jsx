@@ -106,7 +106,17 @@ const StudLaboratory = () => {
             updatedLabItems.splice(index, 1);
             setLabItems(updatedLabItems);
         };
-    
+        
+        // useEffect(() => {
+        //     const timeout = setTimeout(() => {
+        //         setLabItems(prev => ({ ...prev, isLoading: false }));
+        //     }, 1000);
+        
+        //     return () => {
+        //         clearTimeout(timeout);
+        //     };
+        // }, []);
+
         useEffect(() => {
             fetch('http://0.0.0.0:8000/tasks', {
               method: 'GET',
