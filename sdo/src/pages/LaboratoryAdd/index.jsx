@@ -86,7 +86,7 @@ const UlList = styled.ul`
 
     .editing__block-input{
         width: 555px;
-        height: 60px;
+        height: 100px;
         border-radius: 7px;     
         border-style: none;
         color: #000;
@@ -143,22 +143,66 @@ const UlList = styled.ul`
     }
 ` 
 const List = styled.li`
-  width: ${({ $Block }) => ($Block ? '1248px' : '608px')};
-  height: ${({ $Block }) => ($Block ? '59px' : '260px')};
-  background-color: ${({ $Block }) => ($Block ? '#D9D9D9' : '#D5DEF6')};
-  border-radius: 7px;
-  display: flex;
-  align-items: center;
-  list-style-type: none;
+    width: ${({ $Block }) => ($Block ? '1248px' : '608px')};
+    height: ${({ $Block }) => ($Block ? '59px' : '260px')};
+    background-color: ${({ $Back }) => ($Back ? '#E2EDD0' : '#D5DEF6')};
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    list-style-type: none;
+  .input__const{
+    height: 45px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    width: 572px;
+  }
+  .block__save{
+    display: flex;
+    gap: 45px;
+  }
+  .block__save-save{
+    width: 265px;
+    height: 40px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  .block__save-save:hover{
+        background-color:#C8D5F6;
+        color: #FFFFFF;
+        transition: 0.5s;
+  }
+  .block__save-remove{
+    width: 265px;
+    height: 37px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  .block__save-remove:hover{
+    background-color: #FF7070;
+    color: #FFFFFF;
+    transition: 0.5s;
+  }
 `
-const NameLab = styled.h3`
-    color: #000;
-    text-align: center;
-    font-family: "Montserrat";
-    font-size: 20px;
-    line-height: 40px;
-    font-weight: 500;
-`
+
 const TitleBlock = styled.h3`
     color: #000;
     font-family: "Montserrat";
@@ -202,35 +246,14 @@ const ButtonAddForm = styled.button`
             transition: 0.5s;
         }
 `
-const ButtonDelete = styled.button`
-    font-family: "Montserrat";
-    width: 268px;
-    flex-shrink: 0;
-    border-radius: 4px;
-    border: none;
-    background: #FFF;
-    
-    cursor: pointer;
-        &:hover{
-            background: #FF7070;
-            color: #FFF;
-            border-style: none;
-            transition: 0.6s;
-        }
-`
+
 const FormBlock = styled.li`
     display: flex;
     flex-direction: column;
     padding: 5px;
     gap: 2px;
 `
-const FormLabel = styled.label`
-    font-family: 'Montserrat';
-    font-size: 16px;
-    line-height: 27px;
-    font-weight: 400;
-    color: #000000;
-`
+
 const FormInput = styled.input`
     height: 45px;
     border-radius: 5px;
@@ -239,23 +262,7 @@ const FormInput = styled.input`
     outline: none;
     font-size: 16px;
 `
-const ButtonFun = styled.button`
-    background-color: #D9D9D9;
-    width: 1248px;
-    height: 48px;
-    border-radius: 5px;
-    border-style: none;
-    cursor: pointer;
-    font-size: 16px;
-    font-family: 'Montserrat';
-    font-weight: 400px;
 
-    &:hover{
-        background-color: ${({$HoverButton}) => ($HoverButton ? '#C8D5F6' : '#FF7070')};
-        color: #FFFFFF;
-        transition: 0.5s;
-    }
-`
 const NameLabInput = styled.input`
     display: flex;
     border: none;
@@ -312,42 +319,6 @@ const LaboratoryAdd = () => {
         };
         sendDataToServer(newData);
     };
-      
-
-
-    // const [idFormula, setIdFormula] = useState('');
-    // const [descriptionFormula, setDescriptionFormula] = useState('');
-    // const [formula, setFormula] = useState('');
-    
-    // const [idRelatedFormula, setIdRelatedFormula] = useState('');
-    // const [descriptionRelatedFormula, setDescriptionRelatedFormula] = useState('');
-    // const [formulaRelated, setRelatedFormula] = useState('');
-    // const [addRelatedFormula, setAddRelatedFormula] = useState([])
-    
-    // const handleAddRelatedFormul = (event, inputFormulRelated) => {
-    //     const newFormulaRelatedValue = event.target.value;
-    //     if (inputFormulRelated === 1) {
-    //         setIdRelatedFormula(newFormulaRelatedValue);
-    //     } else if (inputFormulRelated === 2) {
-    //         setDescriptionRelatedFormula(newFormulaRelatedValue);
-    //     } else if (inputFormulRelated === 3) {
-    //         setRelatedFormula(newFormulaRelatedValue);
-    //     }
-    // };
-      
-    // const handleAddFormulRelatedBtn = () => {
-    //     const newFormulRelated = {
-    //         idForm: idFormula.length,
-    //         descriptionForm: descriptionFormula.length,
-    //         Form: formula.length,
-    //     };
-    //     setAddRelatedFormula([...addRelatedFormula, newFormulRelated]);
-    //     setIdRelatedFormula('');
-    //     setDescriptionRelatedFormula('');
-    //     setRelatedFormula('');
-    // };
-
-
     const [responseMessage, setResponseMessage] = useState("");
 
     const labData = {
@@ -418,10 +389,10 @@ const LaboratoryAdd = () => {
                 <List>
                     <div className="editing__block-Two">
                         <TitleBlock>
-                            Формат ввода данных:
+                            Описание лабораторной
                         </TitleBlock>
                             <p className="editing__block-text">
-                                Вы можете пояснить, как будет происходить ввод данных
+                                Введите описание лабораторной работы
                             </p>
                             <input 
                                 className="editing__block-input" 
@@ -542,6 +513,12 @@ const LaboratoryAdd = () => {
                         </div>
                         <div className="editing__block-name">
                             <TitleBlock $FontSize $FontWeight>
+                                Формат ввода:
+                            </TitleBlock> 
+                                <input type="text" className="some-input"/>     
+                        </div>
+                        <div className="editing__block-name">
+                            <TitleBlock $FontSize $FontWeight>
                                 Вывод:
                             </TitleBlock> 
                                 <input type="text" className="some-input"/>     
@@ -616,6 +593,42 @@ const LaboratoryAdd = () => {
                         </UlMinBlock>
                     </div>
                 </BigBlock>
+                    <List $Back>
+                        <TitleBlock $Margin>
+                            Количество переменных
+                        </TitleBlock> 
+                            <input 
+                                type="text" 
+                                className="input__const" 
+                                placeholder="Введите максимальное количество переменных:" 
+                            />
+                        <div className="block__save">
+                            <button className="block__save-save">
+                                Сохранить
+                            </button>
+                            <button className="block__save-remove">
+                                Удалить
+                            </button>
+                        </div>
+                    </List>
+                    <List $Back>
+                        <TitleBlock $Margin>
+                            Скорость работы:
+                        </TitleBlock>
+                            <input 
+                                type="text" 
+                                className="input__const" 
+                                placeholder="Введите ограничение по скорости в секундах:" 
+                            />
+                            <div className="block__save">
+                                <button className="block__save-save">
+                                    Сохранить
+                                </button>
+                                <button className="block__save-remove">
+                                    Удалить
+                                </button>
+                            </div>
+                    </List>
                 <div className="block__button"> 
                     <button 
                         className="block__end" 

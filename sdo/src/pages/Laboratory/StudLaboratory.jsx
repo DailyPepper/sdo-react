@@ -94,7 +94,9 @@ const NameLab = styled.p`
 const StudLaboratory = () => {
         const [labItems, setLabItems] = useState([]);
         const [searchValue, setSearchValue] = useState("");
+
         const history = useLocation();
+
         const handleSearchChange = (event) => {
             setSearchValue(event.target.value);
         };
@@ -135,7 +137,6 @@ const StudLaboratory = () => {
             return index % 2 === 0 ? "section__lab-number" : "section__lab-number alternate-color"
         }; 
         const handleLabClick = (labId) => {
-            // Переход к отображению выбранной лабораторной работы
             history.push(`/lab/${labId}`);
           };
         return (
