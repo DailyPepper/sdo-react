@@ -92,30 +92,35 @@ const NameLab = styled.p`
         }
 `
 const StudLaboratory = () => {
-        const [labItems, setLabItems] = useState([]);
-        const [searchValue, setSearchValue] = useState("");
+    const [labItems, setLabItems] = useState({ isLoading: true, data: [] });
+    const [searchValue, setSearchValue] = useState("");
 
-        const history = useLocation();
+    const history = useLocation();
 
-        const handleSearchChange = (event) => {
-            setSearchValue(event.target.value);
+    const handleSearchChange = (event) => {
+        setSearchValue(event.target.value);
+    };
+
+    const handleDeleteClick = (index) => {
+        const updatedLabItems = [...labItems.data];
+        updatedLabItems.splice(index, 1);
+        setLabItems((prev) => ({ ...prev, data: updatedLabItems }));
+    };
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setLabItems((prev) => ({ ...prev, isLoading: false }));
+        }, 5000);
+        return () => {
+            clearTimeout(timeout);
         };
-    
-        const handleDeleteClick = (index) => {
-            const updatedLabItems = [...labItems];
-            updatedLabItems.splice(index, 1);
-            setLabItems(updatedLabItems);
-        };
-        
-        // useEffect(() => {
-        //     const timeout = setTimeout(() => {
-        //         setLabItems(prev => ({ ...prev, isLoading: false }));
-        //     }, 1000);
-        
-        //     return () => {
-        //         clearTimeout(timeout);
-        //     };
-        // }, []);
+    }, []);
+        // useEffect(()=>{
+        //     setLabItems(prev => ({
+        //         ...prev,
+
+        //     }))
+        // },[])
 
         useEffect(() => {
             fetch('http://0.0.0.0:8000/tasks', {
@@ -124,20 +129,20 @@ const StudLaboratory = () => {
                 'accept': 'application/json'
               }
             })
-              .then(response => {
+            .then((response) => {
                 if (response.ok) {
-                  return response.json();
+                    return response.json();
                 } else {
-                  throw new Error('Failed to fetch tasks');
+                    throw new Error("Failed to fetch tasks");
                 }
-              })
-              .then(data => {
-                const tasksArray = Object.keys(data).map(key => ({
-                  id: key,
-                  description: data[key]
+            })
+            .then((data) => {
+                const tasksArray = Object.keys(data).map((key) => ({
+                    id: key,
+                    description: data[key],
                 }));
-                setLabItems(tasksArray);
-              })
+                setLabItems({ isLoading: false, data: tasksArray });
+            })
               .catch(error => {
                 console.error(error.message);
               });
@@ -176,15 +181,17 @@ const StudLaboratory = () => {
                             </div>
                         </div>
                         <ListLab>
-                            {labItems.slice(0).reverse().map((labItem) => (
-                                <Link className="list__link" to='/labaStud'>
-                                    <li className={getColors()}  key={labItem.id} onClick={()=> handleLabClick(labItem.id)}>
-                                        <NameLab>
-                                            {labItem.description}
-                                        </NameLab>
-                                    </li> 
-                                </Link>
-                            ))}
+                        {labItems.isLoading ? (
+                    <p>Loading...</p>
+                ) : (
+                    labItems.data.map((labItem) => (
+                        <Link className="list__link" to="/labaStud" key={labItem.id}>
+                            <li className={getColors()} onClick={() => handleLabClick(labItem.id)}>
+                                <NameLab>{labItem.description}</NameLab>
+                            </li>
+                        </Link>
+                    )).reverse()
+                )}
                         </ListLab>
                     </SectionLab>
                 </>
