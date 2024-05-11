@@ -21,10 +21,14 @@ const BigBlock = styled.div`
         display: flex;
         flex-direction: column;
         margin-top: 5px;
+        position: relative;
+        right: 2%;
     }
     .block__one{
         margin-top: 5px;
         width: 700px;
+        position: relative;
+        top: 4%;
     }
 `
 const MinBlock = styled.li`
@@ -203,7 +207,6 @@ const List = styled.li`
     transition: 0.5s;
   }
 `
-
 const TitleBlock = styled.h3`
     color: #000;
     font-family: "Montserrat";
@@ -213,7 +216,6 @@ const TitleBlock = styled.h3`
     padding-left: ${({$Padding}) => ($Padding ? '45px' : '0px')};
     margin: ${({$Margin}) => ($Margin ? '0px' : 'none')};
 `
-
 const ButtonAdd = styled.button`
     font-family: "Montserrat";
     width: ${({$ButtonAddW}) => ($ButtonAddW ? '400px' : '274px') };
@@ -247,14 +249,12 @@ const ButtonAddForm = styled.button`
             transition: 0.5s;
         }
 `
-
 const FormBlock = styled.li`
     display: flex;
     flex-direction: column;
     padding: 5px;
     gap: 2px;
 `
-
 const FormInput = styled.input`
     height: 45px;
     border-radius: 5px;
@@ -263,7 +263,6 @@ const FormInput = styled.input`
     outline: none;
     font-size: 16px;
 `
-
 const NameLabInput = styled.input`
     display: flex;
     border: none;
@@ -274,7 +273,6 @@ const NameLabInput = styled.input`
     padding: 0px 0px 0px 30px;
     outline: none;
 `
-
 const LaboratoryAdd = () => {
     const [labTitle, setLabTitle] = useState("");
     const [labDescription, setLabDescription] = useState("");
@@ -283,22 +281,6 @@ const LaboratoryAdd = () => {
     const [maxVariable, setMaxVariable] = useState("")
     const [maxTime, setTimeVariable] = useState("")
     const [remove,setRemove] = useState()
-    //отправка формы
-    const handleLabTitleChange = (event) => {
-      setLabTitle(event.target.value);
-    };
-  
-    const handleLabDescriptionChange = (event) => {
-      setLabDescription(event.target.value);
-    };
-
-    const handleEntryList = (event) => {
-        setEntryList(event.target.value)
-    }
-    const handleOutputList = (event) => {
-        setOutputList(event.target.value)
-    }
-    //сохранения на странице 
     const [tests, setTests] = useState([]); 
     const [newTest, setNewTest] = useState({
         input: '',
@@ -306,6 +288,18 @@ const LaboratoryAdd = () => {
         nameInput: '',
         format: '',
     });
+    const handleLabTitleChange = (event) => {
+      setLabTitle(event.target.value);
+    };
+    const handleLabDescriptionChange = (event) => {
+      setLabDescription(event.target.value);
+    };
+    const handleEntryList = (event) => {
+        setEntryList(event.target.value)
+    }
+    const handleOutputList = (event) => {
+        setOutputList(event.target.value)
+    }
     const handleInputChange = (event) => {
         setNewTest({ ...newTest, input: event.target.value });
     };
@@ -402,8 +396,7 @@ const LaboratoryAdd = () => {
                     <NameLabInput 
                         type="text" 
                         placeholder="Введите назавание лабораторной работы"
-                        onChange={handleLabTitleChange}
-                        // onChange={(e) => setLabTitle(e.target.value)}
+                        onChange={handleLabTitleChange} 
                         value={labTitle}
                     /> 
                 </List>
@@ -415,7 +408,7 @@ const LaboratoryAdd = () => {
                             <p className="editing__block-text">
                                 Введите описание лабораторной работы
                             </p>
-                            <input 
+                            <textarea 
                                 className="editing__block-input" 
                                 type="text" 
                                 onChange={handleLabDescriptionChange}
@@ -444,6 +437,7 @@ const LaboratoryAdd = () => {
                                         className="some-input"
                                         value={test.input}
                                         readOnly
+                                        // value={}
                                     />
                                 </div>
                                 <div className="editing__block-name">
@@ -455,6 +449,7 @@ const LaboratoryAdd = () => {
                                         className="some-input"
                                         value={test.format}
                                         readOnly
+                                        // value={}
                                     />
                                 </div>
                                 <div className="editing__block-name">
