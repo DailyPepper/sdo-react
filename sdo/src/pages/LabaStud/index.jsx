@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import FileUploadButton from './Button'
 import { Link, useParams } from "react-router-dom";
+import axios from 'axios';
 const Section = styled.section`
     display: flex;
     flex-direction: column;
@@ -70,13 +71,34 @@ const Text = styled.p`
 `
 const LabaStud = () => {
     const {id} = useParams()
+    const [labItem, setLabItem] = useState(null)
+
+    useEffect(() => {
+      if (id) {
+        axios.get(`http://0.0.0.0:8002/task/${id}`)
+          .then((response) => {
+            console.log(response.data);
+            setLabItem(response.data.Task);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    }, [id]);
+    
+      
+
+    if(!labItem){
+        return <div>Loading...</div>
+    }
+
     return ( 
         <>
             <Section>
                 <Block $Height $Fon $Center >
                     <Span>
                         <Task>
-                            Даны три целых числа. Найдите наибольшее из них (программа должна вывести ровно одно целое число). Под наибольшим в этой задаче понимается число, которое не меньше, чем любое другое.
+                            {labItem.task_description}
                         </Task>   
                     </Span>
                     <Span>

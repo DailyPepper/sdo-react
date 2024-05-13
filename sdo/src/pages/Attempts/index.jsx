@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { tests, checkStatus } from './Test';
 
@@ -121,6 +121,7 @@ const Span = styled.span`
 `;
 
 const Attempts = () => {
+    const {id} = useParams()
     const [hasWAStatus, setHasWAStatus] = useState(false);
 
     useEffect(() => {
@@ -164,7 +165,7 @@ const Attempts = () => {
                 </Block>
                 <div className="block__test">
                     <Span>
-                        <Link to='/labaStud'>Назад к лабораторной</Link>
+                        <Link to={`/labaStud/${id}`}>Назад к лабораторной</Link>
                     </Span>
                     <Span>
                         <Link to='/Laboratory'>Перейти на главную страницу</Link>

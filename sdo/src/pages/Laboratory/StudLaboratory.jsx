@@ -151,8 +151,8 @@ const StudLaboratory = () => {
         const getColors = (index) => {
             return index % 2 === 0 ? "section__lab-number" : "section__lab-number alternate-color"
         }; 
-        const handleLabClick = (labId) => {
-            history.push(`/lab/${labId}`);
+        const handleLabClick = (id) => {
+            history.push(`/labaStud/${id}`);
           };
         return (
                 <>
@@ -185,10 +185,10 @@ const StudLaboratory = () => {
                     <p>Loading...</p>
                 ) : (
                     labItems.data.map((labTitle) => (
-                        <Link className="list__link" to="/labaStud/:id" key={labTitle.id}>
-                            <li className={getColors()} onClick={() => handleLabClick(labTitle.id)}>
-                                <NameLab>{labTitle.description}</NameLab>
-                            </li>
+                        <Link className="list__link" to={`/labaStud/${labTitle.id}`} key={labTitle.id}>
+                        <li className={getColors()} onClick={() => handleLabClick(labTitle.id)}>
+                            <NameLab>{labTitle.description}</NameLab>
+                        </li>
                         </Link>
                     )).reverse()
                 )}
