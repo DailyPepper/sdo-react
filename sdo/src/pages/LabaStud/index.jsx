@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import FileUploadButton from './Button'
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 const Section = styled.section`
     display: flex;
     flex-direction: column;
@@ -69,6 +69,7 @@ const Text = styled.p`
     color: #000000;
 `
 const LabaStud = () => {
+    const {id} = useParams()
     return ( 
         <>
             <Section>

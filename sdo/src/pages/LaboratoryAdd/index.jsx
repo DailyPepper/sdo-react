@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from 'styled-components'
-import { Await, Link } from "react-router-dom";
+import { Await, Link, useNavigate} from "react-router-dom";
 import { Axios } from "axios";
 import axios from "axios";
 import { IoIosClose } from "react-icons/io";
@@ -263,131 +263,92 @@ const FormInput = styled.input`
     outline: none;
     font-size: 16px;
 `
-const NameLabInput = styled.input`
+const NameLabInput = styled.textarea`
     display: flex;
     border: none;
     background: none;
     width: 608px;
     height: 260px;
     font-size: 18px;
-    padding: 0px 0px 0px 30px;
+    padding: 15px 0px 0px 35px;;
     outline: none;
 `
 const LaboratoryAdd = () => {
     const [labTitle, setLabTitle] = useState("");
     const [labDescription, setLabDescription] = useState("");
-    const [entryList, setEntryList] = useState("")
-    const [outputList, setOutputList] = useState("")
-    const [maxVariable, setMaxVariable] = useState("")
-    const [maxTime, setTimeVariable] = useState("")
-    const [remove,setRemove] = useState()
-    const [tests, setTests] = useState([]); 
+    const [tests, setTests] = useState([]);
+    const navigate = useNavigate();
     const [newTest, setNewTest] = useState({
-        input: '',
-        output: '',
-        nameInput: '',
-        format: '',
+      nameInput: "",
+      input: "",
+      format: "",
+      output: "",
     });
+    const [maxVariable, setMaxVariable] = useState("");
+    const [maxTime, setMaxTime] = useState("");
+    const [formula, setFormula] = useState("");
+    const [responseMessage, setResponseMessage] = useState("");
+  
     const handleLabTitleChange = (event) => {
       setLabTitle(event.target.value);
     };
+  
     const handleLabDescriptionChange = (event) => {
       setLabDescription(event.target.value);
     };
-    const handleEntryList = (event) => {
-        setEntryList(event.target.value)
-    }
-    const handleOutputList = (event) => {
-        setOutputList(event.target.value)
-    }
-    const handleInputChange = (event) => {
-        setNewTest({ ...newTest, input: event.target.value });
+  
+    const handleNewTestChange = (field, value) => {
+      setNewTest((prevState) => ({
+        ...prevState,
+        [field]: value,
+      }));
     };
-    const handleOutputChange = (event) => {
-        setNewTest({ ...newTest, output: event.target.value });
-    };
+  
     const handleAddTest = () => {
-        setTests([...tests, newTest, ]); 
-        setNewTest({ input: '', output: '', nameInput:'', format: ''});
+      setTests([...tests, newTest]);
+      setNewTest({
+        nameInput: "",
+        input: "",
+        format: "",
+        output: "",
+      });
     };
+  
     const handleSubmit = (event) => {
-        event.preventDefault()
-        const newTestCases = [];
-        const testInputs = document.querySelectorAll('.some-input');
-      
-        testInputs.forEach(input => {
-          const testCase = {
-            input: input.value, 
-            output: input.nextElementSibling.value 
-          };
-          newTestCases.push(testCase); 
-        });
-        const newData = {
-          ...labData,
-          lab_task: {
-            ...labData.lab_task,
-            task_text: labTitle,            
-            name: labDescription,
-            test_cases: newTestCases
-          },
-          lab_description: labDescription 
-        };
-        sendDataToServer(newData);
-    };
-    const [responseMessage, setResponseMessage] = useState("");
-
-    const labData = {
+      event.preventDefault();
+  
+      const newData = {
         lab_task: {
           task_text: labTitle,
-          functions: [
-            {
-              name: labDescription,
-              test_cases: [
-                {
-                  input: ["Входные данные"],
-                  output: "Ожидаемый вывод"
-                }
-              ],
-              formulas: [
-                {
-                  id: "ID формулы",
-                  description: "Описание формулы",
-                  formula: "Формула"
-                }
-              ],
-              linked_formulas: [
-                {
-                  id: "ID связанной формулы",
-                  description: "Описание связанной формулы",
-                  formula_ids: ["ID1", "ID2"]
-                }
-              ]
-            }
-          ],
-          constructions: [
-            {
-              name: "Имя конструкции",
-              state: true
-            }
-          ],
-          length_checks: [
-            {
-              symbols: 0,
-              rows: 0
-            }
-          ]
-        }
+          task_description: labDescription,
+          name: tests.map((test) => test.nameInput),
+          input: tests.map((test) => test.input),
+          output: tests.map((test) => test.output),
+          formula: formula,
+        },
+        max_variable: maxVariable,
+        max_time: maxTime,
       };
-      const sendDataToServer = async (labData) => {
-        try {
-          const response = await axios.post("http://0.0.0.0:8000/newtask", labData);
-          console.log("Ответ от сервера:", response.data);
-          setResponseMessage("Лабораторная работа успешно добавлена!");
-        } catch (error) {
-          console.error("Ошибка при отправке запроса:", error);
-          setResponseMessage("Ошибка при добавлении лабораторной работы");
-        }
+  
+      sendDataToServer(newData);
+      navigate('/StudLaboratory');
+    };
+    const handleRemoveTest = (index) => {
+        const updateTest = [...tests]
+        updateTest.slice(index,1)
+        setTests(updateTest)
+    }
+    const sendDataToServer = async (data) => {
+      try {
+        const response = await axios.post("http://0.0.0.0:8002/newtask", data);
+        console.log("Ответ от сервера:", response.data);
+        setResponseMessage("Лабораторная работа успешно добавлена!");
+      } catch (error) {
+        console.error("Ошибка при отправке запроса:", error);
+        setResponseMessage("Ошибка при добавлении лабораторной работы");
       }
+    };
+  
     return ( 
         <>
         <Section onSubmit={handleSubmit}>
@@ -435,9 +396,9 @@ const LaboratoryAdd = () => {
                                     <input
                                         type="text"
                                         className="some-input"
-                                        value={test.input}
+                                        value={newTest.input}
                                         readOnly
-                                        // value={}
+                                        onChange={(e)=>handleNewTestChange("input",e.target.value)}
                                     />
                                 </div>
                                 <div className="editing__block-name">
@@ -447,8 +408,9 @@ const LaboratoryAdd = () => {
                                     <input
                                         type="text"
                                         className="some-input"
-                                        value={test.format}
+                                        value={newTest.format}
                                         readOnly
+                                        onChange={(e)=> handleNewTestChange("format", e.target.value)}
                                         // value={}
                                     />
                                 </div>
@@ -463,7 +425,7 @@ const LaboratoryAdd = () => {
                                         readOnly
                                     />
                                 </div>
-                                    <IoIosClose className="icon" onClick={()=> setRemove('')}/>
+                                    <IoIosClose className="icon" onClick={()=> handleRemoveTest('')}/>
                                 </MinBlock>
                             ))}
                             </UlMinBlock>
@@ -491,7 +453,7 @@ const LaboratoryAdd = () => {
                                 type="text"
                                 className="some-input"
                                 value={newTest.input}
-                                onChange={handleInputChange}
+                                onChange={(e)=>handleNewTestChange("input", e.target.value)}
                             />
                         </div>
                         <div className="editing__block-name">
@@ -513,7 +475,7 @@ const LaboratoryAdd = () => {
                                 type="text"
                                 className="some-input"
                                 value={newTest.output}
-                                onChange={handleOutputChange}
+                                onChange={(e)=> handleNewTestChange('output',e.target.value)}
                             />
                         </div>
                         <ButtonAdd $ButtonAddW onClick={handleAddTest}>
@@ -573,8 +535,8 @@ const LaboratoryAdd = () => {
                             <FormBlock>
                                 <FormInput 
                                     type="text"
-                                    // value={idRelatedFormula}
-                                    // onChange={(event) => handleAddRelatedFormul(event,1)}
+                                    value={formula}
+                                    onChange={(e)=>(setFormula(e.target.value))}
                                     placeholder="Введите формулу:"
                                  />
                             </FormBlock>
@@ -617,7 +579,7 @@ const LaboratoryAdd = () => {
                                 type="text" 
                                 className="input__const" 
                                 value={maxTime}
-                                onChange={(e)=>setTimeVariable(e.target.value)}
+                                onChange={(e)=>setMaxTime(e.target.value)}
                                 placeholder="Введите ограничение по скорости в секундах:" 
                             />
                             <div className="block__save">
@@ -629,7 +591,7 @@ const LaboratoryAdd = () => {
                                 </button>
                                 <button 
                                     className="block__save-remove"
-                                    onClick={()=>setTimeVariable('')}
+                                    onClick={()=>setMaxTime('')}
                                 >
                                     Удалить
                                 </button>
@@ -640,7 +602,6 @@ const LaboratoryAdd = () => {
                         className="block__end" 
                         type="submit"
                         onClick={() => {
-                            sendDataToServer(labData);
                             alert('Вы успешно добавили новую лабораторную работу');
                         }}>
                         <Link className="block__end-link" to='/Laboratory'>

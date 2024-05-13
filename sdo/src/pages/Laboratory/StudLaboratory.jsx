@@ -123,7 +123,7 @@ const StudLaboratory = () => {
         // },[])
 
         useEffect(() => {
-            fetch('http://0.0.0.0:8000/tasks', {
+            fetch('http://0.0.0.0:8002/tasks', {
               method: 'GET',
               headers: {
                 'accept': 'application/json'
@@ -184,10 +184,10 @@ const StudLaboratory = () => {
                         {labItems.isLoading ? (
                     <p>Loading...</p>
                 ) : (
-                    labItems.data.map((labItem) => (
-                        <Link className="list__link" to="/labaStud" key={labItem.id}>
-                            <li className={getColors()} onClick={() => handleLabClick(labItem.id)}>
-                                <NameLab>{labItem.description}</NameLab>
+                    labItems.data.map((labTitle) => (
+                        <Link className="list__link" to="/labaStud/:id" key={labTitle.id}>
+                            <li className={getColors()} onClick={() => handleLabClick(labTitle.id)}>
+                                <NameLab>{labTitle.description}</NameLab>
                             </li>
                         </Link>
                     )).reverse()

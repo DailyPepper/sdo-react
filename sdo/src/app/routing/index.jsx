@@ -30,7 +30,7 @@ const MainRouter = () => {
           <Route path="/mainStud" element={<MainStud />} />
           <Route path="/mainTeacher" element={<MainTeacher />} />
           <Route path="registration" element={<Registration />} />
-          <Route path="/labaStud" element={<LabaStud />} />
+          <Route path="/labaStud/:id" element={<LabaStud />} />
           <Route path="/attempts" element={<Attempts />} />
           <Route path="registration" element={<Registration />} />
           <Route path="*" element={<Navigate to="/login" />} />

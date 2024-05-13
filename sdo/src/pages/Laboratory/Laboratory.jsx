@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "../../styles/style.css";
 import styled from 'styled-components'
-import LaboratoryAdd from '../LaboratoryAdd/index'
 
 const SectionLab = styled.div`
     display: flex;
@@ -126,7 +125,7 @@ const Laboratory = () => {
     };
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/tasks', {
+        fetch('http://127.0.0.1:8002/tasks', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("access_token")}`,
